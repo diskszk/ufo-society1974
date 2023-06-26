@@ -1,7 +1,0 @@
-{
-  "name": "test",
-  "packageManager": "yarn@3.6.0",
-  "scripts": {
-    "start": "node ./main.js"
-  }
-}
