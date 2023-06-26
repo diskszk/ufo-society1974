@@ -6,9 +6,9 @@
   "author": "diskszk <ibalucky23@gmail.com>",
   "license": "MIT",
   "workspaces": [
-    "packages/test"
+    "packages/api"
   ],
   "scripts": {
-    "test:s": "yarn workspace test start"
+    "api:lint": "yarn workspace api lint"
   }
 }
