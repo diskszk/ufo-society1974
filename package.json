@@ -1,0 +1,14 @@
+{
+  "name": "ufo-society1974",
+  "version": "1.0.0",
+  "packageManager": "yarn@3.6.0",
+  "private": true,
+  "author": "diskszk <ibalucky23@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/test"
+  ],
+  "scripts": {
+    "test:s": "yarn workspace test start"
+  }
+}
