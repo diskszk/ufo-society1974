@@ -1,0 +1,99 @@
+{
+  "name": "ufo-society1974-functions",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "lint:tsc": "tsc --noEmit",
+    "build": "rimraf lib && tsc",
+    "build:nest": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "build:watch": "tsc --watch",
+    "serve": "yarn run build && firebase emulators:start --only functions",
+    "serve:js": "firebase emulators:start --only functions",
+    "shell": "yarn run build && firebase functions:shell",
+    "shell:js": "firebase functions:shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest",
+    "test:o": "jest --onlyChanged",
+    "test:f": "jest --onlyFailures",
+    "test:cc": "jest --clearCache",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:e2e": "jest --config ./src/e2e/jest-e2e.json"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  },
+  "husky": {
+    "prepare": "husky install",
+    "hooks": {
+      "pre-commit": "yarn lint && yarn lint && yarn build"
+    }
+  },
+  "dependencies": {
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/mapped-types": "*",
+    "@nestjs/platform-express": "^8.0.0",
+    "express": "^4.18.2",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^4.2.1",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^7.2.0"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^8.0.0",
+    "@nestjs/schematics": "^8.0.0",
+    "@nestjs/swagger": "^6.3.0",
+    "@nestjs/testing": "^8.0.0",
+    "@types/express": "^4.17.14",
+    "@types/helmet": "^4.0.0",
+    "@types/jest": "27.4.0",
+    "@types/node": "^16.0.0",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "firebase-functions-test": "^0.2.0",
+    "helmet": "^6.0.0",
+    "husky": "^8.0.2",
+    "jest": "^27.2.5",
+    "prettier": "^2.3.2",
+    "source-map-support": "^0.5.20",
+    "supertest": "^6.3.3",
+    "ts-jest": "^27.0.3",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^3.10.1",
+    "typescript": "^4.5.4",
+    "ufo-society1974-definition-types": "^0.1.6"
+  },
+  "private": true
+}
