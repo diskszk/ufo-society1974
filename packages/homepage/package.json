@@ -1,5 +1,5 @@
 {
-  "name": "ufo-society1974",
+  "name": "homepage",
   "version": "1.0.0",
   "main": "/public/index.html",
   "scripts": {
@@ -9,7 +9,9 @@
     "preview": "vite preview --port 8080",
     "deploy": "yarn build && firebase deploy --only hosting",
     "test": "jest --config ./jest.config.json",
-    "lint": "eslint --ext .tsx,.ts ./src/",
+    "lint": "run-s -c 'lint:*'",
+    "lint:eslint": "eslint --ext .tsx,.ts ./src/",
+    "lint:tsc": "tsc --noEmit",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "cy:open": "cypress open",
@@ -44,7 +46,7 @@
     "@types/jest": "^29.5.1",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.6",
-    "@types/react-redux": "^7.1 .14",
+    "@types/react-redux": "^7.1.25",
     "@types/redux-logger": "^3.0.8",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
