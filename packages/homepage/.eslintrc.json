@@ -1,0 +1,66 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "testing-library",
+    "react-hooks",
+    "import"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:testing-library/react",
+    "plugin:prettier/recommended",
+    "prettier",
+    "plugin:storybook/recommended",
+    "plugin:import/warnings"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "linebreak-style": ["error", "unix"],
+    "semi": "error",
+    "no-unused-vars": "off",
+    "no-irregular-whitespace": ["error", { "skipTemplates": true }],
+    "no-console": "warn",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-use-before-define": "off",
+    "react/prop-types": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": false,
+        "semi": true
+      }
+    ],
+    "import/no-default-export": "error"
+  },
+  "ignorePatterns": [".eslintrc.*", "*.config.*", ".firebaserc"]
+}
