@@ -4,7 +4,8 @@
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint --ext .js,.ts .",
+    "lint": "run-s -c 'lint:*'",
+    "lint:eslint": "eslint --ext .js,.ts .",
     "lint:tsc": "tsc --noEmit",
     "build": "rimraf lib && tsc",
     "build:nest": "nest build",

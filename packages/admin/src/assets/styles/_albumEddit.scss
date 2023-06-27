@@ -1,0 +1,21 @@
+.album-edit {
+  &-image {
+    width: 66%;
+    margin: 0 auto;
+
+    &__select {
+      text-align: left;
+      width: 60%;
+      margin: 0 auto;
+
+      span {
+        color: #444;
+      }
+    }
+
+    > img {
+      width: 60%;
+      object-fit: cover;
+    }
+  }
+}
