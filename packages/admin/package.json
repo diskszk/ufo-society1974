@@ -1,5 +1,5 @@
 {
-  "name": "ufo-society1974-admin",
+  "name": "admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,7 +12,7 @@
     "build": "tsc && yarn clean && vite build",
     "preview": "vite preview",
     "test": "jest",
-    "lint": "run-s -c lint:*",
+    "lint": "run-s -c 'lint:*'",
     "lint:eslint": "eslint src/ --ext .ts,.tsx,.js,.jsx",
     "lint:tsc": "tsc --noEmit",
     "host:staged": "yarn lint && yarn build && firebase deploy --only hosting",
@@ -79,9 +79,8 @@
     "jest-environment-jsdom": "^29.5.0",
     "lint-staged": "^13.2.2",
     "msw": "^1.2.2",
-    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
-    "react-error-boundary": "^4.0.9",
+    "react-error-boundary": "^4.0.10",
     "react-hook-form": "^7.44.3",
     "react-redux": "^8.0.5",
     "react-router-dom": "^5.3.4",
