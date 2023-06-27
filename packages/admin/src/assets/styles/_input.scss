@@ -1,0 +1,35 @@
+.inputs-container {
+  color: #444;
+
+  &-description {
+    width: 80%;
+    margin: 0 auto;
+
+    color: #444;
+    display: block;
+    text-align: left;
+    margin-bottom: 12px;
+  }
+
+  .input-author {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    > div {
+      max-width: 18em;
+      margin-right: 40px;
+    }
+  }
+
+  .song-upload-form {
+    color: #444;
+    height: 48px;
+    line-height: 48px;
+
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,73 @@
+.songs-album-info {
+  width: 30%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  &-image {
+    > img {
+      width: 300px;
+    }
+  }
+
+  &-detail {
+    width: 300px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+    > p {
+      text-align: left;
+      color: #eee;
+    }
+  }
+}
+
+.song-table {
+  max-width: 1300px;
+  margin: 24px auto;
+  font-size: 24px;
+
+  .song-element {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 0 5%;
+
+    > p,
+    div {
+      border: 1px solid #444;
+      box-sizing: border-box;
+      background-color: #eee;
+      color: #444;
+      padding-left: 4px;
+      min-height: 36px;
+    }
+
+    .number {
+      box-sizing: border-box;
+      text-align: right;
+      padding-left: 0;
+      padding-right: 8px;
+    }
+
+    .id {
+      width: 5%;
+    }
+    .title {
+      width: 25%;
+    }
+    .title-kana {
+      width: 25%;
+    }
+    .story {
+      width: 25%;
+    }
+    .edit,
+    .delete {
+      width: 5%;
+      text-align: center;
+    }
+  }
+}
