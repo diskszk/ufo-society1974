@@ -1,0 +1,7 @@
+{
+  "name": "@ufo-society1974/tsconfig",
+  "packageManager": "yarn@3.6.0",
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.4"
+  }
+}
