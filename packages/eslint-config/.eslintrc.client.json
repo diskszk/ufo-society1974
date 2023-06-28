@@ -1,0 +1,36 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "./.eslintrc.base.json",
+    "plugin:react/recommended",
+    "plugin:storybook/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:testing-library/react"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react", "react-hooks", "testing-library", "storybook"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/prop-types": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "testing-library/await-async-query": "warn",
+    "testing-library/await-async-utils": "warn",
+    "testing-library/no-render-in-setup": "warn",
+    "testing-library/no-await-sync-query": "warn",
+    "testing-library/no-debugging-utils": "warn",
+    "testing-library/no-dom-import": "warn",
+    "testing-library/prefer-screen-queries": "warn",
+    "testing-library/no-wait-for-multiple-assertions": "warn"
+  }
+}

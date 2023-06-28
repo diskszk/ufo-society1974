@@ -8,7 +8,7 @@ export const Router: React.FC = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<AlbumListPage />} />
-          <Route path={`/detail/:id`} element={<AlbumDetailPage />} />
+          <Route path={"/detail/:id"} element={<AlbumDetailPage />} />
           <Route path="*" element={<UndefinedPage />} />
         </Route>
       </Routes>

@@ -120,7 +120,7 @@ const AlbumEdit: React.FC = () => {
           publishedDate,
           id
         );
-        dispatch(createDisplayMessage(`アルバムを保存しました。`));
+        dispatch(createDisplayMessage("アルバムを保存しました。"));
         dispatch(crateSuccessFetchAction());
         history.push("/albums");
       } catch {
