@@ -5,26 +5,10 @@
     "node": true,
     "jest": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
-    "google",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": ["tsconfig.json", "tsconfig.dev.json"],
-    "sourceType": "module"
-  },
+
+  "extends": ["@ufo-society1974/eslint-config/.eslintrc.node.json", "google"],
   "ignorePatterns": [
     "/lib/**/*" // Ignore built files.
-  ],
-  "plugins": [
-    "@typescript-eslint",
-    "@typescript-eslint/eslint-plugin",
-    "import"
   ],
   "rules": {
     "indent": "off",
@@ -45,6 +29,7 @@
     "eslint-disable-next-line": "off",
     "new-cap": "off",
     "no-console": "warn",
-    "max-len": "off"
+    "max-len": "off",
+    "comma-dangle": "warn"
   }
 }
