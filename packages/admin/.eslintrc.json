@@ -1,28 +1,5 @@
 {
   "extends": ["@ufo-society1974/eslint-config/.eslintrc.client.json"],
-  "rules": {
-    "semi": "error",
-    "no-unused-vars": "off",
-    "no-irregular-whitespace": [
-      "error",
-      {
-        "skipTemplates": true
-      }
-    ],
-    "no-console": "warn",
-    "newline-after-var": "error",
-    "one-var": ["error", "never"],
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "@typescript-eslint/no-use-before-define": "off",
-    "react/prop-types": "off",
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "quotes": ["warn", "double"]
-  },
+  "rules": {},
   "ignorePatterns": ["./__testMocks__"]
 }
