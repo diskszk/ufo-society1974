@@ -4,7 +4,6 @@ import { CreateUserForm } from "../CreateUserForm";
 import { SignInInputs } from "../../lib/schemas/signInSchema";
 import { within, userEvent } from "@storybook/testing-library";
 
-// eslint-disable-next-line storybook/story-exports
 const meta: Meta = {
   title: "Partials/SignInForm",
   component: SignInForm,
