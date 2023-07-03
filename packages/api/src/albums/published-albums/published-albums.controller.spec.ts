@@ -22,24 +22,24 @@ export class DummyPublishedAlbumsService {
   }
 
   async create(
-    albumDTO: CreateAlbumDTO
+    _albumDTO: CreateAlbumDTO
   ): Promise<FirebaseFirestore.DocumentReference<CreateAlbumDTO>> {
     return null;
   }
 
   async update(
-    albumDTO: UpdateAlbumDTO
+    _albumDTO: UpdateAlbumDTO
   ): Promise<FirebaseFirestore.WriteResult> {
     return null;
   }
 
-  async delete(albumId: string): Promise<FirebaseFirestore.WriteResult> {
+  async delete(_albumId: string): Promise<FirebaseFirestore.WriteResult> {
     return null;
   }
 }
 
 export class DummySongsService {
-  async findAllSongSummariesByAlbumId(albumId: string) {
+  async findAllSongSummariesByAlbumId(_albumId: string) {
     const songSummaries: SongSummary[] = [...mockData.songs];
     return songSummaries;
   }

@@ -1,5 +1,3 @@
-/* eslint-disable import/no-default-export */
-
 import { ComponentMeta } from "@storybook/react";
 import { Component as SongModal } from "./SongModal";
 import { mockSongs } from "../../../../mocks/mockData";

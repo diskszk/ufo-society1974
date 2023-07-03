@@ -3,6 +3,7 @@ import { Wrapper } from "../test-utils";
 import { useMessageModalState } from "../hooks/useMessageModalState";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MessageModal from "./MessageModal";
+
 const client = new QueryClient({
   defaultOptions: {
     queries: {
@@ -13,19 +14,21 @@ const client = new QueryClient({
 });
 
 describe("MessageModal", () => {
-  beforeEach(() => {
+  test("初期状態の場合、MessageModalを表示しない", () => {
     render(
       <QueryClientProvider client={client}>
         <MessageModal />
       </QueryClientProvider>
     );
-  });
-
-  test("初期状態の場合、MessageModalを表示しない", () => {
     expect(screen.queryByRole("dialog")).not.toBeTruthy();
   });
 
   test("MessageModalを表示して、非表示にできる", async () => {
+    render(
+      <QueryClientProvider client={client}>
+        <MessageModal />
+      </QueryClientProvider>
+    );
     const { result } = renderHook(() => useMessageModalState(), {
       wrapper: Wrapper,
     });

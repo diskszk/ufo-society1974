@@ -33,7 +33,7 @@ export async function findUserById(uid: string): Promise<User> {
 }
 
 export async function registerUser(user: User): Promise<void> {
-  const res = await axios.post<User>(baseUrl(`/users`), {
+  const res = await axios.post<User>(baseUrl("/users"), {
     ...user,
   });
 

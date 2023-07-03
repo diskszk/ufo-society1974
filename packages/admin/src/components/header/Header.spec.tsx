@@ -24,19 +24,20 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Header", () => {
-  beforeEach(() => {
+  const renderUi = () =>
     render(
       <Wrapper>
         <Header />
       </Wrapper>
     );
-  });
 
   afterEach(() => {
     cleanup();
   });
 
   test("サインイン済みの場合、`サインアウト`のリンクを表示する", async () => {
+    renderUi();
+
     const { result } = renderHook(() => useSignedInUserState(), {
       wrapper: Wrapper,
     });
@@ -56,6 +57,8 @@ describe("Header", () => {
   });
 
   test("サインイン状態からサインアウトした場合、`サインイン`のリンクを表示する", async () => {
+    renderUi();
+
     const { result } = renderHook(() => useSignedInUserState(), {
       wrapper: Wrapper,
     });

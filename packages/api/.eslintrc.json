@@ -23,6 +23,6 @@
     "new-cap": "off",
     "no-console": "warn",
     "max-len": "off",
-    "comma-dangle": "warn"
+    "comma-dangle": "off"
   }
 }

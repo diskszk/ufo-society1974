@@ -9,9 +9,6 @@ jest.mock("../../lib/auth", () => ({
       uid: "newusergenerateduid",
     };
   },
-  signIn: (_email: string, _password: string) => {
-    return;
-  },
 }));
 
 test("[role=master]以外のユーザーが実行した場合、エラーモーダルを発生させる", async () => {
@@ -37,7 +34,7 @@ test("ユーザーロールがmasterの場合、登録ボタンをクリック�
     await result.current.handleCreateUser(input, "master");
   });
 
-  waitFor(() => {
+  await waitFor(() => {
     expect(screen.getByRole("dialog")).toHaveTextContent(
       /アリスを作成しました。/
     );

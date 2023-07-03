@@ -15,14 +15,14 @@ export const createUserSchema = z
       .min(8, { message: "パスワードは8文字以上で入力してください。" })
       .max(64, { message: "パスワードは64文字以下で入力してください。" })
       .regex(/^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i, {
-        message: '"パスワードは半角英数字混合で入力してください。"',
+        message: "パスワードは半角英数字混合で入力してください。",
       }),
     confirmPassword: z
       .string()
       .min(8, { message: "パスワードは8文字以上で入力してください。" })
       .max(64, { message: "パスワードは64文字以下で入力してください。" })
       .regex(/^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i, {
-        message: '"パスワードは半角英数字混合で入力してください。"',
+        message: "パスワードは半角英数字混合で入力してください。",
       }),
     roleType: z.string(),
   })
