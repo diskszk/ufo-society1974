@@ -115,7 +115,7 @@ export const ImageUploadForm: React.FC<Props> = ({ image }) => {
           </label>
         </IconButton>
       </div>
-      <img src={image.path} alt={`アルバムのイメージ`} />
+      <img src={image.path} alt={"アルバムのイメージ"} />
     </div>
   );
 };

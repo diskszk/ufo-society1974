@@ -3,9 +3,12 @@ import "./assets/styles/style.scss";
 import "./reset.css";
 
 import { BrowserRouter } from "react-router-dom";
-import { QueryErrorResetBoundary } from "@tanstack/react-query";
+import {
+  QueryErrorResetBoundary,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import { createStore } from "./store/store";
 

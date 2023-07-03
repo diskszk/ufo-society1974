@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { FirebaseTimestamp } from "../../firebase";
 import { Song } from "../../lib/types";
 const timestamp = FirebaseTimestamp.now();

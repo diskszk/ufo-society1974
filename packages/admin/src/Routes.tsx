@@ -34,10 +34,10 @@ const Routes: React.FC = () => {
 
         {/* Songs */}
         <Route
-          path={`/albums/detail/:albumId/edit/:songId`}
+          path={"/albums/detail/:albumId/edit/:songId"}
           component={SongEdit}
         />
-        <Route exact path={`/albums/detail/:albumId`} component={Songs} />
+        <Route exact path={"/albums/detail/:albumId"} component={Songs} />
       </Auth>
     </Switch>
   );

@@ -69,7 +69,7 @@ export const AlbumForm: React.FC<Props> = ({ backToHref, onSubmit, role }) => {
 
           <img
             src={previewImageSrc}
-            alt={`アルバムのイメージ`}
+            alt={"アルバムのイメージ"}
             onError={(e) => {
               e.currentTarget.onerror = null;
               e.currentTarget.src = NO_IMAGE;

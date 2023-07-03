@@ -50,7 +50,7 @@ test("メールアドレス入力欄にメールアドレス以外の文字列�
   const { form } = await setup({ email: "1234" });
 
   expect(
-    await screen.getByText("不正なメールアドレス形式です。")
+    await screen.findByText("不正なメールアドレス形式です。")
   ).toBeInTheDocument();
   expect(form.email).toBeInvalid();
 });
@@ -60,8 +60,8 @@ test("メールアドレスとパスワードが入力された場合、サイ�
 
   await waitFor(() => {
     expect(form.email).toBeValid();
-    expect(form.password).toBeValid();
   });
+  expect(form.password).toBeValid();
 
   await clickSignIn();
 
@@ -75,5 +75,5 @@ test("submit処理中は、submitボタンはdisabledである", async () => {
 
   await user.click(form.button);
 
-  expect(await form.button).toBeDisabled();
+  expect(form.button).toBeDisabled();
 });

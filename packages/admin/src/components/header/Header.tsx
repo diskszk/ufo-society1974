@@ -41,7 +41,7 @@ export const Header: React.FC = () => {
           <div className="header-content-right">
             <p>ユーザー: {signedInUser.username}</p>
             <p>
-              {`権限 `}: {signedInUser.role}
+              {"権限 "}: {signedInUser.role}
             </p>
           </div>
         )}

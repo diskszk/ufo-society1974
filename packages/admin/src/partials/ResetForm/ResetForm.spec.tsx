@@ -21,14 +21,16 @@ test("何も入力されていない場合、ボタンは非活性である", as
 test("メールアドレス以外の文字列が入力された場合、エラーメッセージを表示する", async () => {
   const { InvalidEmail } = composeStories(stories);
 
-  const { container, getByText } = render(<InvalidEmail />);
+  const { container } = render(<InvalidEmail />);
 
   await InvalidEmail.play({ canvasElement: container });
 
   await waitFor(() => {
-    expect(getByText(/不正なメールアドレス形式です。/)).toBeInTheDocument();
-    expect(screen.getByRole("textbox", { name: "E-mail" })).toBeInvalid();
+    expect(
+      screen.getByText(/不正なメールアドレス形式です。/)
+    ).toBeInTheDocument();
   });
+  expect(screen.getByRole("textbox", { name: "E-mail" })).toBeInvalid();
 });
 
 test("正しくメールアドレスが入力された場合、リセットボタンをクリックできる", async () => {
@@ -36,8 +38,9 @@ test("正しくメールアドレスが入力された場合、リセットボ�
 
   await waitFor(() => {
     expect(form.email).toBeValid();
-    expect(form.button).toBeEnabled();
   });
+  expect(form.button).toBeEnabled();
+
   await clickResetButton();
 
   await waitFor(() => {
@@ -50,8 +53,8 @@ test("正しくメールアドレスが入力されリセットボタンをク�
 
   await waitFor(() => {
     expect(form.email).toBeValid();
-    expect(form.button).toBeEnabled();
   });
+  expect(form.button).toBeEnabled();
 
   await clickResetButton();
 

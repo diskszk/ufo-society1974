@@ -7,18 +7,27 @@ import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { useCreateUser } from "../../hooks/useCreateUser";
 import { ROLE } from "../../constants";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
+import { useSignIn } from "../../hooks/useSignIn";
 
 export const CreateUserPage: React.FC = () => {
   const history = useHistory();
   const { signedInUser } = useSignedInUserState();
   const { handleCreateUser } = useCreateUser();
+  const { handleSignIn } = useSignIn();
+
   const { openMessageModalWithMessage } = useMessageModalState();
 
   const onSubmit: SubmitHandler<CreateUserInputs> = useCallback(
-    (data) => {
-      handleCreateUser(data, signedInUser.role);
+    async (data) => {
+      try {
+        await handleCreateUser(data, signedInUser.role);
+
+        await handleSignIn(data.email, data.password);
+      } catch {
+        throw new Error("signin error");
+      }
     },
-    [handleCreateUser, signedInUser.role]
+    [handleCreateUser, handleSignIn, signedInUser.role]
   );
 
   const handleClickBack = useCallback(() => {
