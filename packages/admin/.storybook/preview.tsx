@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import "../src/assets/styles/style.css";
+import "../src/assets/styles/style.scss";
 
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";

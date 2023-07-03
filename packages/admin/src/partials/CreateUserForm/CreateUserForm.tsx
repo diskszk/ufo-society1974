@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Textbox } from "../../components/Textbox";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { ROLE } from "../../constants";
@@ -8,7 +8,7 @@ import {
   CreateUserInputs,
   createUserSchema,
 } from "../../lib/schemas/createUserSchema";
-import { Select } from "../../components/Select";
+import { SelectRoleController } from "../../components/SelectRoleController";
 import { SelectOptions } from "../../lib/types";
 
 const roles: SelectOptions = [
@@ -101,11 +101,7 @@ export const CreateUserForm: React.FC<Props> = ({
           aria-invalid={Boolean(errors?.confirmPassword)}
         />
 
-        <Controller
-          name="roleType"
-          control={control}
-          render={({ field }) => <Select options={roles} {...field} />}
-        />
+        <SelectRoleController control={control} options={roles} />
 
         <div className="button-container-row">
           <StyledButton onClick={handleClickBackButton}>もどる</StyledButton>
