@@ -15,7 +15,7 @@ describe("SongsService", () => {
     songsService = module.get<SongsService>(SongsService);
 
     fakeSongsService = {
-      findAllSongSummariesByAlbumId: async (albumId: string) => {
+      findAllSongSummariesByAlbumId: async (_albumId: string) => {
         const songSummaries: SongSummary[] = [...mockData.songs];
         return songSummaries;
       },

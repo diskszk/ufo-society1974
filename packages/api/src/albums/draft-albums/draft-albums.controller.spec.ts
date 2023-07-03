@@ -18,18 +18,18 @@ class DummyDraftAlbumsService {
   }
 
   async create(
-    albumDTO: CreateAlbumDTO
+    _albumDTO: CreateAlbumDTO
   ): Promise<FirebaseFirestore.DocumentReference<CreateAlbumDTO>> {
     return null;
   }
 
   async update(
-    albumDTO: UpdateAlbumDTO
+    _albumDTO: UpdateAlbumDTO
   ): Promise<FirebaseFirestore.WriteResult> {
     return null;
   }
 
-  async delete(albumId: string): Promise<FirebaseFirestore.WriteResult> {
+  async delete(_albumId: string): Promise<FirebaseFirestore.WriteResult> {
     return null;
   }
 }
