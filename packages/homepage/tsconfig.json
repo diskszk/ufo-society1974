@@ -1,0 +1,9 @@
+{
+  "extends": "@ufo-society1974/tsconfig/tsconfig.client.json",
+  "include": ["./src/**/*", "jest.setup.ts", "__testMocks__/fileMock.js"],
+  "exclude": [
+    "./src/?(*.)+(spec|test).+(ts|tsx|js)",
+    "./node_modules",
+    "./mock-song-data"
+  ]
+}

@@ -1,0 +1,199 @@
+body {
+  text-align: center;
+  background-image: url("./images/nasa2.jpg");
+  color: red;
+  margin: 0;
+}
+
+ul {
+  padding-inline-start: 0;
+  list-style-type: none;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+a:visited {
+  color: white;
+}
+
+h1 {
+  background: black;
+  color: red;
+  font-size: 4em;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+h2 {
+  font-size: 4em;
+}
+h4 {
+  font-size: 2em;
+}
+.sorry-message {
+  font-size: 1.5em;
+}
+/* a:link {color: white; }
+a:visited {color: white; } */
+a:hover {
+  color: darkorange;
+}
+.welcome {
+  margin: 0 auto;
+  text-align: center;
+}
+
+tbody {
+  width: 10%;
+}
+table,
+td,
+th {
+  font-size: 1.5em;
+  background-color: black;
+  margin: 0 auto;
+  border: 2px solid darkorange;
+}
+
+table {
+  width: 88%;
+}
+.table-title {
+  width: 30%;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 18px;
+}
+
+/* あしあと部分のCSS */
+.access-counter {
+  color: yellow;
+  font-size: 0.8em;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.access-counter-number {
+  color: yellow;
+}
+
+.btn-container {
+  text-align: center;
+  padding-bottom: 1.25em;
+}
+
+.tr-song {
+  cursor: pointer;
+}
+
+.table a {
+  color: blue;
+}
+.table a:visited {
+  color: blue;
+}
+.table a:hover {
+  color: white;
+}
+
+#app > header > p {
+  margin: 0;
+  padding: 12px;
+}
+
+/* jikosyoukai */
+.titles {
+  position: absolute;
+  width: 18em;
+  height: 50em;
+  bottom: 0;
+  left: 50%;
+  margin-left: -9em;
+  font-size: 350%;
+  font-weight: bold;
+  text-align: justify;
+  overflow: hidden;
+  transform-origin: 50% 100%;
+  transform: perspective(300px) rotateX(25deg);
+}
+
+.titles::after {
+  position: absolute;
+  content: " ";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 60%;
+  background-image: linear-gradient(top, rgba(0, 0, 0, 1) 0%, transparent 100%);
+  pointer-events: none;
+}
+.title-content {
+  position: absolute;
+  top: 100%;
+  animation: scroll 100s linear 0.5s infinite;
+}
+@keyframes scroll {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -170%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .titles {
+    position: absolute;
+    width: 18em;
+    height: 50em;
+    bottom: 40%;
+    left: 50%;
+    margin-left: -9em;
+    font-size: 350%;
+    font-weight: bold;
+    text-align: justify;
+    overflow: hidden;
+    transform-origin: 50% 100%;
+    transform: perspective(300px) rotateX(25deg);
+  }
+
+  .titles::after {
+    position: absolute;
+    content: " ";
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 60%;
+    background-image: linear-gradient(
+      top,
+      rgba(0, 0, 0, 1) 0%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  .title-content {
+    position: absolute;
+    top: 100%;
+    animation: scroll 100s linear 0.5s infinite;
+  }
+}
+
+.td-link {
+  width: 33%;
+}
+.td-disc {
+  width: 66%;
+  text-align: left;
+}
+
+.replay-button {
+  position: relative;
+  bottom: -220px;
+}
+
+button {
+  cursor: pointer;
+}
