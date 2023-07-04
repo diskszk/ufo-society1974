@@ -1,0 +1,52 @@
+{
+  "firestore": {
+    "rules": "packages/admin/firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": [
+    {
+      "target": "homepage",
+      "public": "packages/homepage/dist",
+      "ignore": [
+        "firebase.json",
+        "packages/homepage/**/.*",
+        "packages/homepage/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "packages/homepage/**",
+          "destination": "packages/homepage/index.html"
+        }
+      ]
+    },
+    {
+      "target": "admin",
+      "public": "packages/admin/dist",
+      "ignore": [
+        "firebase.json",
+        "packages/admin/**/.*",
+        "packages/admin/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "packages/admin/**",
+          "destination": "packages/admin/index.html"
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "source": "./packages/api",
+      "codebase": "default",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "node_modules",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": ["yarn api:lint", "yarn api:test"]
+    }
+  ]
+}

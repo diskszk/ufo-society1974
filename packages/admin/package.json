@@ -15,7 +15,7 @@
     "lint": "run-s -c 'lint:*'",
     "lint:eslint": "eslint src/ --ext .ts,.tsx,.js,.jsx",
     "lint:tsc": "tsc --noEmit",
-    "host:staged": "yarn lint && yarn build && firebase deploy --only hosting",
+    "host:staged": "yarn lint && yarn build && npx firebase deploy --only hosting",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "chromatic"
@@ -67,7 +67,6 @@
     "chromatic": "^6.17.4",
     "dotenv": "^16.0.3",
     "eslint": "^8.40.0",
-    "firebase": "^7.24.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "lint-staged": "^13.2.2",

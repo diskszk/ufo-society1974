@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "/public/index.html",
   "scripts": {
-    "build": "yarn lint && yarn test && vite build",
+    "build": "vite build",
     "build:check": "yarn lint && yarn test && tsc --noEmit",
     "dev": "vite dev",
     "preview": "vite preview --port 8080",
-    "deploy": "yarn build && firebase deploy --only hosting",
+    "deploy": "yarn build && npx firebase deploy --only hosting",
     "test": "jest --config ./jest.config.json",
     "lint": "run-s -c 'lint:*'",
     "lint:eslint": "eslint --ext .tsx,.ts ./src/",
