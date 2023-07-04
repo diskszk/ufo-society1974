@@ -15501,6 +15501,7 @@ __metadata:
     cypress: ^12.3.0
     dotenv: ^16.0.3
     eslint: ^8.26.0
+    firebase: ^7.24.0
     happy-dom: ^7.6.6
     jest: ^29.5.0
     jest-environment-jsdom: ^29.5.0

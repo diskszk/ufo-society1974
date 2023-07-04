@@ -11,10 +11,13 @@
   "scripts": {
     "api:lint": "yarn workspace api lint",
     "api:test": "yarn workspace api test",
+    "api:dev": "yarn workspace api serve",
     "admin:lint": "yarn workspace admin lint",
     "admin:test": "yarn workspace admin test",
+    "admin:preview": "npx firebase hosting:channel:deploy --only admin",
     "homepage:lint": "yarn workspace homepage lint",
     "homepage:test": "yarn workspace homepage test",
+    "homepage:preview": "npx firebase hosting:channel:deploy --only homepage",
     "all:lint": "yarn workspaces foreach run lint:eslint --color",
     "all:test": "yarn workspaces foreach run test --color"
   },

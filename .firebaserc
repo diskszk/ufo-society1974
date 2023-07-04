@@ -5,7 +5,10 @@
   "targets": {
     "ufo-society-1974": {
       "hosting": {
-        "ufo-society1974admin": [
+        "homepage": [
+          "ufo-society-1974"
+        ],
+        "admin": [
           "ufo-society1974admin"
         ]
       }
