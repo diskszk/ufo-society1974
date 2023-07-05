@@ -1,0 +1,348 @@
+openapi: 3.0.0
+paths:
+  /users:
+    get:
+      operationId: UsersController_findAllUser
+      parameters:
+        - name: email
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ユーザーを全件取得する
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '404':
+          description: ''
+      tags: &ref_0
+        - /users
+    post:
+      operationId: UsersController_createUser
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDTO'
+      responses:
+        '201':
+          description: ユーザーを新規登録する。
+      tags: *ref_0
+  /users/{userId}:
+    get:
+      operationId: UsersController_findUserById
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ユーザーIDと一致するユーザーを1件取得する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: IDと一致するユーザーは存在しません。
+      tags: *ref_0
+    put:
+      operationId: UsersController_updateUser
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDTO'
+      responses:
+        '204':
+          description: ''
+        '404':
+          description: IDと一致するユーザーは存在しません。
+      tags: *ref_0
+      security:
+        - bearer: []
+    delete:
+      operationId: UsersController_deleteUser
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '204':
+          description: ''
+        '400':
+          description: IDと一致するユーザーは管理者のため削除できません。
+        '404':
+          description: IDと一致するユーザーは存在しません。
+      tags: *ref_0
+  /draft-albums:
+    get:
+      operationId: DraftAlbumsController_findAllDraftAlbums
+      parameters: []
+      responses:
+        '200':
+          description: ''
+    post:
+      operationId: DraftAlbumsController_createDraftAlbum
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAlbumDTO'
+      responses:
+        '201':
+          description: ''
+  /draft-albums/{albumId}:
+    get:
+      operationId: DraftAlbumsController_findDraftAlbumById
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+    put:
+      operationId: DraftAlbumsController_updateDraftAlbum
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAlbumDTO'
+      responses:
+        '200':
+          description: ''
+    delete:
+      operationId: DraftAlbumsController_deleteDraftAlbum
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+  /draft-albums/{albumId}/publish:
+    post:
+      operationId: DraftAlbumsController_publishDraftAlbum
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '201':
+          description: ''
+  /albums:
+    get:
+      operationId: PublishedAlbumsController_findAllPublishedAlbums
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /albums/{albumId}:
+    get:
+      operationId: PublishedAlbumsController_findPublishedAlbumById
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+    put:
+      operationId: PublishedAlbumsController_updatePublishedAlbum
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAlbumDTO'
+      responses:
+        '200':
+          description: ''
+  /albums/{albumId}/summaries:
+    get:
+      operationId: PublishedAlbumsController_findAlbumAndSummary
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+  /albums/{albumId}/unpublish:
+    post:
+      operationId: PublishedAlbumsController_unpublishAlbum
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '201':
+          description: ''
+  /albums/{albumId}/songs:
+    post:
+      operationId: SongsController_createSong
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSongDTO'
+      responses:
+        '201':
+          description: ''
+  /albums/{albumId}/songs/{songId}:
+    get:
+      operationId: SongsController_getSongById
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: songId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+    delete:
+      operationId: SongsController_deleteSong
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: songId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+  /access/count:
+    get:
+      operationId: AccessCountController_fetchAccessCount
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /access/count/increment:
+    put:
+      operationId: AccessCountController_incrementAccessCount
+      parameters: []
+      responses:
+        '200':
+          description: ''
+info:
+  title: ufo-society-1974 API
+  description: The API description
+  version: '1.0'
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        uid:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        username:
+          type: string
+        isDeleted:
+          type: boolean
+      required:
+        - uid
+        - email
+        - role
+        - username
+        - isDeleted
+    CreateUserDTO:
+      type: object
+      properties:
+        uid:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        username:
+          type: string
+        isDeleted:
+          type: boolean
+    UpdateUserDTO:
+      type: object
+      properties:
+        uid:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        username:
+          type: string
+        isDeleted:
+          type: boolean
+    CreateAlbumDTO:
+      type: object
+      properties: {}
+    UpdateAlbumDTO:
+      type: object
+      properties: {}
+    CreateSongDTO:
+      type: object
+      properties: {}

@@ -7414,6 +7414,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/js-yaml@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "@types/js-yaml@npm:4.0.5"
+  checksum: 7dcac8c50fec31643cc9d6444b5503239a861414cdfaa7ae9a38bc22597c4d850c4b8cec3d82d73b3fbca408348ce223b0408d598b32e094470dfffc6d486b4d
+  languageName: node
+  linkType: hard
+
 "@types/jsdom@npm:^20.0.0":
   version: 20.0.1
   resolution: "@types/jsdom@npm:20.0.1"
@@ -9115,6 +9122,7 @@ __metadata:
     "@types/express": ^4.17.14
     "@types/helmet": ^4.0.0
     "@types/jest": 27.4.0
+    "@types/js-yaml": ^4.0.5
     "@types/node": ^16.0.0
     "@types/supertest": ^2.0.12
     "@ufo-society1974/eslint-config": "workspace:^"
@@ -9130,6 +9138,7 @@ __metadata:
     helmet: ^6.0.0
     husky: ^8.0.2
     jest: ^27.2.5
+    js-yaml: ^4.1.0
     prettier: ^2.3.2
     reflect-metadata: ^0.1.13
     rimraf: ^3.0.2
