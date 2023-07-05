@@ -13,6 +13,7 @@
 - [コンテンツ管理アプリ](./packages/admin/README.md)
 - [WebAPI](./packages/api/README.md)
 - [WEbAPI仕様書](./pakages/api/swagger-spec.yaml)
+  - 見れない場合は[こちら](https://asia-northeast2-ufo-society-1974.cloudfunctions.net/api/swagger) からご覧ください
 
 ## 技術スタック
 

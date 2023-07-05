@@ -33,7 +33,6 @@
 - `$ git clone https://github.com/diskszk/ufo-society1974.git`
 - `$ cd ufo-society1974`
 - `$ yarn install`
-- `$ yarn workspace homepage dev`
 
 ## 動作確認
 `$ yarn workspace homepage dev`
