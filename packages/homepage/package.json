@@ -17,12 +17,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run --browser chrome"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/diskszk/ufo-society1974.git"
-  },
   "keywords": [],
-  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/diskszk/ufo-society1974/issues"
