@@ -1,5 +1,4 @@
 import { WEB_API_BASE_URL } from "../constants";
-import { worker } from "../mocks/browser";
 
 const url = `${WEB_API_BASE_URL}/access/count`;
 
@@ -27,8 +26,10 @@ const incrementAccessCount = async () => {
 
 // DBの値を取得-> update関数に渡す -> DOM操作実行
 const listenData = async () => {
-  if (process.env.NODE_ENV === "development") {
-    void worker.start({ onUnhandledRequest: "bypass" });
+  // mswを使わずに数字を表示する
+  if (import.meta.env.DEV) {
+    displayCount(9999);
+    return;
   }
 
   try {

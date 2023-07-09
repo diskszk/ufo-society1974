@@ -1,16 +1,10 @@
-/// <reference types="@jest/globals" />
-
-import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import { resolve } from "path";
+import react from "@vitejs/plugin-react";
 import env from "vite-plugin-env-compatible";
+import { resolve } from "path";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    // eslint(),
-    env({ prefix: "VITE", mountedPath: "process.env" }),
-  ],
+  plugins: [react(), env({ prefix: "VITE", mountedPath: "process.env" })],
   server: {
     host: true,
     port: 3000,

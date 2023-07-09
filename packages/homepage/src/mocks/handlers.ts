@@ -43,11 +43,11 @@ export const handlers = [
   ),
 
   // access-counter
-  rest.get(`${WEB_API_BASE_URL}/access/count`, (req, res, ctx) => {
+  rest.get(`${WEB_API_BASE_URL}/access/count`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ accessCount: 9999 }));
   }),
 
-  rest.put(`${WEB_API_BASE_URL}/access/count/increment`, (req, res, ctx) => {
+  rest.put(`${WEB_API_BASE_URL}/access/count/increment`, (_req, res, ctx) => {
     return res(ctx.status(201));
   }),
 ];
