@@ -3,6 +3,7 @@ import { CreateAlbumDTO, UpdateAlbumDTO } from "../albums.dto";
 import { mockData } from "../../mock";
 import { DraftAlbumsController } from "./draft-albums.controller";
 import { DraftAlbumsService } from "./draft-albums.service";
+import { DraftAlbumsModule } from "./draft-albums.module";
 
 class DummyDraftAlbumsService {
   async isExist(id: string): Promise<boolean> {
@@ -36,19 +37,18 @@ class DummyDraftAlbumsService {
 
 describe("DraftAlbumsController", () => {
   let draftAlbumsController: DraftAlbumsController;
-  let draftAlbumsService: DraftAlbumsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [DraftAlbumsService],
+      imports: [DraftAlbumsModule],
     })
       .overrideProvider(DraftAlbumsService)
       .useClass(DummyDraftAlbumsService)
       .compile();
 
-    draftAlbumsService = module.get<DraftAlbumsService>(DraftAlbumsService);
-
-    draftAlbumsController = new DraftAlbumsController(draftAlbumsService);
+    draftAlbumsController = module.get<DraftAlbumsController>(
+      DraftAlbumsController
+    );
   });
 
   it("should be defined", () => {

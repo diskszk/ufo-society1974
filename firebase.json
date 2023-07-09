@@ -46,7 +46,7 @@
         "firebase-debug.log",
         "firebase-debug.*.log"
       ],
-      "predeploy": ["yarn api:lint", "yarn api:test"]
+      "predeploy": ["yarn api:lint", "yarn api:test", "yarn api:build"]
     }
   ]
 }
