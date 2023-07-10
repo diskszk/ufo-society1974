@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": false
   },
   "compileOnSave": true,
-  "include": ["src", "aspida.config.ts"]
+  "include": ["src"]
 }

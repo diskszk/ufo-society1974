@@ -1,4 +1,10 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "src/e2e", "lib", "**/*spec.ts"]
+  "exclude": [
+    "node_modules",
+    "src/e2e",
+    "lib",
+    "**/*spec.ts",
+    "aspida.config.ts"
+  ]
 }
