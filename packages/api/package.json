@@ -23,7 +23,10 @@
     "test:cc": "jest --clearCache",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:e2e": "jest --config ./src/e2e/jest-e2e.json"
+    "test:e2e": "jest --config ./src/e2e/jest-e2e.json",
+    "codegen": "rimraf ../types/generated && openapi2aspida -i ./swagger-spec.yaml -o ../types/generated/api",
+    "openapi:export": "ts-node src/exportOpenAPIDocument.ts",
+    "precodegen": "openapi:export"
   },
   "engines": {
     "node": "16"
@@ -74,6 +77,7 @@
   },
   "devDependencies": {
     "@nestjs/testing": "^10.0.5",
+    "@openapitools/openapi-generator-cli": "^2.6.0",
     "@types/express": "^4.17.14",
     "@types/helmet": "^4.0.0",
     "@types/jest": "27.4.0",
@@ -91,6 +95,7 @@
     "husky": "^8.0.2",
     "jest": "^27.2.5",
     "js-yaml": "^4.1.0",
+    "openapi2aspida": "^0.21.0",
     "prettier": "^2.3.2",
     "source-map-support": "^0.5.20",
     "supertest": "^6.3.3",
