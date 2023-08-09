@@ -1,4 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { RoleType } from "../types";
 
 export class User {
   @ApiProperty()
@@ -8,7 +9,7 @@ export class User {
   email: string;
 
   @ApiProperty()
-  role: "master" | "editor" | "watcher";
+  role: RoleType;
 
   @ApiProperty()
   username: string;

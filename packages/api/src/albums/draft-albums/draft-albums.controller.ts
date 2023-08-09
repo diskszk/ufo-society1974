@@ -10,24 +10,23 @@ import {
   Put,
   UseGuards,
 } from "@nestjs/common";
-import { Album } from "ufo-society1974-definition-types";
+import { Album } from "../album.entity";
 import { AuthGuard } from "../../auth/auth.guard";
 import { role } from "../../constants";
 import { Role } from "../../decorators/role.decorator";
 import { RoleGuard } from "../../role/role.guard";
-import { SongSummary } from "../../types";
 import { CreateAlbumDTO, UpdateAlbumDTO } from "../albums.dto";
 import { DraftAlbumsService } from "./draft-albums.service";
-
-interface AlbumsResponse {
-  albums: Album[];
-  info?: {
-    albumId: string;
-    songSummaries: SongSummary[];
-  };
-}
+import {
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 
 // CMSアプリから使う想定
+@ApiTags("/draft-albums")
 @Controller("draft-albums")
 @UseGuards(AuthGuard)
 export class DraftAlbumsController {
@@ -42,31 +41,43 @@ export class DraftAlbumsController {
   }
 
   @Get()
-  async findAllDraftAlbums(): Promise<AlbumsResponse> {
+  @ApiOkResponse({
+    type: [Album],
+    description: "下書き中のアルバムを全件取得する。",
+  })
+  async findAllDraftAlbums(): Promise<Album[]> {
     const draftedAlbums = await this.draftAlbumsService.findAll();
 
-    return { albums: draftedAlbums };
+    return draftedAlbums;
   }
 
   @Post()
   @Role(role.EDITOR)
   @UseGuards(RoleGuard)
+  @ApiCreatedResponse({ description: "下書き中のアルバムを新規作成する。" })
   async createDraftAlbum(@Body() album: CreateAlbumDTO) {
     return await this.draftAlbumsService.create(album);
   }
 
   @Get(":albumId")
-  async findDraftAlbumById(
-    @Param("albumId") albumId: string
-  ): Promise<AlbumsResponse> {
+  @ApiOkResponse({
+    type: Album,
+    description: "IDと一致する下書き中のアルバムを1件取得する。",
+  })
+  @ApiNotFoundResponse({ description: "IDと一致するアルバムは存在しません。" })
+  async findDraftAlbumById(@Param("albumId") albumId: string): Promise<Album> {
     const draftAlbum = await this.draftAlbumsService.findById(albumId);
 
-    return { albums: [draftAlbum] };
+    return draftAlbum;
   }
 
   @Put(":albumId")
   @Role(role.EDITOR)
   @UseGuards(RoleGuard)
+  @ApiNoContentResponse({
+    description: "IDと一致する下書き中のアルバムを更新する。",
+  })
+  @ApiNotFoundResponse({ description: "IDと一致するアルバムは存在しません。" })
   async updateDraftAlbum(
     @Body() album: UpdateAlbumDTO,
     @Param("albumId") albumId: string
@@ -78,6 +89,12 @@ export class DraftAlbumsController {
   @Delete(":albumId")
   @Role(role.EDITOR)
   @UseGuards(RoleGuard)
+  @ApiNoContentResponse({
+    description: "IDと一致する下書き中のアルバムを削除する。",
+  })
+  @ApiNotFoundResponse({
+    description: "IDと一致するアルバムは存在しません。",
+  })
   async deleteDraftAlbum(@Param("albumId") albumId: string) {
     await this.checkIsExistAlbum(albumId);
 
@@ -90,6 +107,12 @@ export class DraftAlbumsController {
   @Post(":albumId/publish")
   @Role(role.EDITOR)
   @UseGuards(RoleGuard)
+  @ApiNoContentResponse({
+    description: "IDと一致する下書き中のアルバムを公開中に変更する。",
+  })
+  @ApiNotFoundResponse({
+    description: "IDと一致するアルバムは存在しません。",
+  })
   async publishDraftAlbum(@Param("albumId") albumId: string) {
     await this.checkIsExistAlbum(albumId);
 

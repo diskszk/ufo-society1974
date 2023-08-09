@@ -24,10 +24,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             fetch<void, BasicHeaders, Methods2['post']['status']>(prefix, `${prefix0}${PATH1}`, POST, option).send().then(r => r.body),
           $path: () => `${prefix}${prefix0}${PATH1}`
         },
+        /**
+         * @returns IDと一致する下書き中のアルバムを1件取得する。
+         */
         get: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods1['get']['status']>(prefix, prefix0, GET, option).send(),
+          fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, prefix0, GET, option).json(),
+        /**
+         * @returns IDと一致する下書き中のアルバムを1件取得する。
+         */
         $get: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods1['get']['status']>(prefix, prefix0, GET, option).send().then(r => r.body),
+          fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, prefix0, GET, option).json().then(r => r.body),
         put: (option: { body: Methods1['put']['reqBody'], config?: T | undefined }) =>
           fetch<void, BasicHeaders, Methods1['put']['status']>(prefix, prefix0, PUT, option).send(),
         $put: (option: { body: Methods1['put']['reqBody'], config?: T | undefined }) =>
@@ -39,10 +45,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         $path: () => `${prefix}${prefix0}`
       }
     },
+    /**
+     * @returns 下書き中のアルバムを全件取得する。
+     */
     get: (option?: { config?: T | undefined } | undefined) =>
-      fetch<void, BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).send(),
+      fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json(),
+    /**
+     * @returns 下書き中のアルバムを全件取得する。
+     */
     $get: (option?: { config?: T | undefined } | undefined) =>
-      fetch<void, BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).send().then(r => r.body),
+      fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json().then(r => r.body),
     post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
       fetch<void, BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).send(),
     $post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>

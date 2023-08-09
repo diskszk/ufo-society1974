@@ -6,7 +6,7 @@ import {
   forwardRef,
 } from "@nestjs/common";
 import { firestore } from "firebase-admin";
-import { Album } from "ufo-society1974-definition-types";
+import { Album } from "../album.entity";
 import { albumConverter } from "../albums.converter";
 import { CreateAlbumDTO, UpdateAlbumDTO } from "../albums.dto";
 import {

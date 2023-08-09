@@ -1,8 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { firestore } from "firebase-admin";
-import { Song } from "ufo-society1974-definition-types";
+import { Song } from "./song.entity";
 import { PUBLISHED_ALBUMS, SONGS } from "../constants";
-import { SongSummary } from "../types";
 import { songConverter } from "./songs.converter";
 import { CreateSongDTO } from "./songs.dto";
 
@@ -28,7 +27,7 @@ export class SongsService {
     return false;
   }
 
-  async findAllSongSummariesByAlbumId(albumId: string): Promise<SongSummary[]> {
+  async findAllSongsByAlbumId(albumId: string): Promise<Song[]> {
     const songsRef = this.albumsRef.doc(albumId).collection(SONGS);
 
     const snapshots = await songsRef
@@ -40,9 +39,7 @@ export class SongsService {
       const doc = snapshot.data();
 
       return {
-        id: doc.id,
-        title: doc.title,
-        story: doc.story,
+        ...doc,
       };
     });
   }

@@ -1,4 +1,5 @@
-import type { Album, Song } from "ufo-society1974-definition-types";
+import { Song } from "../songs/song.entity";
+import { Album } from "../albums/album.entity";
 import { User } from "../users/user.entity";
 import { role } from "../constants";
 import { RoleType } from "../types";
@@ -7,8 +8,6 @@ const mockSongs: Song[] = [
   {
     id: "001",
     lyric: "test song lyric1",
-    songFile: null,
-    story: "test story1",
     title: "test song title1",
     wordsRights: "test word rights1",
     musicRights: "test music rights1",
@@ -16,8 +15,6 @@ const mockSongs: Song[] = [
   {
     id: "002",
     lyric: "test song lyric2",
-    songFile: null,
-    story: "test story2",
     title: "test song title2",
     wordsRights: "test word rights2",
     musicRights: "test music rights2",
@@ -27,24 +24,21 @@ const mockSongs: Song[] = [
 const mockDraftAlbums: Album[] = [
   {
     id: "sample01",
-    description: "test description1",
-    imageFile: null,
+    image: "",
     publishedDate: "20200101",
     title: "test title 1",
     published: true,
   },
   {
     id: "sample02",
-    description: "test description2",
-    imageFile: null,
+    image: "",
     publishedDate: "20200101",
     title: "test title 2",
     published: false,
   },
   {
     id: "published01",
-    description: "test description1",
-    imageFile: null,
+    image: "",
     publishedDate: "20200101",
     title: "test title published 1",
     published: true,
@@ -53,8 +47,7 @@ const mockDraftAlbums: Album[] = [
 const mockPublishedAlbums: Album[] = [
   {
     id: "published01",
-    description: "test description1",
-    imageFile: null,
+    image: "",
     publishedDate: "20200101",
     title: "test title published 1",
     published: true,

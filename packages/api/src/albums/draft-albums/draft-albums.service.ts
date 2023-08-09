@@ -11,7 +11,7 @@ import {
   DRAFT_ALBUMS,
   PUBLISHED_DATE,
 } from "../../constants";
-import { Album } from "ufo-society1974-definition-types";
+import { Album } from "../album.entity";
 import { albumConverter } from "../albums.converter";
 import { CreateAlbumDTO, UpdateAlbumDTO } from "../albums.dto";
 import { PublishedAlbumsService } from "../published-albums/published-albums.service";
@@ -38,7 +38,7 @@ export class DraftAlbumsService {
   async isExist(id: string): Promise<boolean> {
     const snapshot = await this.draftAlbumsRef
       .doc(id)
-      .withConverter(albumConverter)
+      .withConverter<Album>(albumConverter)
       .get();
 
     return snapshot.exists;
