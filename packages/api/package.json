@@ -26,7 +26,7 @@
     "test:e2e": "jest --config ./src/e2e/jest-e2e.json",
     "codegen": "rimraf ../types/generated && openapi2aspida -i ./swagger-spec.yaml -o ../types/generated/api",
     "openapi:export": "ts-node src/exportOpenAPIDocument.ts",
-    "precodegen": "openapi:export"
+    "generate:type": "yarn openapi:export && yarn codegen"
   },
   "engines": {
     "node": "16"

@@ -17,10 +17,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         fetch<void, BasicHeaders, Methods1['put']['status']>(prefix, PATH1, PUT, option).send().then(r => r.body),
       $path: () => `${prefix}${PATH1}`
     },
+    /**
+     * @returns 現在のアクセス数を取得する。
+     */
     get: (option?: { config?: T | undefined } | undefined) =>
-      fetch<void, BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).send(),
+      fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json(),
+    /**
+     * @returns 現在のアクセス数を取得する。
+     */
     $get: (option?: { config?: T | undefined } | undefined) =>
-      fetch<void, BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).send().then(r => r.body),
+      fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json().then(r => r.body),
     $path: () => `${prefix}${PATH0}`
   }
 }

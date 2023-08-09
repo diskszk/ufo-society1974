@@ -1,6 +1,5 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { mockData } from "../mock";
-import { SongSummary } from "../types";
 import { SongsService } from "./songs.service";
 
 describe("SongsService", () => {
@@ -15,9 +14,9 @@ describe("SongsService", () => {
     songsService = module.get<SongsService>(SongsService);
 
     fakeSongsService = {
-      findAllSongSummariesByAlbumId: async (_albumId: string) => {
-        const songSummaries: SongSummary[] = [...mockData.songs];
-        return songSummaries;
+      findAllSongsByAlbumId: async (_albumId: string) => {
+        const songs = [...mockData.songs];
+        return songs;
       },
       findSongById: async (albumId: string, songId: string) => {
         if (albumId === "testid" && songId === "001") {
@@ -35,8 +34,9 @@ describe("SongsService", () => {
 
   describe("findAllSongSummariesByAlbumId", () => {
     it("IDと一致するアルバムが存在すると仮定し、該当するアルバムの曲一覧を返す", async () => {
-      const songSummaries =
-        await fakeSongsService.findAllSongSummariesByAlbumId("testid");
+      const songSummaries = await fakeSongsService.findAllSongsByAlbumId(
+        "testid"
+      );
 
       expect(songSummaries).toHaveLength(2);
     });

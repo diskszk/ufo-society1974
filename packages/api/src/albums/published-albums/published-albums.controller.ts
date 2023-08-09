@@ -9,31 +9,27 @@ import {
   Put,
   UseGuards,
 } from "@nestjs/common";
-import { Album } from "ufo-society1974-definition-types";
-import { SongsService } from "../../songs/songs.service";
-import { SongSummary } from "../../types";
+import { Album } from "../album.entity";
 import { PublishedAlbumsService } from "./published-albums.service";
 import { UpdateAlbumDTO } from "../albums.dto";
 import { AuthGuard } from "../../auth/auth.guard";
 import { Role } from "../../decorators/role.decorator";
 import { role } from "../../constants";
 import { RoleGuard } from "../../role/role.guard";
-
-interface AlbumsResponse {
-  albums: Album[];
-  info?: {
-    albumId: string;
-    songSummaries: SongSummary[];
-  };
-}
+import {
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 
 /* TODO: webpageからアクセスできるようCORSを設定する */
-
+@ApiTags("/albums")
 @Controller("albums")
 export class PublishedAlbumsController {
   constructor(
-    private readonly publishedAlbumsService: PublishedAlbumsService,
-    private readonly songsService: SongsService
+    private readonly publishedAlbumsService: PublishedAlbumsService
   ) {}
 
   private async checkIsExistAlbum(albumId: string): Promise<void> {
@@ -46,21 +42,32 @@ export class PublishedAlbumsController {
   }
 
   @Get()
-  async findAllPublishedAlbums(): Promise<AlbumsResponse> {
-    const publishedAlbums = await this.publishedAlbumsService.findAll();
+  @ApiOkResponse({
+    type: [Album],
+    description: "公開中のアルバムを全件取得する。",
+  })
+  async findAllPublishedAlbums(): Promise<Album[]> {
+    const albums = await this.publishedAlbumsService.findAll();
 
-    return { albums: publishedAlbums };
+    return albums;
   }
 
   @Get(":albumId")
+  @ApiOkResponse({
+    type: Album,
+    description: "IDと一致する公開中のアルバムを1件取得する。",
+  })
+  @ApiNotFoundResponse({
+    description: "IDと一致するアルバムは存在しません。",
+  })
   async findPublishedAlbumById(
     @Param("albumId") albumId: string
-  ): Promise<AlbumsResponse> {
+  ): Promise<Album> {
     await this.checkIsExistAlbum(albumId);
 
     const album = await this.publishedAlbumsService.findById(albumId);
 
-    return { albums: [album] };
+    return album;
   }
 
   // adminアプリからのみ使用する
@@ -68,6 +75,12 @@ export class PublishedAlbumsController {
   @UseGuards(AuthGuard)
   @Role(role.EDITOR)
   @UseGuards(RoleGuard)
+  @ApiNoContentResponse({
+    description: "IDと一致する公開中のアルバムを変更する。",
+  })
+  @ApiNotFoundResponse({
+    description: "IDと一致するアルバムは存在しません。",
+  })
   async updatePublishedAlbum(
     @Body() album: UpdateAlbumDTO,
     @Param("albumId") albumId: string
@@ -75,21 +88,6 @@ export class PublishedAlbumsController {
     await this.checkIsExistAlbum(albumId);
 
     return await this.publishedAlbumsService.update(album);
-  }
-
-  @Get(":albumId/summaries")
-  async findAlbumAndSummary(
-    @Param("albumId") albumId: string
-  ): Promise<AlbumsResponse> {
-    await this.checkIsExistAlbum(albumId);
-
-    const album = await this.publishedAlbumsService.findById(albumId);
-
-    const songSummaries = await this.songsService.findAllSongSummariesByAlbumId(
-      albumId
-    );
-
-    return { albums: [album], info: { albumId, songSummaries } };
   }
 
   // adminアプリからのみ使用する
@@ -100,6 +98,12 @@ export class PublishedAlbumsController {
   @UseGuards(AuthGuard)
   @Role(role.EDITOR)
   @UseGuards(RoleGuard)
+  @ApiCreatedResponse({
+    description: "IDと一致する公開中のアルバムを下書き中に変更する。",
+  })
+  @ApiNotFoundResponse({
+    description: "IDと一致するアルバムは存在しません。",
+  })
   async unpublishAlbum(@Param("albumId") albumId: string) {
     await this.checkIsExistAlbum(albumId);
 

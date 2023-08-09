@@ -89,7 +89,6 @@ export class UsersController {
   @Role(role.MASTER)
   @UseGuards(RoleGuard)
   @ApiBearerAuth()
-  @ApiNoContentResponse()
   @ApiNoContentResponse({
     description: "ユーザーの情報を変更する。",
   })

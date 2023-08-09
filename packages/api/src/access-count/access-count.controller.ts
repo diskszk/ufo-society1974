@@ -1,15 +1,27 @@
 import { Controller, Get, Put } from "@nestjs/common";
 import { AccessCountService } from "./access-count.service";
+import {
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiProperty,
+  ApiTags,
+} from "@nestjs/swagger";
 
-interface AccessCountResponse {
+class AccessCountResponse {
+  @ApiProperty()
   accessCount: number;
 }
 
+@ApiTags("/access/count")
 @Controller("access/count")
 export class AccessCountController {
   constructor(private readonly accessCountService: AccessCountService) {}
 
   @Get()
+  @ApiOkResponse({
+    type: AccessCountResponse,
+    description: "現在のアクセス数を取得する。",
+  })
   async fetchAccessCount(): Promise<AccessCountResponse> {
     const accessCount = await this.accessCountService.getAccessCount();
     return {
@@ -18,6 +30,9 @@ export class AccessCountController {
   }
 
   @Put("increment")
+  @ApiNoContentResponse({
+    description: "現在のアクセス数をインクリメントする。",
+  })
   async incrementAccessCount(): Promise<void> {
     const currentAccessCount = await this.accessCountService.getAccessCount();
 

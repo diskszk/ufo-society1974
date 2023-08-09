@@ -57,19 +57,17 @@ describe("DraftAlbumsController", () => {
 
   describe("findAllDraftAlbums", () => {
     it("下書きのアルバムを全件取得する", async () => {
-      const { albums } = await draftAlbumsController.findAllDraftAlbums();
+      const albums = await draftAlbumsController.findAllDraftAlbums();
       expect(albums).toHaveLength(3);
     });
   });
 
   describe("findDraftAlbumById", () => {
     it("IDと一致するアルバムが存在する場合、該当するアルバムを返す", async () => {
-      const response = await draftAlbumsController.findDraftAlbumById(
-        "sample01"
-      );
-      const draftAlbum = response.albums[0];
-      expect(draftAlbum.id).toBe("sample01");
-      expect(draftAlbum.title).toBe("test title 1");
+      const album = await draftAlbumsController.findDraftAlbumById("sample01");
+
+      expect(album.id).toBe("sample01");
+      expect(album.title).toBe("test title 1");
     });
   });
 

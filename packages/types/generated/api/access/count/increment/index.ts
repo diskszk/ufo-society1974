@@ -1,6 +1,6 @@
 /* eslint-disable */
 export type Methods = {
   put: {
-    status: 200
+    status: 204
   }
 }

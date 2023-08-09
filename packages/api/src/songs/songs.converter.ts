@@ -1,15 +1,13 @@
 import { DocumentData } from "firebase-admin/firestore";
-import { Song } from "ufo-society1974-definition-types";
+import { Song } from "./song.entity";
 
 export const songConverter = {
   toFirestore(song: Song): DocumentData {
     return {
       lyric: song.lyric,
-      story: song.story,
       title: song.title,
       wordsRights: song.wordsRights,
       musicRights: song.musicRights,
-      songFile: song.songFile,
       createdAt: FirebaseFirestore.Timestamp.now(),
     };
   },
@@ -21,8 +19,6 @@ export const songConverter = {
     return {
       id: snapshot.id,
       lyric: data.lyric,
-      songFile: data.songFile,
-      story: data.story,
       title: data.title,
       wordsRights: data.wordsRights,
       musicRights: data.musicRights,

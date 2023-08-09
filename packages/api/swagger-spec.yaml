@@ -65,7 +65,7 @@ paths:
               $ref: '#/components/schemas/UpdateUserDTO'
       responses:
         '204':
-          description: ''
+          description: ユーザーの情報を変更する。
         '404':
           description: IDと一致するユーザーは存在しません。
       tags: *ref_0
@@ -93,7 +93,15 @@ paths:
       parameters: []
       responses:
         '200':
-          description: ''
+          description: 下書き中のアルバムを全件取得する。
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Album'
+      tags: &ref_1
+        - /draft-albums
     post:
       operationId: DraftAlbumsController_createDraftAlbum
       parameters: []
@@ -105,7 +113,8 @@ paths:
               $ref: '#/components/schemas/CreateAlbumDTO'
       responses:
         '201':
-          description: ''
+          description: 下書き中のアルバムを新規作成する。
+      tags: *ref_1
   /draft-albums/{albumId}:
     get:
       operationId: DraftAlbumsController_findDraftAlbumById
@@ -117,7 +126,14 @@ paths:
             type: string
       responses:
         '200':
-          description: ''
+          description: IDと一致する下書き中のアルバムを1件取得する。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+        '404':
+          description: IDと一致するアルバムは存在しません。
+      tags: *ref_1
     put:
       operationId: DraftAlbumsController_updateDraftAlbum
       parameters:
@@ -133,8 +149,11 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateAlbumDTO'
       responses:
-        '200':
-          description: ''
+        '204':
+          description: IDと一致する下書き中のアルバムを更新する。
+        '404':
+          description: IDと一致するアルバムは存在しません。
+      tags: *ref_1
     delete:
       operationId: DraftAlbumsController_deleteDraftAlbum
       parameters:
@@ -144,8 +163,11 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          description: ''
+        '204':
+          description: IDと一致する下書き中のアルバムを削除する。
+        '404':
+          description: IDと一致するアルバムは存在しません。
+      tags: *ref_1
   /draft-albums/{albumId}/publish:
     post:
       operationId: DraftAlbumsController_publishDraftAlbum
@@ -156,15 +178,26 @@ paths:
           schema:
             type: string
       responses:
-        '201':
-          description: ''
+        '204':
+          description: IDと一致する下書き中のアルバムを公開中に変更する。
+        '404':
+          description: IDと一致するアルバムは存在しません。
+      tags: *ref_1
   /albums:
     get:
       operationId: PublishedAlbumsController_findAllPublishedAlbums
       parameters: []
       responses:
         '200':
-          description: ''
+          description: 公開中のアルバムを全件取得する。
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Album'
+      tags: &ref_2
+        - /albums
   /albums/{albumId}:
     get:
       operationId: PublishedAlbumsController_findPublishedAlbumById
@@ -176,7 +209,14 @@ paths:
             type: string
       responses:
         '200':
-          description: ''
+          description: IDと一致する公開中のアルバムを1件取得する。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+        '404':
+          description: IDと一致するアルバムは存在しません。
+      tags: *ref_2
     put:
       operationId: PublishedAlbumsController_updatePublishedAlbum
       parameters:
@@ -192,20 +232,11 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateAlbumDTO'
       responses:
-        '200':
-          description: ''
-  /albums/{albumId}/summaries:
-    get:
-      operationId: PublishedAlbumsController_findAlbumAndSummary
-      parameters:
-        - name: albumId
-          required: true
-          in: path
-          schema:
-            type: string
-      responses:
-        '200':
-          description: ''
+        '204':
+          description: IDと一致する公開中のアルバムを変更する。
+        '404':
+          description: IDと一致するアルバムは存在しません。
+      tags: *ref_2
   /albums/{albumId}/unpublish:
     post:
       operationId: PublishedAlbumsController_unpublishAlbum
@@ -217,7 +248,10 @@ paths:
             type: string
       responses:
         '201':
-          description: ''
+          description: IDと一致する公開中のアルバムを下書き中に変更する。
+        '404':
+          description: IDと一致するアルバムは存在しません。
+      tags: *ref_2
   /albums/{albumId}/songs:
     post:
       operationId: SongsController_createSong
@@ -235,7 +269,9 @@ paths:
               $ref: '#/components/schemas/CreateSongDTO'
       responses:
         '201':
-          description: ''
+          description: 楽曲を新規作成する。
+      tags: &ref_3
+        - /albums/:albumId/songs
   /albums/{albumId}/songs/{songId}:
     get:
       operationId: SongsController_getSongById
@@ -252,7 +288,14 @@ paths:
             type: string
       responses:
         '200':
-          description: ''
+          description: IDと一致する楽曲を1件取得する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Song'
+        '404':
+          description: IDと一致する楽曲は存在しません。
+      tags: *ref_3
     delete:
       operationId: SongsController_deleteSong
       parameters:
@@ -267,22 +310,57 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
           description: ''
+        '404':
+          description: IDと一致する楽曲は存在しません。
+      tags: *ref_3
+    put:
+      operationId: SongsController_updateSong
+      parameters:
+        - name: albumId
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: songId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSongDTO'
+      responses:
+        '204':
+          description: ''
+        '404':
+          description: IDと一致する楽曲は存在しません。
+      tags: *ref_3
   /access/count:
     get:
       operationId: AccessCountController_fetchAccessCount
       parameters: []
       responses:
         '200':
-          description: ''
+          description: 現在のアクセス数を取得する。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessCountResponse'
+      tags: &ref_4
+        - /access/count
   /access/count/increment:
     put:
       operationId: AccessCountController_incrementAccessCount
       parameters: []
       responses:
-        '200':
-          description: ''
+        '204':
+          description: 現在のアクセス数をインクリメントする。
+      tags: *ref_4
 info:
   title: ufo-society-1974 API
   description: The API description
@@ -324,6 +402,12 @@ components:
           type: string
         isDeleted:
           type: boolean
+      required:
+        - uid
+        - email
+        - role
+        - username
+        - isDeleted
     UpdateUserDTO:
       type: object
       properties:
@@ -337,12 +421,118 @@ components:
           type: string
         isDeleted:
           type: boolean
+      required:
+        - uid
+        - email
+        - role
+        - username
+        - isDeleted
+    Album:
+      type: object
+      properties:
+        id:
+          type: string
+        image:
+          type: string
+        publishedDate:
+          type: string
+        title:
+          type: string
+        published:
+          type: boolean
+      required:
+        - id
+        - image
+        - publishedDate
+        - title
+        - published
     CreateAlbumDTO:
       type: object
-      properties: {}
+      properties:
+        image:
+          type: string
+        publishedDate:
+          type: string
+        title:
+          type: string
+      required:
+        - image
+        - publishedDate
+        - title
     UpdateAlbumDTO:
       type: object
-      properties: {}
+      properties:
+        id:
+          type: string
+        image:
+          type: string
+        publishedDate:
+          type: string
+        title:
+          type: string
+      required:
+        - id
+        - image
+        - publishedDate
+        - title
     CreateSongDTO:
       type: object
-      properties: {}
+      properties:
+        lyric:
+          type: string
+        title:
+          type: string
+        wordsRights:
+          type: string
+        musicRights:
+          type: string
+      required:
+        - lyric
+        - title
+        - wordsRights
+        - musicRights
+    Song:
+      type: object
+      properties:
+        id:
+          type: string
+        lyric:
+          type: string
+        title:
+          type: string
+        wordsRights:
+          type: string
+        musicRights:
+          type: string
+      required:
+        - id
+        - lyric
+        - title
+        - wordsRights
+        - musicRights
+    UpdateSongDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        lyric:
+          type: string
+        title:
+          type: string
+        wordsRights:
+          type: string
+        musicRights:
+          type: string
+      required:
+        - id
+        - lyric
+        - title
+        - wordsRights
+        - musicRights
+    AccessCountResponse:
+      type: object
+      properties:
+        accessCount:
+          type: number
+      required:
+        - accessCount

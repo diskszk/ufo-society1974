@@ -1,6 +1,6 @@
 /* eslint-disable */
 export type Methods = {
   post: {
-    status: 201
+    status: 204
   }
 }

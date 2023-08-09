@@ -2,8 +2,6 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { PublishedAlbumsService } from "./published-albums.service";
 import { mockData } from "../../mock";
 import { PublishedAlbumsController } from "./published-albums.controller";
-import { SongSummary } from "../../types";
-import { SongsService } from "../../songs/songs.service";
 import { CreateAlbumDTO, UpdateAlbumDTO } from "../albums.dto";
 import { PublishedAlbumsModule } from "./published-albums.module";
 
@@ -39,13 +37,6 @@ export class DummyPublishedAlbumsService {
   }
 }
 
-export class DummySongsService {
-  async findAllSongSummariesByAlbumId(_albumId: string) {
-    const songSummaries: SongSummary[] = [...mockData.songs];
-    return songSummaries;
-  }
-}
-
 // TODO: 依存関係を整理する
 describe.skip("PublishedAlbumsController", () => {
   let publishedAlbumsController: PublishedAlbumsController;
@@ -56,8 +47,6 @@ describe.skip("PublishedAlbumsController", () => {
     })
       .overrideProvider(PublishedAlbumsService)
       .useClass(DummyPublishedAlbumsService)
-      .overrideProvider(SongsService)
-      .useClass(DummySongsService)
       .compile();
 
     publishedAlbumsController = module.get<PublishedAlbumsController>(
@@ -71,28 +60,8 @@ describe.skip("PublishedAlbumsController", () => {
 
   describe("findAllPublishedAlbums", () => {
     it("公開済みのアルバムを全件取得する", async () => {
-      const { albums } =
-        await publishedAlbumsController.findAllPublishedAlbums();
+      const albums = await publishedAlbumsController.findAllPublishedAlbums();
       expect(albums).toHaveLength(1);
-    });
-  });
-
-  describe("findAlbumAndSummary", () => {
-    it("IDと一致するアルバムが存在する場合、該当するアルバムと楽曲の概要を返す", async () => {
-      const response = await publishedAlbumsController.findAlbumAndSummary(
-        "published01"
-      );
-
-      const album = response.albums[0];
-      const info = response.info;
-      expect(album.id).toBe("published01");
-      expect(info.songSummaries).toHaveLength(2);
-    });
-
-    it("IDと一致するアルバムが存在しない場合、エラーを発生させること", async () => {
-      await expect(
-        publishedAlbumsController.findAlbumAndSummary("test999")
-      ).rejects.toThrow(/IDと一致するアルバムは存在しません。/);
     });
   });
 
