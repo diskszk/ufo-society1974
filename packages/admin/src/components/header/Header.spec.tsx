@@ -48,6 +48,7 @@ describe("Header", () => {
         username: "John Lennon",
         role: "editor",
         email: "johnlennon@example.com",
+        isDeleted: false,
       });
     });
 
@@ -69,6 +70,7 @@ describe("Header", () => {
         username: "John Lennon",
         role: "editor",
         email: "johnlennon@example.com",
+        isDeleted: false,
       });
     });
 

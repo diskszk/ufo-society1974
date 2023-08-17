@@ -1,7 +1,8 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootStore, User } from "../lib/types";
+import { RootStore } from "../lib/types";
+import { User } from "@ufo-society1974/types";
 import { deletePublishedAlbums, publishAlbums } from "../lib/albums";
 import { AddIconButton, CustomButton } from "../components/UIKit";
 import { AlbumTable } from "../components/albums/";

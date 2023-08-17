@@ -13,5 +13,10 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  typescript: {
+    reactDocgenTypescriptOptions: {
+      include: ["../../../**/*.tsx"],
+    },
+  },
 };
 export default config;

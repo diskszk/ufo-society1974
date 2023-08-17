@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE, WEB_API_BASE_URL } from "../../constants";
-import { User } from "../types";
+import { User } from "@ufo-society1974/types";
 import axios from "axios";
 
 const baseUrl = (path: string) => {

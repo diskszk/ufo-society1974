@@ -1,4 +1,4 @@
-import { Song } from "../../lib/types";
+import { Song } from "@ufo-society1974/types";
 import { fetchSongs } from "./fetchSongs";
 
 export const getSongs = async (albumId: string): Promise<Song[]> => {

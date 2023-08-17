@@ -2,7 +2,8 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IconButton } from "@mui/material";
 import { DeleteOutline, Backup } from "@mui/icons-material";
-import { File, RootStore, User } from "../../lib/types";
+import { File, RootStore } from "../../lib/types";
+import { User } from "@ufo-society1974/types";
 import { generateRandomStrings } from "../../lib/helpers/generateRandomStrings";
 import {
   clearSongFileAction,

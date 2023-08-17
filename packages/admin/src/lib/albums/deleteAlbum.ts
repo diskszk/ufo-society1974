@@ -1,6 +1,6 @@
 import { db } from "../../firebase";
 import { deleteSong, getSongs } from "../songs";
-import { Song } from "../types";
+import { Song } from "@ufo-society1974/types";
 
 export const deleteAlbum = async (albumId: string): Promise<void> => {
   const songList = await getSongs(albumId);

@@ -2,5 +2,6 @@
   "extends": "@ufo-society1974/tsconfig/tsconfig.client.json",
   "include": ["src", "jest.setup.ts", "__testMocks__/fileMock.js"],
   "files": ["./env.d.ts"],
+  "exclude": ["./src/bin/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

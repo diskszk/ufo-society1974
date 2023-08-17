@@ -1,5 +1,5 @@
 import { db } from "../../firebase";
-import { Album, Song } from "../../lib/types";
+import { Album, Song } from "@ufo-society1974/types";
 import { getSongs } from "../songs";
 import { getAlbums } from "./getAlbums";
 

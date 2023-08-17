@@ -1,5 +1,5 @@
 import { userRef } from "../../firebase";
-import { User } from "../types";
+import { User } from "@ufo-society1974/types";
 
 const fetchUsers = async (): Promise<firebase.firestore.DocumentData[]> => {
   const res = await userRef.where("isDeleted", "!=", true).get();
@@ -27,10 +27,11 @@ export const getUsers = async (): Promise<User[]> => {
 
   return userList.map((user) => {
     return {
-      isSignedIn: user.isSignedIn,
       uid: user.uid,
       username: user.username,
+      email: user.email,
       role: user.role,
+      isDeleted: user.isDeleted,
     };
   });
 };

@@ -1,5 +1,5 @@
 import { initialState } from "./initialState";
-import { Song } from "../lib/types";
+import { Song } from "@ufo-society1974/types";
 
 const songsInitialState = initialState.songs;
 

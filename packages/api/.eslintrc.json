@@ -19,7 +19,8 @@
     "sourceType": "module"
   },
   "ignorePatterns": [
-    "/lib/**/*" // Ignore built files.
+    "/lib/**/*", // Ignore built files.
+    "aspida.config.ts"
   ],
   "plugins": [
     "@typescript-eslint",

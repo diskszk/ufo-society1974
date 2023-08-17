@@ -1,10 +1,10 @@
 import { CreateUserInputs } from "../../lib/schemas/createUserSchema";
-import { User } from "../../lib/types";
 import { useMutation } from "@tanstack/react-query";
 import { createUserInFirebase } from "../../lib/auth";
 import { registerUser } from "../../lib/users/fetchUser";
 import { useMessageModalState } from "../useMessageModalState";
 import { ERROR_MESSAGE, ROLE } from "../../constants";
+import { User } from "@ufo-society1974/types";
 
 export function useCreateUser() {
   const { openMessageModalWithMessage } = useMessageModalState();

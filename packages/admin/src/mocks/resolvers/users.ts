@@ -1,5 +1,5 @@
 import { PathParams, ResponseResolver, RestContext, RestRequest } from "msw";
-import { User } from "../../lib/types";
+import { User } from "@ufo-society1974/types";
 
 const dummyUsers: User[] = [
   {
@@ -7,18 +7,21 @@ const dummyUsers: User[] = [
     username: "Editor User",
     email: "editor@example.com",
     role: "editor",
+    isDeleted: false,
   },
   {
     uid: "yB1yjkskeybtbuQMmiazb92ZexY2",
     username: "Master User",
     email: "master@example.com",
     role: "master",
+    isDeleted: false,
   },
   {
     uid: "Fzva1r7WLXSGJ1V9jZawFRdWe2f2",
     username: "Watcher User",
     email: "watcher@example.com",
     role: "watcher",
+    isDeleted: false,
   },
 ];
 const get: ResponseResolver<

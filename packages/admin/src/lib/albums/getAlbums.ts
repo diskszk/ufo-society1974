@@ -1,4 +1,4 @@
-import { Album } from "../types";
+import { Album } from "@ufo-society1974/types";
 import { fetchAlbums } from "./fetchAlbums";
 
 export const getAlbums = async (): Promise<Album[]> => {
@@ -7,12 +7,11 @@ export const getAlbums = async (): Promise<Album[]> => {
   const albumList: Album[] = dataList.map(
     (data: firebase.firestore.DocumentData) => {
       return {
-        description: data.description,
-        imageFile: data.imageFile,
         id: data.id,
+        image: data.imageFile,
         publishedDate: data.publishedDate,
         title: data.title,
-        publishPlatform: data.publishPlatform,
+        published: data.published,
       };
     }
   );

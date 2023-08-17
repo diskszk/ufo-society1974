@@ -1,5 +1,5 @@
 import React from "react";
-import { Song } from "../../lib/types";
+import { Song } from "@ufo-society1974/types";
 import { TableBody } from "@mui/material";
 import { SongTableBodyItem } from "./";
 

@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { User } from "../lib/types";
+import { User } from "@ufo-society1974/types";
 import { Dispatch, SetStateAction } from "react";
 
 const SIGNED_IN_USER = "signedInUser" as const;
