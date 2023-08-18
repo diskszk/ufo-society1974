@@ -1,5 +1,5 @@
 import { initialState } from "./initialState";
-import { Album } from "../lib/types";
+import { Album } from "@ufo-society1974/types";
 
 const albumInitialState = initialState.album;
 

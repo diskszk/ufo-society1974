@@ -2,13 +2,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomButton, TextInput } from "../components/UIKit";
-import { getSingleSong, getSongs, saveSong } from "../lib/songs";
+import { saveSong } from "../lib/songs";
 import { SongUploadForm } from "../components/songs/";
-import { File, Song, RootStore, User } from "../lib/types";
-import {
-  createUpdateSongFileAction,
-  clearSongFileAction,
-} from "../store/SongFileReducer";
+import { File, RootStore } from "../lib/types";
+import { Song, User } from "@ufo-society1974/types";
 import {
   createDisplayMessage,
   createFailedFetchAction,
@@ -22,7 +19,7 @@ const SongEdit: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { albumId, songId } = useParams<{ songId: string; albumId: string }>();
+  const { albumId } = useParams<{ songId: string; albumId: string }>();
 
   const { role } = useSelector<RootStore, User>((state) => state.user);
 
@@ -103,8 +100,6 @@ const SongEdit: React.FC = () => {
       const newSong: Song = {
         id: leftJustifiedId,
         title: title,
-        songFile: songFile,
-        story: story,
         lyric: lyric,
         wordsRights: wordsRights,
         musicRights: musicRights,
@@ -125,15 +120,14 @@ const SongEdit: React.FC = () => {
       albumId,
       id,
       title,
-      story,
       lyric,
       wordsRights,
       musicRights,
       role,
-      songFile,
     ]
   );
 
+  /* 
   useEffect(() => {
     // New
     const createSongSetUp = async () => {
@@ -184,7 +178,8 @@ const SongEdit: React.FC = () => {
       // Edit
       editSongSetUp();
     }
-  }, [dispatch, history, albumId, songId]);
+  }, [dispatch, history, albumId, songId]); 
+  */
 
   // 保存ボタンの活性・非活性
   useEffect(() => {

@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { imagesRef } from "../../firebase";
-
 import { IconButton } from "@mui/material";
 import { AddPhotoAlternate } from "@mui/icons-material";
 import { generateRandomStrings } from "../../lib/helpers/generateRandomStrings";
 import { deleteAlbumImage } from "../../lib/albums";
-import { File, RootStore, User } from "../../lib/types";
+import { File, RootStore } from "../../lib/types";
+import { User } from "@ufo-society1974/types";
 import { createUpdateImageAction } from "../../store/ImageReducer";
 import {
   createRequestFetchAction,

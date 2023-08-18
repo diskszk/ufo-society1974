@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootStore, Album, Song, User } from "../../lib/types";
+import { RootStore } from "../../lib/types";
+import { User, Song, Album } from "@ufo-society1974/types";
 import { TableCell, TableRow } from "@mui/material";
 import { ROLE } from "../../constants";
 import { createUpdateSongsAction } from "../../store/SongsReducer";
@@ -27,8 +28,8 @@ export const SongTableBodyItem: React.FC<Props> = ({ song }) => {
 
   const songId = parseInt(song.id, 10).toString();
   const audio: HTMLAudioElement = useMemo(() => {
-    return new Audio(song.songFile.path);
-  }, [song.songFile.path]);
+    return new Audio("");
+  }, []);
 
   const handlePlayMusic = useCallback(
     (_ev: React.MouseEvent<HTMLTableCellElement, MouseEvent>): void => {
@@ -84,7 +85,7 @@ export const SongTableBodyItem: React.FC<Props> = ({ song }) => {
         {songId}
       </TableCell>
       <TableCell>{song.title}</TableCell>
-      <TableCell>{song.story}</TableCell>
+      <TableCell>{"曲の説明"}</TableCell>
       <TableCell
         sx={{
           cursor: "pointer",

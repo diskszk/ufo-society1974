@@ -10,7 +10,8 @@ import {
   Paper,
 } from "@mui/material";
 import { SongTableBody } from "./";
-import { RootStore, User, Song } from "../../lib/types";
+import { RootStore } from "../../lib/types";
+import { User, Song } from "@ufo-society1974/types";
 import { ROLE } from "../../constants";
 import { createUpdateSongsAction } from "../../store/SongsReducer";
 import {

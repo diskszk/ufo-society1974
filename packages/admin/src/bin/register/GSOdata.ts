@@ -1,13 +1,12 @@
 /* eslint-disable */
 
 import { FirebaseTimestamp } from "../../firebase";
-import { Song } from "../../lib/types";
+import { Song } from "@ufo-society1974/types";
 const timestamp = FirebaseTimestamp.now();
 
 export const GSOdatas: Song[] = [
   // ここから
   {
-    createdAt: timestamp,
     id: "0001", // 00XXの形で
     lyric: `ちゃちな指輪で 夢を見せるように
 さみしい公園で描いた迷路
@@ -30,11 +29,7 @@ export const GSOdatas: Song[] = [
 目盛りだらけの月
 きみの手で 白い手で
 空をこじあけて`,
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: 'TR-3B, Masuo TV, "レストー夫人"',
+
     title: "カイト",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -42,13 +37,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0002", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "谷川俊太郎",
+
     title: "ヤング",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -72,13 +62,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0003", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "無し",
+
     title: "プラスチック・チルドレン",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -97,13 +82,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0004", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: '"悲しみよ こんにちは"',
+
     title: "サガン",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -122,13 +102,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0005", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: '"インディゴ地平線"',
+
     title: "セスナ",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -151,13 +126,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0006", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: '"我らコンタクティ", ボイジャー',
+
     title: "ゴールデン・レコード",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -180,13 +150,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0007", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "無し",
+
     title: "アーハ",
     wordsRights: "amane toda",
     musicRights: "hiroyoshi kojima",
@@ -205,13 +170,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0008", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "海無し県",
+
     title: "ウィズ・ノー・シー",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -241,13 +201,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0009", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: '"ネムルバカ"',
+
     title: "ギア",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -267,13 +222,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0010", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "飲酒行為",
+
     title: "レトリバー",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -293,13 +243,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0011", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "広くて無い草原",
+
     title: "オール・ドックズ・アー・ユア・フレンズ",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -326,13 +271,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0012", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "無し",
+
     title: "タイニー・ゴースト",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -355,13 +295,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0013", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "知らない有名な人",
+
     title: "トップ・オブ・ザ・ワールド",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -388,13 +323,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0014", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "飲酒行為, 投石機",
+
     title: "カタパルト",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -411,13 +341,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0015", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "無し",
+
     title: "ポート",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -443,13 +368,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0016", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "無し",
+
     title: "ロング",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -462,13 +382,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0017", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "そういった精神疾患",
+
     title: "エヴリウェア・ユー・ゴー",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -479,13 +394,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0018", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "無し",
+
     title: "フラワーズ",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -507,13 +417,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0019", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: '"春は青いバスに乗って"',
+
     title: "ブルー",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -541,13 +446,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0020", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: '"夢見る魚", "素晴らしき日々～不連続存在～"',
+
     title: "ドリーミー・フィッシュ",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -559,13 +459,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0021", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "無し",
+
     title: "ディス・イズ・ノット・ア・サマー・ソング",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -596,13 +491,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0022", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: '松澤小巻, "ラジオコントロールド・サテライト"',
+
     title: "レディオ・ウェーヴズ",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -622,13 +512,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0023", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: '飲酒行為, "Brand New Love", "Not A Friend',
+
     title: "ニュー・ラヴ",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -656,13 +541,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0024", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "見た夢",
+
     title: "ブイ・エイチ・エス・ソサエティ",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -682,13 +562,8 @@ export const GSOdatas: Song[] = [
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0025", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "無し",
+
     title: "ステイ",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -719,13 +594,8 @@ VHS 巻き戻し 早送り
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0026", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: '"青い欠如"',
+
     title: "チムニー",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -740,13 +610,8 @@ VHS 巻き戻し 早送り
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0028", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: '"Hardcore UFOs"',
+
     title: "ナイト・ブラインド",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -774,13 +639,8 @@ VHS 巻き戻し 早送り
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0028", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "いしわたり淳治, 不忍池の活動家",
+
     title: "ゴー・サウス",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -807,13 +667,8 @@ VHS 巻き戻し 早送り
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0029", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "無し",
+
     title: "リバーベッド",
     wordsRights: "amane toda",
     musicRights: "amane toda",
@@ -836,13 +691,8 @@ VHS 巻き戻し 早送り
   // ここまでコピー
 
   {
-    createdAt: timestamp,
     id: "0030", // 00XXの形で
-    songFile: {
-      filename: "", // 空欄
-      path: "", // 空欄
-    },
-    story: "無し",
+
     title: "ユー・エフ・オー・ソサエティ",
     wordsRights: "amane toda",
     musicRights: "amane toda",

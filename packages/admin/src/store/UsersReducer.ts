@@ -1,4 +1,4 @@
-import { User } from "../lib/types";
+import { User } from "@ufo-society1974/types";
 import { initialState } from "./initialState";
 
 const userInitialState = initialState.user;
@@ -23,7 +23,6 @@ export const createLoginAction = (state: User): UserActions => {
     type: LOG_IN,
     payload: {
       ...state,
-      isSignedIn: true,
     },
   };
 };
@@ -32,10 +31,11 @@ export const createLogOutAction = (): UserActions => {
   return {
     type: LOG_OUT,
     payload: {
-      isSignedIn: false,
       role: "",
       username: "",
       uid: "",
+      email: "",
+      isDeleted: false,
     },
   };
 };

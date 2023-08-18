@@ -11,7 +11,8 @@ import {
   TableBody,
 } from "@mui/material";
 import UserTableBody from "./UserTableBody";
-import { RootStore, User } from "../../lib/types";
+import { RootStore } from "../../lib/types";
+import { User } from "@ufo-society1974/types";
 import { getUsers } from "../../lib/users/getUsers";
 import {
   createRequestFetchAction,
@@ -22,7 +23,6 @@ import {
 import { AddIconButton } from "../UIKit";
 import { ROLE } from "../../constants";
 import { checkRole } from "../../lib/helpers";
-import { db } from "../../firebase";
 
 type PresentationProps = {
   role: string;
@@ -112,46 +112,6 @@ const UserTable: React.FC = () => {
 
     fetch();
   }, [setUsers, dispatch, history]);
-
-  useEffect(() => {
-    const unSub = db.collection("users").onSnapshot((snapshot) => {
-      const userList = snapshot.docs.map((doc) => {
-        const data = doc.data();
-        const user: User = {
-          isSignedIn: data.isSignedIn,
-          uid: data.uid,
-          username: data.username,
-          role: data.role,
-        };
-
-        return user;
-      });
-
-      setUsers(userList);
-
-      return () => unSub();
-    });
-  }, []);
-
-  useEffect(() => {
-    const unSub = db.collection("users").onSnapshot((snapshot) => {
-      const userList = snapshot.docs.map((doc) => {
-        const data = doc.data();
-        const user: User = {
-          isSignedIn: data.isSignedIn,
-          uid: data.uid,
-          username: data.username,
-          role: data.role,
-        };
-
-        return user;
-      });
-
-      setUsers(userList);
-
-      return () => unSub();
-    });
-  }, []);
 
   return (
     <Presentation

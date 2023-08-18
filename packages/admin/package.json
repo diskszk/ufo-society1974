@@ -62,6 +62,7 @@
     "@types/uuid": "^9.0.2",
     "@ufo-society1974/eslint-config": "workspace:^",
     "@ufo-society1974/tsconfig": "workspace:^",
+    "@ufo-society1974/types": "workspace:^",
     "@vitejs/plugin-react": "^4.0.0",
     "axios": "^1.4.0",
     "chromatic": "^6.17.4",

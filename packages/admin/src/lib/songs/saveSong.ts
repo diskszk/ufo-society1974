@@ -1,5 +1,5 @@
-import { db, FirebaseTimestamp } from "../../firebase";
-import { Song } from "../types";
+import { db } from "../../firebase";
+import { Song } from "@ufo-society1974/types";
 
 export const saveSong = async (song: Song, albumId: string): Promise<void> => {
   const songsRef = db
@@ -7,11 +7,9 @@ export const saveSong = async (song: Song, albumId: string): Promise<void> => {
     .doc(albumId)
     .collection("songs")
     .doc(song.id);
-  const timestamp = FirebaseTimestamp.now();
 
   const data: Song = {
     ...song,
-    createdAt: timestamp,
   };
 
   await songsRef.set(data, { merge: true });

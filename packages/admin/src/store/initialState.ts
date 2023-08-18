@@ -3,30 +3,22 @@ import { NO_IMAGE } from "../constants";
 
 export const initialState: RootStore = {
   user: {
-    isSignedIn: false,
     uid: "",
     username: "",
     role: "",
+    email: "",
+    isDeleted: false,
   },
   image: {
     filename: "",
     path: NO_IMAGE,
   },
   album: {
-    description: "",
-    imageFile: {
-      filename: "",
-      path: NO_IMAGE,
-    },
+    image: "",
     id: "",
     publishedDate: "",
     title: "",
-    publishPlatform: {
-      AppleMusic: "",
-      Spotify: "",
-      iTunes: "",
-      Bandcamp: "",
-    },
+    published: false,
   },
   songFile: {
     filename: "",
@@ -36,11 +28,6 @@ export const initialState: RootStore = {
     {
       id: "",
       lyric: "",
-      songFile: {
-        filename: "",
-        path: "",
-      },
-      story: "",
       title: "",
       wordsRights: "amane toda",
       musicRights: "amane toda",

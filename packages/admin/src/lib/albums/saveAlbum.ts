@@ -1,5 +1,6 @@
-import { db, FirebaseTimestamp } from "../../firebase";
-import { Album, File, PublishPlatform } from "../types";
+import { db } from "../../firebase";
+import { File, PublishPlatform } from "../types";
+import { Album } from "@ufo-society1974/types";
 import { generateRandomStrings } from "../helpers/generateRandomStrings";
 
 const albumsRef = db.collection("albums");
@@ -7,25 +8,19 @@ const albumsRef = db.collection("albums");
 export const saveAlbum = async (
   title: string,
   imageFile: File,
-  description: string,
-  publishPlatform: PublishPlatform,
+  _description: string,
+  _publishPlatform: PublishPlatform,
   publishedDate: string,
   albumId: string
 ): Promise<void> => {
-  const timestamp = FirebaseTimestamp.now();
   const id = albumId !== "new" ? albumId : generateRandomStrings();
 
   const data: Album = {
-    createdAt: timestamp,
-    description: description,
     id: id,
-    imageFile: {
-      filename: imageFile.filename,
-      path: imageFile.path,
-    },
     publishedDate: publishedDate,
     title: title,
-    publishPlatform: publishPlatform,
+    image: imageFile.path,
+    published: false,
   };
 
   await albumsRef.doc(id).set(data, { merge: true });

@@ -8474,7 +8474,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@ufo-society1974/types@workspace:packages/types":
+"@ufo-society1974/types@workspace:^, @ufo-society1974/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@ufo-society1974/types@workspace:packages/types"
   languageName: unknown
@@ -9073,6 +9073,7 @@ __metadata:
     "@types/uuid": ^9.0.2
     "@ufo-society1974/eslint-config": "workspace:^"
     "@ufo-society1974/tsconfig": "workspace:^"
+    "@ufo-society1974/types": "workspace:^"
     "@vitejs/plugin-react": ^4.0.0
     axios: ^1.4.0
     chromatic: ^6.17.4

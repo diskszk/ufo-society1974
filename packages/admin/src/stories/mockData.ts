@@ -1,4 +1,4 @@
-import { Album, Song, User } from "./../lib/types";
+import { Album, Song, User } from "@ufo-society1974/types";
 import altImage from "../assets/images/no_image.jpg";
 
 const lyric = {
@@ -29,11 +29,6 @@ export const mockSongs: Song[] = [
   {
     id: "1",
     lyric: lyric.kite,
-    songFile: {
-      filename: "",
-      path: "",
-    },
-    story: "",
     title: "ソングタイトル01",
     wordsRights: "XXX XXX",
     musicRights: "YYY YYY",
@@ -41,11 +36,6 @@ export const mockSongs: Song[] = [
   {
     id: "2",
     lyric: lyric.kite,
-    songFile: {
-      filename: "",
-      path: "",
-    },
-    story: "",
     title: "ソングタイトル02",
     wordsRights: "XXX XXX",
     musicRights: "YYY YYY",
@@ -53,11 +43,6 @@ export const mockSongs: Song[] = [
   {
     id: "3",
     lyric: lyric.kite,
-    songFile: {
-      filename: "",
-      path: "",
-    },
-    story: "",
     title: "ソングタイトル03",
     wordsRights: "XXX XXX",
     musicRights: "YYY YYY",
@@ -66,39 +51,32 @@ export const mockSongs: Song[] = [
 
 export const mockAlbum: Album = {
   id: "album-id-01",
-  imageFile: {
-    path: altImage,
-    filename: "no_image",
-  },
+  image: altImage.toString(),
   publishedDate: "1995-02-03",
   title: "テストアルバムタイトル01",
-  description: "説明XXXXXXXXX",
-  songs: mockSongs,
-  publishPlatform: {
-    AppleMusic: "",
-    Spotify: "",
-    iTunes: "",
-    Bandcamp: "",
-  },
+  published: false,
 };
 
 export const mockUsers: User[] = [
   {
-    isSignedIn: false,
+    email: "test@example.com",
     uid: "uid001",
     username: "テストユーザー1",
     role: "editor",
+    isDeleted: false,
   },
   {
-    isSignedIn: false,
+    email: "test@example.com",
     uid: "uid002",
     username: "テストユーザー2",
     role: "watcher",
+    isDeleted: false,
   },
   {
-    isSignedIn: false,
+    email: "test@example.com",
     uid: "uid003",
     username: "テストユーザー3",
     role: "master",
+    isDeleted: false,
   },
 ];

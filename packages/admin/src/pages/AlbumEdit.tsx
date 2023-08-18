@@ -5,14 +5,10 @@ import { IconButton } from "@mui/material";
 import { DeleteOutline } from "@mui/icons-material";
 import { CustomButton, TextInput } from "../components/UIKit";
 import { ImageUploadForm } from "../components/albumEdit";
-import { RootStore, File, User, PublishPlatform } from "../lib/types";
+import { RootStore, File, PublishPlatform } from "../lib/types";
+import { User } from "@ufo-society1974/types";
 import { saveAlbum, deleteAlbum } from "../lib/albums";
 import { ROLE } from "../constants";
-import { getSingleAlbum } from "../lib/albums/getSingleAlbum";
-import {
-  createUpdateImageAction,
-  createClearImageAction,
-} from "../store/ImageReducer";
 import {
   createDisplayMessage,
   createFailedFetchAction,
@@ -186,6 +182,7 @@ const AlbumEdit: React.FC = () => {
     [dispatch, history, id, role]
   );
 
+  /* 
   useEffect(() => {
     if (id === "new") {
       // New
@@ -231,7 +228,7 @@ const AlbumEdit: React.FC = () => {
       fetch();
     }
   }, [dispatch, history, id]);
-
+ */
   // title, publishedDateが空だと保存ボタン非活性
   useEffect(() => {
     if (role === ROLE.EDITOR) {

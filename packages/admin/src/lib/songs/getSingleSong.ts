@@ -1,4 +1,4 @@
-import { Song } from "../types";
+import { Song } from "@ufo-society1974/types";
 import { getSongs } from "./getSongs";
 
 export const getSingleSong = async (
