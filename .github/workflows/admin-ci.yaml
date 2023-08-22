@@ -1,0 +1,60 @@
+# name: Admin CI
+# on:
+#   # pull_request:
+#   push:
+#   #   paths:
+#   #     - packages/admin/**
+# jobs:
+#   tests:
+#     runs-on: ubuntu-latest
+#     defaults:
+#       run:
+#         working-directory: packages/admin
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           fetch-depth: 0
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: 16
+#       - name: Install dependencies
+#         run: yarn install
+#       # - name: Lint
+#       #   run: yarn  lint
+#       # - name: Unit test
+#       #   run: yarn test
+#       - name: Visual Regression Test
+#         uses: chromaui/action@v1
+#         with:
+#           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+#           # workingDir: packages/admin
+# .github/workflows/chromatic.yml
+
+# Workflow name
+name: "Chromatic"
+
+# Event for the workflow
+on: push
+
+# List of jobs
+jobs:
+  chromatic-deployment:
+    # Operating System
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/admin
+    # Job steps
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g., yarn, npm, pnpm
+        run: yarn
+        # 👇 Adds Chromatic as a step in the workflow
+      - name: Publish Project to Chromatic
+        uses: chromaui/action@v1
+        # Chromatic GitHub Action options
+        with:
+          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/admin
