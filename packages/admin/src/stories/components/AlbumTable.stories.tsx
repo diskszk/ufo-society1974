@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Presentation as AlbumTable } from "../../components/albums/AlbumTable";
+import { DummyComponent } from "./Dummy";
+// import { Presentation as AlbumTable } from "../../components/albums/AlbumTable";
 
-const meta: Meta<typeof AlbumTable> = {
+const meta: Meta<typeof DummyComponent> = {
   title: "components/AlbumTable",
-  component: AlbumTable,
+  component: DummyComponent,
   decorators: [
     (Story) => (
       <div className="album-container">
@@ -15,10 +16,6 @@ const meta: Meta<typeof AlbumTable> = {
 
 export default meta;
 
-type Story = StoryObj<typeof AlbumTable>;
+type Story = StoryObj<typeof DummyComponent>;
 
-export const NoAlbums: Story = {
-  args: {
-    albums: [],
-  },
-};
+export const NoAlbums: Story = {};
