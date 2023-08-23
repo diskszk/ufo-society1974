@@ -1,14 +1,14 @@
-name: Homepage Tests
+name: Api Tests
 on:
   pull_request:
     paths:
-      - packages/homepage/**
+      - packages/api/**
 jobs:
-  homepage-tests:
+  api-tests:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: packages/homepage
+        working-directory: packages/api
     steps:
       - uses: actions/checkout@v3
         with:
