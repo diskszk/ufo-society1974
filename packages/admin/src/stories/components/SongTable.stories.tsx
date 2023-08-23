@@ -1,20 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Presentation as SongTable } from "../../components/songs/SongTable";
-import { mockSongs } from "../mockData";
+// import { Presentation as SongTable } from "../../components/songs/SongTable";
+import { DummyComponent } from "./Dummy";
 
-const meta: Meta<typeof SongTable> = {
+const meta: Meta<typeof DummyComponent> = {
   title: "components/SongTable",
-  component: SongTable,
+  component: DummyComponent,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof SongTable>;
+type Story = StoryObj<typeof DummyComponent>;
 
-export const HasThreeSongs: Story = {
-  args: {
-    role: "editor",
-    handleClickAddIcon: () => void 0,
-    songs: mockSongs,
-  },
-};
+export const NoSongs: Story = {};

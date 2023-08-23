@@ -1,0 +1,24 @@
+name: Homepage Tests
+on:
+  pull_request:
+    paths:
+      - packages/homepage/**
+jobs:
+  homepage-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/homepage
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: yarn install
+      - name: Lint
+        run: yarn  lint
+      - name: Unit test
+        run: yarn test
