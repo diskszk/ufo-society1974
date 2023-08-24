@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Album } from "@ufo-society1974/types";
-import { getAlbums } from "../../lib/albums/getAlbums";
+import { getAlbums } from "../../lib/_albums/getAlbums";
 import {
   createRequestFetchAction,
   createFailedFetchAction,

@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../lib/types";
 import { User } from "@ufo-society1974/types";
-import { deletePublishedAlbums, publishAlbums } from "../lib/albums";
+import { deletePublishedAlbums, publishAlbums } from "../lib/_albums";
 import { AddIconButton, CustomButton } from "../components/UIKit";
 import { AlbumTable } from "../components/albums/";
 import { ROLE } from "../constants";

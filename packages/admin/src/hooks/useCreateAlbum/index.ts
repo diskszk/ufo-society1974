@@ -4,7 +4,7 @@ import {
   CreateAlbumDTO,
   createAlbum,
   uploadImageFile,
-} from "../../lib/albums/createAlbum";
+} from "../../lib/_albums/createAlbum";
 import { ERROR_MESSAGE } from "../../constants";
 import { useCallback } from "react";
 import { useMessageModalState } from "../../hooks/useMessageModalState";

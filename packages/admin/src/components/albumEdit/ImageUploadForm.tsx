@@ -4,7 +4,7 @@ import { imagesRef } from "../../firebase";
 import { IconButton } from "@mui/material";
 import { AddPhotoAlternate } from "@mui/icons-material";
 import { generateRandomStrings } from "../../lib/helpers/generateRandomStrings";
-import { deleteAlbumImage } from "../../lib/albums";
+import { deleteAlbumImage } from "../../lib/_albums";
 import { File, RootStore } from "../../lib/types";
 import { User } from "@ufo-society1974/types";
 import { createUpdateImageAction } from "../../store/ImageReducer";

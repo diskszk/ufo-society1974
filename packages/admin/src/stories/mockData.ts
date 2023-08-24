@@ -1,5 +1,5 @@
 import { Album, Song, User } from "@ufo-society1974/types";
-import altImage from "../assets/images/no_image.jpg";
+import three_songs from "../assets/images/three_songs.jpeg";
 
 const lyric = {
   kite: `ちゃちな指輪で 夢を見せるように
@@ -49,13 +49,15 @@ export const mockSongs: Song[] = [
   },
 ];
 
-export const mockAlbum: Album = {
-  id: "album-id-01",
-  image: altImage.toString(),
-  publishedDate: "1995-02-03",
-  title: "テストアルバムタイトル01",
-  published: false,
-};
+export const mockAlbums: Album[] = [
+  {
+    id: "album-id-01",
+    image: three_songs,
+    publishedDate: "1995-02-03",
+    title: "テストアルバムタイトル01",
+    published: false,
+  },
+];
 
 export const mockUsers: User[] = [
   {

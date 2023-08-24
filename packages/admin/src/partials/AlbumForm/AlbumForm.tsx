@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlbumInput, albumSchema } from "../../lib/schemas/albumSchema";
-
 import { Textbox } from "../../components/Textbox";
 import { ImageUploadForm } from "../ImageUploadForm";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { getDefaultImageFile } from "../../lib/helpers/getDefaultImageFile";
 import { NO_IMAGE, ROLE } from "../../constants";
+import { Album } from "@ufo-society1974/types";
+import { useImageFile } from "./hooks";
 
 type Props = {
-  backToHref: string;
   onSubmit: SubmitHandler<AlbumInput>;
   role: string;
+  album?: Album;
 };
 
-export const AlbumForm: React.FC<Props> = ({ backToHref, onSubmit, role }) => {
+export const AlbumForm: React.FC<Props> = ({ onSubmit, role, album }) => {
   const {
     handleSubmit,
     register,
@@ -28,19 +28,12 @@ export const AlbumForm: React.FC<Props> = ({ backToHref, onSubmit, role }) => {
     mode: "onBlur",
     defaultValues: {
       imageFile: getDefaultImageFile(),
+      title: album?.title || "",
+      publishedDate: album?.publishedDate || "",
     },
   });
 
-  const [previewImageSrc, setPreviewImageSrc] = useState(NO_IMAGE);
-
-  // 画像が挿入されたらpreview画像を更新する
-  const watchImageFile = watch("imageFile");
-
-  useEffect(() => {
-    const file = watchImageFile.item(0) as File;
-
-    setPreviewImageSrc(URL.createObjectURL(file));
-  }, [watchImageFile]);
+  const { previewImageSrc } = useImageFile(watch);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -90,7 +83,8 @@ export const AlbumForm: React.FC<Props> = ({ backToHref, onSubmit, role }) => {
         />
 
         <div className="button-container-row">
-          <StyledButton href={backToHref}>もどる</StyledButton>
+          {/* href要素を含めることでaタグとみなされる!! */}
+          <StyledButton href="/albums">もどる</StyledButton>
 
           <StyledButton
             disabled={isSubmitting || (isApprovedUser && !isDirty)}

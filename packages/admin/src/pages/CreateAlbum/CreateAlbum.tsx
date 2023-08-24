@@ -25,12 +25,8 @@ export const CreateAlbum: React.FC = () => {
 
   return (
     <div className="album-edit">
-      <h1>アルバムを追加・編集</h1>
-      <AlbumForm
-        backToHref="/albums"
-        onSubmit={onSubmit}
-        role={signedInUser.role}
-      />
+      <h1>アルバムを追加</h1>
+      <AlbumForm onSubmit={onSubmit} role={signedInUser.role} />
     </div>
   );
 };
