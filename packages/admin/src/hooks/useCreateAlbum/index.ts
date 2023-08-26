@@ -1,21 +1,16 @@
 import { AlbumInput } from "../../lib/schemas/albumSchema";
 import { useMutation } from "@tanstack/react-query";
-import {
-  CreateAlbumDTO,
-  createAlbum,
-  uploadImageFile,
-} from "../../lib/_albums/createAlbum";
-import { ERROR_MESSAGE } from "../../constants";
+import { createAlbum } from "../../lib/albums";
 import { useCallback } from "react";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
-import { v4 as uuid } from "uuid";
+import { CreateAlbumDTO } from "@ufo-society1974/types";
+import { uploadImage } from "../../lib/storages";
 
 export function useCreateAlbum() {
   const { openMessageModalWithMessage } = useMessageModalState();
 
-  const { mutateAsync: uploadImageFileMutate } = useMutation(
-    ({ formData, filename }: { formData: FormData; filename: string }) =>
-      uploadImageFile(formData, filename)
+  const { mutateAsync: uploadImageMutate } = useMutation(
+    ({ fileList }: { fileList: FileList }) => uploadImage(fileList)
   );
 
   const { mutateAsync: createAlbumMutate } = useMutation(
@@ -24,21 +19,12 @@ export function useCreateAlbum() {
 
   const handleCreateAlbum = useCallback(
     async (data: AlbumInput) => {
-      const imageFile = data.imageFile.item(0) as File;
-
-      const formData = new FormData();
-
-      formData.append("imageFile", imageFile);
-
       try {
-        const filename = uuid();
-        const imageFile = await uploadImageFileMutate({ formData, filename });
+        const { downLoadURL } = await uploadImageMutate({
+          fileList: data.imageFile,
+        });
 
-        if (!imageFile) {
-          throw new Error(ERROR_MESSAGE.serverError);
-        }
-
-        await createAlbumMutate({ ...data, imageFile });
+        await createAlbumMutate({ ...data, image: downLoadURL });
       } catch (error) {
         if (error instanceof Error) {
           openMessageModalWithMessage(error.message);
@@ -46,7 +32,7 @@ export function useCreateAlbum() {
         }
       }
     },
-    [createAlbumMutate, openMessageModalWithMessage, uploadImageFileMutate]
+    [createAlbumMutate, openMessageModalWithMessage, uploadImageMutate]
   );
 
   return { handleCreateAlbum };
