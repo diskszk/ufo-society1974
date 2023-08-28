@@ -1,20 +1,23 @@
-import { useCallback } from "react";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { AddIconButton } from "../../components/AddIconButton";
+import { AlbumList } from "../../partials/AlbumList";
+import { StyledSubHeading } from "./styles";
+import { useAlbums } from "./hooks";
+import { Album, User } from "@ufo-society1974/types";
 
-export const Albums: React.FC = () => {
-  const { signedInUser } = useSignedInUserState();
+type PresentationProps = {
+  draftAlbums: Album[];
+  publishedAlbums: Album[];
+  signedInUser: User;
+};
 
-  const handleClickPublish = useCallback(() => {
-    // 権限確認
-    // confirm
-    // http fetch
-    // 結果表示
-    return;
-  }, []);
-
+export const Presentation: React.FC<PresentationProps> = ({
+  draftAlbums,
+  publishedAlbums,
+  signedInUser,
+}) => {
   const isApprovedUser = signedInUser.role === ROLE.EDITOR;
 
   return (
@@ -25,24 +28,41 @@ export const Albums: React.FC = () => {
       <div className="spacing-div"></div>
 
       <div className="album-container">
-        <div className="add-icon-button">
-          {isApprovedUser && (
-            <AddIconButton label="アルバムを追加" href="/albums/create" />
-          )}
+        <div>
+          <StyledSubHeading>未公開のアルバム</StyledSubHeading>
+          <div className="add-icon-button">
+            {isApprovedUser && (
+              <AddIconButton label="アルバムを追加" href="/albums/create" />
+            )}
+          </div>
+          <AlbumList albums={draftAlbums} role={signedInUser.role} />
         </div>
-
-        {/* 公開中と未公開で分ける */}
-        {/* <AlbumTable /> */}
+        <hr />
+        <div>
+          <StyledSubHeading>公開中のアルバム</StyledSubHeading>
+          <AlbumList albums={publishedAlbums} role={signedInUser.role} />
+        </div>
 
         <div className="spacing-div"></div>
 
         <div className="button-container-row">
           <StyledButton href="/">もどる</StyledButton>
-          <StyledButton disabled={!isApprovedUser} onClick={handleClickPublish}>
-            公開する
-          </StyledButton>
         </div>
       </div>
     </div>
+  );
+};
+
+export const Albums: React.FC = () => {
+  const { signedInUser } = useSignedInUserState();
+
+  const { draftAlbums, publishedAlbums } = useAlbums();
+
+  return (
+    <Presentation
+      draftAlbums={draftAlbums}
+      publishedAlbums={publishedAlbums}
+      signedInUser={signedInUser}
+    />
   );
 };

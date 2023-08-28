@@ -2,6 +2,23 @@ import { PathParams, ResponseResolver, RestContext, RestRequest } from "msw";
 import { mockAlbums as mockData } from "../../stories/mockData";
 import { Album } from "@ufo-society1974/types";
 
+const getDraftAlbums: ResponseResolver<
+  RestRequest<never, PathParams<string>>,
+  RestContext
+> = (req, res, ctx) => {
+  const albums = mockData;
+
+  return res(ctx.status(200), ctx.json<Album[]>(albums));
+};
+const getPublishedAlbums: ResponseResolver<
+  RestRequest<never, PathParams<string>>,
+  RestContext
+> = (req, res, ctx) => {
+  const albums = mockData;
+
+  return res(ctx.status(200), ctx.json<Album[]>(albums));
+};
+
 const getById: ResponseResolver<
   RestRequest<never, PathParams<string>>,
   RestContext
@@ -16,6 +33,8 @@ const getById: ResponseResolver<
 };
 
 const mockAlbums = {
+  getDraftAlbums,
+  getPublishedAlbums,
   getById,
 };
 

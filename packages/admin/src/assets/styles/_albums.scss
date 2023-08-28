@@ -49,6 +49,7 @@
       :hover {
         cursor: pointer;
       }
+      display: block;
       > img {
         position: absolute;
         width: 100%;
@@ -62,7 +63,7 @@
       }
     }
     .album-image:before {
-      content: '';
+      content: "";
       display: block;
       padding-top: 100%;
     }

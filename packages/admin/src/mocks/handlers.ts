@@ -12,5 +12,7 @@ export const handlers = [
   rest.get(baseUrl("/users/:id"), mockUsers.getById),
   rest.post(baseUrl("/users"), mockUsers.create),
 
+  rest.get(baseUrl("draft-albums"), mockAlbums.getDraftAlbums),
+  rest.get(baseUrl("albums"), mockAlbums.getPublishedAlbums),
   rest.get(baseUrl("/draft-albums/:id"), mockAlbums.getById),
 ];

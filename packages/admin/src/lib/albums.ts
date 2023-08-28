@@ -6,6 +6,18 @@ const baseUrl = (path: string) => {
   return WEB_API_BASE_URL + path;
 };
 
+export async function fetchPublishedAlbums(): Promise<Album[]> {
+  const res = await axios.get<Album[]>(baseUrl("/albums"));
+
+  return res.data;
+}
+
+export async function fetchDraftAlbums(): Promise<Album[]> {
+  const res = await axios.get<Album[]>(baseUrl("/draft-albums"));
+
+  return res.data;
+}
+
 export async function fetchAlbumById(id: string): Promise<Album> {
   const res = await axios.get<Album>(baseUrl(`/draft-albums/${id}`));
 
