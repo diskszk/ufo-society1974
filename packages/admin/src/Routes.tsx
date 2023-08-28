@@ -28,8 +28,7 @@ const Routes: React.FC = () => {
 
         {/* Albums */}
         <Route exact path={"/albums"} component={Albums} />
-        <Route path={"/albums/:id"} component={EditAlbum} />
-        {/* TODO: componentを設定する */}
+        <Route path={"/albums/edit/:id"} component={EditAlbum} />
         <Route path={"/albums/create"} component={CreateAlbum} />
 
         {/* Songs */}

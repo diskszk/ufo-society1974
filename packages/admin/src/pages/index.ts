@@ -9,7 +9,7 @@ export { default as Users } from "./Users";
 export { CreateUserPage as CreateUser } from "./CreateUser";
 
 // Albums
-export { default as Albums } from "./Albums";
+export { Albums } from "./Albums";
 export { EditAlbum } from "./EditAlbum";
 export { CreateAlbum } from "./CreateAlbum";
 

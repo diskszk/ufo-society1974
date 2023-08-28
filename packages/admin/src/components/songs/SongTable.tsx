@@ -1,5 +1,4 @@
-import React, { useEffect, useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Table,
@@ -11,32 +10,22 @@ import {
 } from "@mui/material";
 import { SongTableBody } from "./";
 import { RootStore } from "../../lib/types";
-import { User, Song } from "@ufo-society1974/types";
-import { ROLE } from "../../constants";
+import { Song } from "@ufo-society1974/types";
 import { createUpdateSongsAction } from "../../store/SongsReducer";
 import {
-  createDisplayMessage,
   createRequestFetchAction,
   crateSuccessFetchAction,
   createFailedFetchAction,
 } from "../../store/LoadingStatusReducer";
 import { getSongs } from "../../lib/songs";
-import { AddIconButton } from "../UIKit";
-import { checkRole } from "../../lib/helpers";
+import { AddIconButton } from "../AddIconButton";
 
 type PresentationProps = {
-  role: string;
-  handleClickAddIcon: (
-    _ev: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
+  href: string;
   songs: Song[];
 };
 
-export const Presentation: React.FC<PresentationProps> = ({
-  role,
-  handleClickAddIcon,
-  songs,
-}) => {
+export const Presentation: React.FC<PresentationProps> = ({ href, songs }) => {
   return (
     <div className="song-table">
       <TableContainer component={Paper}>
@@ -58,12 +47,7 @@ export const Presentation: React.FC<PresentationProps> = ({
                   padding: 0,
                 }}
               >
-                <AddIconButton
-                  allowedRole={ROLE.EDITOR}
-                  currentRole={role}
-                  onClick={handleClickAddIcon}
-                  label="曲を追加"
-                />
+                <AddIconButton label="曲を追加" href={href} />
               </TableCell>
             </TableRow>
           </TableHead>
@@ -80,27 +64,8 @@ type Props = {
 
 export const SongTable: React.FC<Props> = ({ albumId }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
-  const { role } = useSelector<RootStore, User>((state) => state.user);
   const songs = useSelector<RootStore, Song[]>((state) => state.songs);
-
-  const handleClickAddIcon = useCallback(
-    (_ev: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-      // 権限チェック
-      const isAllowed = checkRole(ROLE.EDITOR, role);
-
-      if (!isAllowed) {
-        dispatch(
-          createDisplayMessage("アカウントにアクセス権限がありません。")
-        );
-        return;
-      }
-
-      history.push(`/albums/detail/${albumId}/edit/new`);
-    },
-    [albumId, dispatch, history, role]
-  );
 
   useEffect(() => {
     async function fetch() {
@@ -123,10 +88,6 @@ export const SongTable: React.FC<Props> = ({ albumId }) => {
   }, [dispatch, albumId]);
 
   return (
-    <Presentation
-      role={role}
-      handleClickAddIcon={handleClickAddIcon}
-      songs={songs}
-    />
+    <Presentation href={`albums/detail/${albumId}/edit/new`} songs={songs} />
   );
 };
