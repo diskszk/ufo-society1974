@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchAlbumById } from "../lib/albums";
 import { Album } from "@ufo-society1974/types";
 
-// /albums/:id
+// /albums/edit/:id
 export const EditAlbum: React.FC = () => {
   const { signedInUser } = useSignedInUserState();
 

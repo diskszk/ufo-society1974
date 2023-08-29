@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { AlbumForm } from "./AlbumForm";
-import { mockAlbums } from "../../stories/mockData";
+import { createMockAlbum } from "@ufo-society1974/factories";
 
 const mockOnSubmit = jest.fn();
 
@@ -23,9 +23,9 @@ test("新規作成の場合、入力欄は空である", () => {
   );
 });
 test("編集の場合、既存のアルバム情報を表示する", () => {
-  render(
-    <AlbumForm role="editor" onSubmit={mockOnSubmit} album={mockAlbums[0]} />
-  );
+  const testData = createMockAlbum("01");
+
+  render(<AlbumForm role="editor" onSubmit={mockOnSubmit} album={testData} />);
 
   expect(screen.getByRole("textbox", { name: "アルバムタイトル" })).toHaveValue(
     "テストアルバムタイトル01"

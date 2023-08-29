@@ -1,20 +1,14 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { Wrapper } from ".";
 import { useSignedInUserState } from "../hooks/useSignedInUserState";
-import { User } from "@ufo-society1974/types";
+import { createMockUser } from "@ufo-society1974/factories";
 
 export const setupCurrentUser = async (role: string) => {
   const { result } = renderHook(() => useSignedInUserState(), {
     wrapper: Wrapper,
   });
 
-  const user: User = {
-    uid: "testuid",
-    username: "test user",
-    email: "test@example.com",
-    role,
-    isDeleted: false,
-  };
+  const user = createMockUser("testuid", { username: "test user", role });
 
   let currentUser = result.current.signedInUser;
 
