@@ -1,0 +1,5 @@
+{
+  "extends": ["@ufo-society1974/eslint-config/.eslintrc.node.json"],
+  "rules": {},
+  "ignorePatterns": [".eslintrc.*", "*.config.*"]
+}
