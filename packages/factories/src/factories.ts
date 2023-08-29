@@ -44,7 +44,7 @@ export const createMockSong: Factory<Song> = (
   };
 };
 
-export const crateMockAlbum: Factory<Album> = (
+export const createMockAlbum: Factory<Album> = (
   idParam: string,
   injectValue?: Partial<Album>
 ): Album => {
