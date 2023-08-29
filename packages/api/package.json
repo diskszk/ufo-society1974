@@ -96,7 +96,7 @@
     "source-map-support": "^0.5.20",
     "supertest": "^6.3.3",
     "ts-jest": "^27.0.3",
-    "typescript": "^4.5.4",
+    "typescript": "^5.0.4",
     "ufo-society1974-definition-types": "^0.1.6"
   },
   "private": true
