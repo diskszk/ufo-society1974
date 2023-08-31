@@ -35,12 +35,20 @@ export const Presentation: React.FC<PresentationProps> = ({
               <AddIconButton label="アルバムを追加" href="/albums/create" />
             )}
           </div>
-          <AlbumList albums={draftAlbums} role={signedInUser.role} />
+          <AlbumList
+            albums={draftAlbums}
+            role={signedInUser.role}
+            publicStatus="draft"
+          />
         </div>
         <hr />
         <div>
           <StyledSubHeading>公開中のアルバム</StyledSubHeading>
-          <AlbumList albums={publishedAlbums} role={signedInUser.role} />
+          <AlbumList
+            albums={publishedAlbums}
+            role={signedInUser.role}
+            publicStatus="published"
+          />
         </div>
 
         <div className="spacing-div"></div>

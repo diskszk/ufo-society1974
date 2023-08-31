@@ -10,7 +10,7 @@ export { CreateUserPage as CreateUser } from "./CreateUser";
 
 // Albums
 export { Albums } from "./Albums";
-export { EditAlbum } from "./EditAlbum";
+export { EditAlbum } from "./EditAlbum/EditAlbum";
 export { CreateAlbum } from "./CreateAlbum";
 
 // Songs

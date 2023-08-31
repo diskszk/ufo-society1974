@@ -33,7 +33,7 @@ export const AlbumForm: React.FC<Props> = ({ onSubmit, role, album }) => {
     },
   });
 
-  const { previewImageSrc } = useImageFile(watch, album?.image || NO_IMAGE);
+  const { previewImageSrc } = useImageFile(watch, album?.image);
 
   useEffect(() => {
     if (isSubmitSuccessful) {

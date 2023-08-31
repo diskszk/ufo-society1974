@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchDraftAlbums, fetchPublishedAlbums } from "../../lib/albums";
+import { fetchDraftAlbums } from "../../lib/draftAlbums";
+import { fetchPublishedAlbums } from "../../lib/publishedAlbums";
 import { Album } from "@ufo-society1974/types";
 
 export function useAlbums(): {

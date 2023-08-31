@@ -7,9 +7,10 @@ import { ROLE } from "../../constants";
 type Props = {
   albums: Album[];
   role: string;
+  publicStatus: "draft" | "published";
 };
 
-export const AlbumList: React.FC<Props> = ({ albums, role }) => {
+export const AlbumList: React.FC<Props> = ({ albums, role, publicStatus }) => {
   return (
     <ul className="album-list">
       {albums.map((album: Album) => (
@@ -24,7 +25,9 @@ export const AlbumList: React.FC<Props> = ({ albums, role }) => {
             ) : (
               <span>アルバムを閲覧する</span>
             )}
-            <IconButton href={`/albums/edit/${album.id}`}>
+            <IconButton
+              href={`/albums/edit/${album.id}?status=${publicStatus}`}
+            >
               <BorderColor />
             </IconButton>
             <br />

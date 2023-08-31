@@ -1,6 +1,6 @@
 import { AlbumInput } from "../../lib/schemas/albumSchema";
 import { useMutation } from "@tanstack/react-query";
-import { createAlbum } from "../../lib/albums";
+import { createDraftAlbum } from "../../lib/draftAlbums";
 import { useCallback } from "react";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
 import { CreateAlbumDTO } from "@ufo-society1974/types";
@@ -14,7 +14,7 @@ export function useCreateAlbum() {
   );
 
   const { mutateAsync: createAlbumMutate } = useMutation(
-    (album: CreateAlbumDTO) => createAlbum(album)
+    (album: CreateAlbumDTO) => createDraftAlbum(album)
   );
 
   const handleCreateAlbum = useCallback(
