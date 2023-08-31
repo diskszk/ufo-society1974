@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Wrapper } from "../../test-utils";
-import { Albums } from "./Albums";
+import { Albums } from "./Albums.page";
 import { setupCurrentUser } from "../../test-utils/currentUser";
 
 const setup = async (role: string) => {

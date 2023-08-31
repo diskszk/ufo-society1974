@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import UserTableBody from "./UserTableBody";
 import { User } from "@ufo-society1974/types";
-import { getUsers } from "../../lib/users/getUsers";
+import { getUsers } from "../../lib/_users/getUsers";
 import {
   createRequestFetchAction,
   createFailedFetchAction,

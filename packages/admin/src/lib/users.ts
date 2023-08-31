@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, WEB_API_BASE_URL } from "../../constants";
+import { ERROR_MESSAGE, WEB_API_BASE_URL } from "../constants";
 import { User } from "@ufo-society1974/types";
 import axios from "axios";
 

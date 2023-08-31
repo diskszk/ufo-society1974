@@ -2,7 +2,7 @@ import React, { useEffect, ReactNode } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { auth } from "./firebase";
-import { findUserById } from "./lib/users/fetchUser";
+import { findUserById } from "./lib/users";
 import { useSignedInUserState } from "./hooks/useSignedInUserState";
 import { useMessageModalState } from "./hooks/useMessageModalState";
 

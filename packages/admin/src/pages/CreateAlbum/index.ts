@@ -1,1 +1,1 @@
-export * from "./CreateAlbum";
+export * from "./CreateAlbum.page";

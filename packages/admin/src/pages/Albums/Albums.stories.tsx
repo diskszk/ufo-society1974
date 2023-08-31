@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Presentation as Albums } from "./Albums";
+import { Presentation as Albums } from "./Albums.page";
 import { createMockUser, createMockAlbum } from "@ufo-society1974/factories";
 import { NO_IMAGE, THREE_SONGS } from "../../constants";
 

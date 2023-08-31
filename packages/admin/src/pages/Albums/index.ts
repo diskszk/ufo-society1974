@@ -1,1 +1,1 @@
-export { Albums } from "./Albums";
+export { Albums } from "./Albums.page";

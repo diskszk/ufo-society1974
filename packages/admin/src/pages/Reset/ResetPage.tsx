@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { ResetForm } from "../../partials/ResetForm";
 import { useMutation } from "@tanstack/react-query";
-import { findUserByEmail } from "../../lib/users/fetchUser";
+import { findUserByEmail } from "../../lib/users";
 import { resetPassword } from "../../lib/auth";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
 
