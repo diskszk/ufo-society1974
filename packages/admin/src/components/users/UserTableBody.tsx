@@ -10,7 +10,7 @@ import {
 import { ROLE } from "../../constants";
 import { RootStore } from "../../lib/types";
 import { User } from "@ufo-society1974/types";
-import { deleteUser } from "../../lib/users/deleteUser";
+import { deleteUser } from "../../lib/_users/deleteUser";
 
 type Props = {
   user: User;

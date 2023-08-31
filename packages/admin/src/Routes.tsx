@@ -9,8 +9,8 @@ import {
   SongEdit,
   Users,
   Albums,
-  AlbumEdit,
   CreateAlbum,
+  EditAlbum,
 } from "./pages";
 
 const Routes: React.FC = () => {
@@ -28,8 +28,7 @@ const Routes: React.FC = () => {
 
         {/* Albums */}
         <Route exact path={"/albums"} component={Albums} />
-        <Route path={"/albums/edit/:id"} component={AlbumEdit} />
-        {/* TODO: componentを設定する */}
+        <Route path={"/albums/edit/:id"} component={EditAlbum} />
         <Route path={"/albums/create"} component={CreateAlbum} />
 
         {/* Songs */}

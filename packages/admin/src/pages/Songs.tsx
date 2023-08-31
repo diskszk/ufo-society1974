@@ -5,7 +5,7 @@ import { CustomButton } from "../components/UIKit";
 import { RootStore } from "../lib/types";
 import { Album, User } from "@ufo-society1974/types";
 import { SongTable, AlbumInfo } from "../components/songs";
-import { getSingleAlbum } from "../lib/albums/getSingleAlbum";
+import { getSingleAlbum } from "../lib/_albums/getSingleAlbum";
 import { createUpdateAlbumAction } from "../store/AlbumReducer";
 import {
   createDisplayMessage,

@@ -9,7 +9,7 @@ import { ROLE } from "../../constants";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
 import { useSignIn } from "../../hooks/useSignIn";
 
-export const CreateUserPage: React.FC = () => {
+export const CreateUser: React.FC = () => {
   const history = useHistory();
   const { signedInUser } = useSignedInUserState();
   const { handleCreateUser } = useCreateUser();

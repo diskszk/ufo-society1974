@@ -2,15 +2,15 @@ export { SignInPage as SignIn } from "./SignIn";
 export { ResetPage as Reset } from "./Reset";
 
 // need authentication
-export { default as Home } from "./Home";
+export { default as Home } from "./Home.page";
 
 // Users
 export { default as Users } from "./Users";
-export { CreateUserPage as CreateUser } from "./CreateUser";
+export { CreateUser } from "./CreateUser";
 
 // Albums
-export { default as Albums } from "./Albums";
-export { default as AlbumEdit } from "./AlbumEdit";
+export { Albums } from "./Albums";
+export { EditAlbum } from "./EditAlbum";
 export { CreateAlbum } from "./CreateAlbum";
 
 // Songs

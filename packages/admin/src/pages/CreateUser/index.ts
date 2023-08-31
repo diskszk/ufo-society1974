@@ -1,1 +1,1 @@
-export * from "./CreateUserPage";
+export { CreateUser } from "./CreateUser.page";

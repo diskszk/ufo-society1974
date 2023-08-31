@@ -1,6 +1,6 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   Table,
   TableCell,
@@ -11,32 +11,21 @@ import {
   TableBody,
 } from "@mui/material";
 import UserTableBody from "./UserTableBody";
-import { RootStore } from "../../lib/types";
 import { User } from "@ufo-society1974/types";
-import { getUsers } from "../../lib/users/getUsers";
+import { getUsers } from "../../lib/_users/getUsers";
 import {
   createRequestFetchAction,
   createFailedFetchAction,
   crateSuccessFetchAction,
-  createDisplayMessage,
 } from "../../store/LoadingStatusReducer";
-import { AddIconButton } from "../UIKit";
-import { ROLE } from "../../constants";
-import { checkRole } from "../../lib/helpers";
+import { AddIconButton } from "../AddIconButton";
 
 type PresentationProps = {
-  role: string;
-  handleClickAddIcon: (
-    _ev: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
+  href: string;
   users: User[];
 };
 
-export const Presentation: React.FC<PresentationProps> = ({
-  role,
-  handleClickAddIcon,
-  users,
-}) => {
+export const Presentation: React.FC<PresentationProps> = ({ href, users }) => {
   return (
     <div className="user-table">
       <TableContainer component={Paper}>
@@ -52,12 +41,7 @@ export const Presentation: React.FC<PresentationProps> = ({
               <TableCell>お名前</TableCell>
               <TableCell>役職</TableCell>
               <TableCell>
-                <AddIconButton
-                  allowedRole={ROLE.MASTER}
-                  currentRole={role}
-                  onClick={handleClickAddIcon}
-                  label="アカウント作成"
-                />
+                <AddIconButton href={href} label="アカウント作成" />
               </TableCell>
             </TableRow>
           </TableHead>
@@ -76,24 +60,6 @@ const UserTable: React.FC = () => {
   const dispatch = useDispatch();
   const [users, setUsers] = useState<User[]>([]);
   const history = useHistory();
-  const { role } = useSelector<RootStore, User>((state) => state.user);
-
-  const handleClickAddIcon = useCallback(
-    (_ev: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-      //権限チェック
-      const isAllowed = checkRole(ROLE.MASTER, role);
-
-      if (!isAllowed) {
-        dispatch(
-          createDisplayMessage("アカウントにアクセス権限がありません。")
-        );
-        return;
-      }
-      // TODO: 外に出す
-      history.push("/users/create");
-    },
-    [dispatch, history, role]
-  );
 
   useEffect(() => {
     const fetch = async () => {
@@ -113,13 +79,7 @@ const UserTable: React.FC = () => {
     fetch();
   }, [setUsers, dispatch, history]);
 
-  return (
-    <Presentation
-      role={role}
-      handleClickAddIcon={handleClickAddIcon}
-      users={users}
-    />
-  );
+  return <Presentation href="/users/create" users={users} />;
 };
 
 export default UserTable;
