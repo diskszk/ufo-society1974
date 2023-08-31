@@ -14,8 +14,7 @@ export const THREE_SONGS = three_songs;
 export const UFO_SOCIETY_OFFICIAL =
   "https://ufo-society-1974.web.app/" as const;
 
-const WEB_API_PROD_URL =
-  "https://asia-northeast2-ufo-society-1974.cloudfunctions.net/api";
+const WEB_API_PROD_URL = process.env.VITE_WEB_API_URL;
 
 const WEB_API_DEV_URL =
   "http://127.0.0.1:5001/ufo-society-1974/asia-northeast2/api";

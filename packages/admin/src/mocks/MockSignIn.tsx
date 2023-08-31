@@ -1,7 +1,7 @@
 import { useSignIn } from "../hooks/useSignIn";
 
 export const MockSignIn: React.FC = () => {
-  const pw = "asdf1234";
+  const pw = process.env.VITE_MOCK_SIN_IN_PW;
   const { handleSignIn } = useSignIn();
 
   const handleClick = async (email: string) => {
