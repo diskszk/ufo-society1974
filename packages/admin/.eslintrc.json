@@ -1,5 +1,17 @@
 {
-  "extends": ["@ufo-society1974/eslint-config/.eslintrc.client.json"],
-  "rules": {},
+  "extends": [
+    "@ufo-society1974/eslint-config/.eslintrc.client.json",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["jsx-a11y"],
+  "rules": {
+    "jsx-a11y/aria-role": [
+      2,
+      {
+        "allowedInvalidRoles": ["text"],
+        "ignoreNonDOM": true
+      }
+    ]
+  },
   "ignorePatterns": ["./__testMocks__"]
 }

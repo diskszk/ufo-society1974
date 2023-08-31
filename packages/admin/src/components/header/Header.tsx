@@ -1,24 +1,19 @@
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useCallback } from "react";
+import { Link } from "react-router-dom";
 import { UFO_SOCIETY_OFFICIAL } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { signOut } from "../../lib/auth";
 import { useMutation } from "@tanstack/react-query";
 
 export const Header: React.FC = () => {
-  const history = useHistory();
-
   const { signedInUser, setSignOut } = useSignedInUserState();
   const { mutate: signOutMutate } = useMutation(signOut);
 
-  const handleClickLogOut = (
-    _ev: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ): void => {
+  const handleClickSignOut = useCallback((): void => {
     signOutMutate();
 
     setSignOut();
-    history.push("/signin");
-  };
+  }, [setSignOut, signOutMutate]);
 
   return (
     <header>
@@ -34,7 +29,9 @@ export const Header: React.FC = () => {
           {!signedInUser.uid ? (
             <Link to="/signin">サインイン</Link>
           ) : (
-            <a onClick={handleClickLogOut}>サインアウト</a>
+            <Link to="signin" onClick={handleClickSignOut}>
+              サインアウト
+            </Link>
           )}
         </div>
         {signedInUser.uid && (
