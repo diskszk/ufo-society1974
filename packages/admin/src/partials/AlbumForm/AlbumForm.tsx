@@ -1,45 +1,82 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlbumInput, albumSchema } from "../../lib/schemas/albumSchema";
 import { Textbox } from "../../components/Textbox";
-import { ImageUploadForm } from "../ImageUploadForm";
 import { StyledButton } from "../../components/UIKit/CustomButton";
-import { getDefaultImageFile } from "../../lib/helpers/getDefaultImageFile";
 import { NO_IMAGE, ROLE } from "../../constants";
-import { Album } from "@ufo-society1974/types";
-import { useImageFile } from "./hooks";
+import { useMutation } from "@tanstack/react-query";
+import { uploadImage } from "../../lib/storages";
 
 type Props = {
   onSubmit: SubmitHandler<AlbumInput>;
   role: string;
-  album?: Album;
+  currentValues?: AlbumInput;
 };
 
-export const AlbumForm: React.FC<Props> = ({ onSubmit, role, album }) => {
+export const AlbumForm: React.FC<Props> = ({
+  onSubmit,
+  role,
+  currentValues,
+}) => {
   const {
     handleSubmit,
     register,
-    watch,
     reset,
     formState: { errors, isDirty, isSubmitSuccessful, isSubmitting },
+    setValue,
   } = useForm<AlbumInput>({
     resolver: zodResolver(albumSchema),
     mode: "onBlur",
     defaultValues: {
-      imageFile: getDefaultImageFile(),
-      title: album?.title || "",
-      publishedDate: album?.publishedDate || "",
+      imageFile: "",
+      title: "",
+      publishedDate: "",
     },
+    values: currentValues,
   });
 
-  const { previewImageSrc } = useImageFile(watch, album?.image);
+  const { mutateAsync: uploadImageMutate } = useMutation(
+    ({ file, filename }: { file: File; filename: string }) =>
+      uploadImage(file, filename)
+  );
+  const [filename, setFilename] = useState("");
+  const [previewImageSrc, setPreviewImageSrc] = useState(
+    currentValues?.imageFile || ""
+  );
+  const inputFileRef = useRef<HTMLInputElement | null>(null);
+
+  const handleChangeInput = useCallback(
+    (ev: React.ChangeEvent<HTMLInputElement>) => {
+      if (!ev.target.files) {
+        return;
+      }
+      const file = ev.target.files[0];
+      setPreviewImageSrc(URL.createObjectURL(file));
+      setFilename(file.name);
+    },
+    [setPreviewImageSrc]
+  );
+
+  const handleClickUpload = useCallback(async () => {
+    if (!inputFileRef.current?.files) {
+      return;
+    }
+
+    const file = inputFileRef.current?.files[0];
+
+    const { downLoadURL } = await uploadImageMutate({ file, filename });
+
+    // アップロードボタンのクリックでRHF上のimageFileを変更する
+    setValue("imageFile", downLoadURL);
+  }, [filename, setValue, uploadImageMutate]);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
+      setValue("imageFile", "");
     }
-  }, [isSubmitSuccessful, reset]);
+  }, [isSubmitSuccessful, reset, setValue]);
 
   const isApprovedUser = role === ROLE.EDITOR;
 
@@ -58,16 +95,26 @@ export const AlbumForm: React.FC<Props> = ({ onSubmit, role, album }) => {
         />
 
         <div className="album-edit-image">
-          <ImageUploadForm {...register("imageFile")} />
-
           <img
             src={previewImageSrc}
-            alt={"アルバムのイメージ"}
+            alt={"アルバムの画像"}
             onError={(e) => {
-              e.currentTarget.onerror = null;
               e.currentTarget.src = NO_IMAGE;
             }}
           />
+          <input
+            type={"file"}
+            accept="*/images"
+            ref={inputFileRef}
+            className="display-none"
+            onChange={handleChangeInput}
+          />
+          <button onClick={() => inputFileRef.current?.click()}>
+            画像を選択する
+          </button>
+          {previewImageSrc && previewImageSrc !== currentValues?.imageFile && (
+            <button onClick={handleClickUpload}>画像をアップロードする</button>
+          )}
         </div>
         <div className="spacing-div" />
 

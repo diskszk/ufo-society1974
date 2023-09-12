@@ -1,4 +1,3 @@
-import { v4 as uuid } from "uuid";
 import firebase from "firebase/app";
 import { ERROR_MESSAGE } from "../constants";
 
@@ -6,11 +5,9 @@ export const storage = firebase.storage();
 export const imagesRef = storage.ref("images");
 
 export async function uploadImage(
-  fileList: FileList
+  file: File,
+  filename: string
 ): Promise<{ downLoadURL: string }> {
-  const file = fileList[0];
-
-  const filename = uuid();
   const uploadRef = imagesRef.child(filename);
 
   try {

@@ -27,7 +27,14 @@ export const EditAlbum: React.FC = () => {
     <div className="album-edit">
       <h1>アルバムを編集</h1>
       {album ? (
-        <AlbumForm onSubmit={onSubmit} role={signedInUser.role} album={album} />
+        <AlbumForm
+          onSubmit={onSubmit}
+          role={signedInUser.role}
+          currentValues={{
+            ...album,
+            imageFile: album.image,
+          }}
+        />
       ) : (
         <p>アルバムが存在しません。</p>
       )}

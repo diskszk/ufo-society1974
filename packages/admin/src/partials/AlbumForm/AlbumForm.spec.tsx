@@ -25,7 +25,13 @@ test("新規作成の場合、入力欄は空である", () => {
 test("編集の場合、既存のアルバム情報を表示する", () => {
   const testData = createMockAlbum("01");
 
-  render(<AlbumForm role="editor" onSubmit={mockOnSubmit} album={testData} />);
+  render(
+    <AlbumForm
+      role="editor"
+      onSubmit={mockOnSubmit}
+      currentValues={{ ...testData, imageFile: testData.image }}
+    />
+  );
 
   expect(screen.getByRole("textbox", { name: "アルバムタイトル" })).toHaveValue(
     "テストアルバムタイトル01"

@@ -13,8 +13,13 @@ const meta: Meta<typeof AlbumForm> = {
 
 export default meta;
 
+const { title, publishedDate, image } = createMockAlbum("01");
 const mockData = {
-  album: createMockAlbum("01"),
+  currentValue: {
+    title,
+    publishedDate,
+    imageFile: image,
+  },
 };
 
 type Story = StoryObj<typeof AlbumForm>;
@@ -34,6 +39,6 @@ export const ExistData: Story = {
   },
   args: {
     role: ROLE.EDITOR,
-    album: mockData.album,
+    currentValues: mockData.currentValue,
   },
 };
