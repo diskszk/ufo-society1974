@@ -2,11 +2,9 @@ import { useCallback, useRef, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
 import { AlbumInput } from "../../lib/schemas/albumSchema";
 import { NO_IMAGE } from "../../constants";
-import { useMutation } from "@tanstack/react-query";
-import { uploadImage } from "../../lib/storages";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import styled from "styled-components";
-import { useMessageModalState } from "../../hooks/useMessageModalState";
+import { useImageUpload } from "./hooks";
 
 type Props = {
   setValue: UseFormSetValue<AlbumInput>;
@@ -17,6 +15,11 @@ type Props = {
 const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: space-around;
+
+  > button {
+    height: 2.5em;
+    width: 10em;
+  }
 `;
 
 export const ImageUploadForm: React.FC<Props> = ({
@@ -26,16 +29,11 @@ export const ImageUploadForm: React.FC<Props> = ({
 }) => {
   const inputFileRef = useRef<HTMLInputElement | null>(null);
 
-  const [filename, setFilename] = useState("");
+  const { upload } = useImageUpload();
+
   const [previewImageSrc, setPreviewImageSrc] = useState(
     currentValues?.imageFile || ""
   );
-
-  const { mutateAsync: uploadImageMutate } = useMutation(
-    ({ file, filename }: { file: File; filename: string }) =>
-      uploadImage(file, filename)
-  );
-  const { openMessageModalWithMessage } = useMessageModalState();
 
   const handleChangeInput = useCallback(
     (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,32 +42,18 @@ export const ImageUploadForm: React.FC<Props> = ({
       }
       const file = ev.target.files[0];
       setPreviewImageSrc(URL.createObjectURL(file));
-      setFilename(file.name);
     },
-    [setPreviewImageSrc]
+    []
   );
 
   const handleClickUpload = useCallback(async () => {
-    if (!isApproved) {
-      openMessageModalWithMessage("権限がありません。");
-    }
     if (!inputFileRef.current?.files) {
       return;
     }
-
     const file = inputFileRef.current?.files[0];
 
-    const { downLoadURL } = await uploadImageMutate({ file, filename });
-
-    // アップロードボタンのクリックでRHF上のimageFileを変更する
-    setValue("imageFile", downLoadURL);
-  }, [
-    filename,
-    isApproved,
-    openMessageModalWithMessage,
-    setValue,
-    uploadImageMutate,
-  ]);
+    await upload(file, setValue, isApproved);
+  }, [isApproved, setValue, upload]);
 
   return (
     <div className="album-edit-image">
@@ -81,11 +65,12 @@ export const ImageUploadForm: React.FC<Props> = ({
         }}
       />
       <input
-        type={"file"}
-        accept="*/images"
+        type="file"
+        accept="image/*"
         ref={inputFileRef}
         className="display-none"
         onChange={handleChangeInput}
+        aria-label="file-uploader"
       />
       <StyledButtonWrapper className="album-edit-image__select">
         <StyledButton
