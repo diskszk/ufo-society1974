@@ -2320,6 +2320,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/css@npm:^11.11.2":
+  version: 11.11.2
+  resolution: "@emotion/css@npm:11.11.2"
+  dependencies:
+    "@emotion/babel-plugin": ^11.11.0
+    "@emotion/cache": ^11.11.0
+    "@emotion/serialize": ^1.1.2
+    "@emotion/sheet": ^1.2.2
+    "@emotion/utils": ^1.2.1
+  checksum: 1edea109dfc31005243334bc351ba127220ea5c4986225e0f1b8f7aa71fb2f83fb8f51d8f5b8afb8432d4c6397c23f5061038449f2876888eecc6eac1dd2f0da
+  languageName: node
+  linkType: hard
+
+"@emotion/eslint-plugin@npm:^11.11.0":
+  version: 11.11.0
+  resolution: "@emotion/eslint-plugin@npm:11.11.0"
+  peerDependencies:
+    eslint: 6 || 7 || 8
+  checksum: 2d555b6790700e0d0c2862d4aa2fd697ea5851faa7e406ab459028e66daad2ee0dc3dec29362c2edc2656a63f826ac15629112d3e9aca64323fa40f9e5674bd4
+  languageName: node
+  linkType: hard
+
 "@emotion/hash@npm:^0.9.1":
   version: 0.9.1
   resolution: "@emotion/hash@npm:0.9.1"
@@ -9036,6 +9058,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "admin@workspace:packages/admin"
   dependencies:
+    "@emotion/css": ^11.11.2
+    "@emotion/eslint-plugin": ^11.11.0
     "@emotion/react": ^11.11.0
     "@emotion/styled": ^11.11.0
     "@hookform/resolvers": ^3.1.0

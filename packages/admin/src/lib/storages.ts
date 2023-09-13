@@ -1,13 +1,13 @@
 import firebase from "firebase/app";
 import { ERROR_MESSAGE } from "../constants";
 
-export const storage = firebase.storage();
-export const imagesRef = storage.ref("images");
-
 export async function uploadImage(
   file: File,
   filename: string
 ): Promise<{ downLoadURL: string }> {
+  const storage = firebase.storage();
+  const imagesRef = storage.ref("images");
+
   const uploadRef = imagesRef.child(filename);
 
   try {
