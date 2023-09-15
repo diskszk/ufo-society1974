@@ -32,9 +32,17 @@ const getById: ResponseResolver<
   return res(ctx.status(200), ctx.json<Album>(album));
 };
 
+const unpublishAlbum: ResponseResolver<
+  RestRequest<string, PathParams<string>>,
+  RestContext
+> = (_req, res, ctx) => {
+  return res(ctx.status(204));
+};
+
 const mockPublishedAlbums = {
   get,
   getById,
+  unpublishAlbum,
 };
 
 export default mockPublishedAlbums;

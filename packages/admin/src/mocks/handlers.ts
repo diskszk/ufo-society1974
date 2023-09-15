@@ -15,6 +15,12 @@ export const handlers = [
 
   rest.get(baseUrl("/draft-albums"), mockDraftAlbums.get),
   rest.get(baseUrl("/draft-albums/:id"), mockDraftAlbums.getById),
+  rest.put(baseUrl("/draft-albums/:id"), mockDraftAlbums.update),
+
   rest.get(baseUrl("/albums"), mockPublishedAlbums.get),
   rest.get(baseUrl("/albums/:id"), mockPublishedAlbums.getById),
+  rest.post(
+    baseUrl("/albums/:id/unpublish"),
+    mockPublishedAlbums.unpublishAlbum
+  ),
 ];

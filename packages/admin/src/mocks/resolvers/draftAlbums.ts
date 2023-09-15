@@ -1,5 +1,5 @@
 import { PathParams, ResponseResolver, RestContext, RestRequest } from "msw";
-import { Album } from "@ufo-society1974/types";
+import { Album, UpdateAlbumDTO } from "@ufo-society1974/types";
 import { createMockAlbum } from "@ufo-society1974/factories";
 import { NO_IMAGE, THREE_SONGS } from "../../constants";
 
@@ -33,9 +33,17 @@ const getById: ResponseResolver<
   return res(ctx.status(200), ctx.json<Album>(album));
 };
 
+const update: ResponseResolver<
+  RestRequest<UpdateAlbumDTO, PathParams<string>>,
+  RestContext
+> = (_req, res, ctx) => {
+  return res(ctx.status(204));
+};
+
 const mockDraftAlbums = {
   get,
   getById,
+  update,
 };
 
 export default mockDraftAlbums;
