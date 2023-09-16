@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { AlbumForm } from "./AlbumForm";
-import { ROLE } from "../../constants";
 import { createMockAlbum } from "@ufo-society1974/factories";
 
 const meta: Meta<typeof AlbumForm> = {
@@ -13,8 +12,13 @@ const meta: Meta<typeof AlbumForm> = {
 
 export default meta;
 
+const { title, publishedDate, image } = createMockAlbum("01");
 const mockData = {
-  album: createMockAlbum("01"),
+  currentValue: {
+    title,
+    publishedDate,
+    imageFile: image,
+  },
 };
 
 type Story = StoryObj<typeof AlbumForm>;
@@ -24,7 +28,7 @@ export const NoData: Story = {
     chromatic: { disableSnapshot: false },
   },
   args: {
-    role: ROLE.EDITOR,
+    isApproved: true,
   },
 };
 
@@ -33,7 +37,7 @@ export const ExistData: Story = {
     chromatic: { disableSnapshot: false },
   },
   args: {
-    role: ROLE.EDITOR,
-    album: mockData.album,
+    isApproved: true,
+    currentValues: mockData.currentValue,
   },
 };

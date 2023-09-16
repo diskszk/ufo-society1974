@@ -13,8 +13,10 @@ export const CreateAlbum: React.FC = () => {
 
   const { openMessageModalWithMessage } = useMessageModalState();
 
+  const isApproved = signedInUser.role === ROLE.EDITOR;
+
   const onSubmit: SubmitHandler<AlbumInput> = async (data) => {
-    if (signedInUser.role !== ROLE.EDITOR) {
+    if (!isApproved) {
       openMessageModalWithMessage("権限がありません。");
     }
 
@@ -26,7 +28,7 @@ export const CreateAlbum: React.FC = () => {
   return (
     <div className="album-edit">
       <h1>アルバムを追加</h1>
-      <AlbumForm onSubmit={onSubmit} role={signedInUser.role} />
+      <AlbumForm onSubmit={onSubmit} isApproved={isApproved} />
     </div>
   );
 };

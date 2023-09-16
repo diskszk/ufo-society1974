@@ -3,45 +3,43 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlbumInput, albumSchema } from "../../lib/schemas/albumSchema";
 import { Textbox } from "../../components/Textbox";
-import { ImageUploadForm } from "../ImageUploadForm";
 import { StyledButton } from "../../components/UIKit/CustomButton";
-import { getDefaultImageFile } from "../../lib/helpers/getDefaultImageFile";
-import { NO_IMAGE, ROLE } from "../../constants";
-import { Album } from "@ufo-society1974/types";
-import { useImageFile } from "./hooks";
+import { ImageUploadForm } from "../ImageUploadForm";
 
 type Props = {
   onSubmit: SubmitHandler<AlbumInput>;
-  role: string;
-  album?: Album;
+  isApproved: boolean;
+  currentValues?: AlbumInput;
 };
 
-export const AlbumForm: React.FC<Props> = ({ onSubmit, role, album }) => {
+export const AlbumForm: React.FC<Props> = ({
+  onSubmit,
+  isApproved,
+  currentValues,
+}) => {
   const {
     handleSubmit,
     register,
-    watch,
     reset,
     formState: { errors, isDirty, isSubmitSuccessful, isSubmitting },
+    setValue,
   } = useForm<AlbumInput>({
     resolver: zodResolver(albumSchema),
     mode: "onBlur",
     defaultValues: {
-      imageFile: getDefaultImageFile(),
-      title: album?.title || "",
-      publishedDate: album?.publishedDate || "",
+      imageFile: "",
+      title: "",
+      publishedDate: "",
     },
+    values: currentValues,
   });
-
-  const { previewImageSrc } = useImageFile(watch, album?.image);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
+      setValue("imageFile", "");
     }
-  }, [isSubmitSuccessful, reset]);
-
-  const isApprovedUser = role === ROLE.EDITOR;
+  }, [isSubmitSuccessful, reset, setValue]);
 
   return (
     <div className="inputs-container">
@@ -57,18 +55,12 @@ export const AlbumForm: React.FC<Props> = ({ onSubmit, role, album }) => {
           variant="standard"
         />
 
-        <div className="album-edit-image">
-          <ImageUploadForm {...register("imageFile")} />
+        <ImageUploadForm
+          setValue={setValue}
+          isApproved={isApproved}
+          currentValues={currentValues}
+        />
 
-          <img
-            src={previewImageSrc}
-            alt={"アルバムのイメージ"}
-            onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = NO_IMAGE;
-            }}
-          />
-        </div>
         <div className="spacing-div" />
 
         <Textbox
@@ -87,7 +79,7 @@ export const AlbumForm: React.FC<Props> = ({ onSubmit, role, album }) => {
           <StyledButton href="/albums">もどる</StyledButton>
 
           <StyledButton
-            disabled={isSubmitting || (isApprovedUser && !isDirty)}
+            disabled={isSubmitting || (isApproved && !isDirty)}
             type="submit"
           >
             保存する

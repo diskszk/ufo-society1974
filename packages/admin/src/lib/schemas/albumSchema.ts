@@ -17,7 +17,7 @@ export const albumSchema = z
         /^\d{4}-?\d{2}-?\d{2}$/g,
         "公開日はYYYY-MM-DDの形式で入力してください。"
       ),
-    imageFile: z.instanceof(FileList),
+    imageFile: z.string(),
   })
   .required()
   .strict();

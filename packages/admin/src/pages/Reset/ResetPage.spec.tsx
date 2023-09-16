@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { Wrapper } from "../../test-utils";
-import { ResetPage } from ".";
+import { ResetPage } from "./ResetPage";
 import { setupReset } from "../../test-utils/reset";
 
 jest.mock("../../lib/auth", () => ({

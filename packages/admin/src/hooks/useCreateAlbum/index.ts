@@ -4,14 +4,9 @@ import { createDraftAlbum } from "../../lib/draftAlbums";
 import { useCallback } from "react";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
 import { CreateAlbumDTO } from "@ufo-society1974/types";
-import { uploadImage } from "../../lib/storages";
 
 export function useCreateAlbum() {
   const { openMessageModalWithMessage } = useMessageModalState();
-
-  const { mutateAsync: uploadImageMutate } = useMutation(
-    ({ fileList }: { fileList: FileList }) => uploadImage(fileList)
-  );
 
   const { mutateAsync: createAlbumMutate } = useMutation(
     (album: CreateAlbumDTO) => createDraftAlbum(album)
@@ -20,11 +15,7 @@ export function useCreateAlbum() {
   const handleCreateAlbum = useCallback(
     async (data: AlbumInput) => {
       try {
-        const { downLoadURL } = await uploadImageMutate({
-          fileList: data.imageFile,
-        });
-
-        await createAlbumMutate({ ...data, image: downLoadURL });
+        await createAlbumMutate({ ...data, image: data.imageFile });
       } catch (error) {
         if (error instanceof Error) {
           openMessageModalWithMessage(error.message);
@@ -32,7 +23,7 @@ export function useCreateAlbum() {
         }
       }
     },
-    [createAlbumMutate, openMessageModalWithMessage, uploadImageMutate]
+    [createAlbumMutate, openMessageModalWithMessage]
   );
 
   return { handleCreateAlbum };

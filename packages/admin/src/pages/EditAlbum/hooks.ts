@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { Album } from "@ufo-society1974/types";
-import { fetchDraftAlbumById } from "../../lib/draftAlbums";
-import { fetchPublishedAlbumById } from "../../lib/publishedAlbums";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { Album, UpdateAlbumDTO } from "@ufo-society1974/types";
+import { fetchDraftAlbumById, updateDraftAlbum } from "../../lib/draftAlbums";
+import { fetchPublishedAlbumById, unpublish } from "../../lib/publishedAlbums";
 import { useParams, useLocation } from "react-router-dom";
+import { useMessageModalState } from "../../hooks/useMessageModalState";
 
-export function useAlbum(): { album: Album | undefined } {
+export function useAlbum(): {
+  album: Album | undefined;
+  publicState: string;
+} {
   const { id } = useParams<{ id: string }>();
 
   const { search } = useLocation();
@@ -45,5 +49,45 @@ export function useAlbum(): { album: Album | undefined } {
     set();
   }, [publicState, queryDraftAlbum, queryPublishedAlbum]);
 
-  return { album };
+  return { album, publicState: publicState || "" };
+}
+
+export function useHandleDraftAlbum() {
+  const { openMessageModalWithMessage } = useMessageModalState();
+
+  const { mutateAsync: updateAlbumMutate } = useMutation(
+    (album: UpdateAlbumDTO) => updateDraftAlbum(album)
+  );
+
+  const updateAlbum = async (album: UpdateAlbumDTO) => {
+    try {
+      await updateAlbumMutate(album);
+
+      openMessageModalWithMessage("アルバムを更新しました。");
+    } catch (error) {
+      if (error instanceof Error) {
+        openMessageModalWithMessage(error.message);
+        return;
+      }
+    }
+  };
+
+  const { mutateAsync: unpublishAlbumMutate } = useMutation((albumId: string) =>
+    unpublish(albumId)
+  );
+
+  const unpublishAlbum = async (albumId: string) => {
+    try {
+      await unpublishAlbumMutate(albumId);
+
+      openMessageModalWithMessage("アルバムを非公開にしました。");
+    } catch (error) {
+      if (error instanceof Error) {
+        openMessageModalWithMessage(error.message);
+        return;
+      }
+    }
+  };
+
+  return { updateAlbum, unpublishAlbum };
 }
