@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Textbox } from "../../components/Textbox";
 import { StyledButton } from "../../components/UIKit/CustomButton";
-import { ROLE } from "../../constants";
+import { ROLE, RoleType } from "../../constants";
 import {
   CreateUserInputs,
   createUserSchema,
@@ -29,7 +29,7 @@ const roles: SelectOptions = [
 type Props = {
   handleClickBackButton: () => void;
   onSubmit: SubmitHandler<CreateUserInputs>;
-  role: string;
+  role: RoleType;
 };
 
 export const CreateUserForm: React.FC<Props> = ({

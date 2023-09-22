@@ -1,4 +1,8 @@
-import type { Album, Song, User } from "@ufo-society1974/types";
+import type {
+  Song,
+  Album,
+  User as ServerUserType,
+} from "@ufo-society1974/types";
 
 type Factory<T> = (idParam: string, injectValue?: Partial<T>) => T;
 
@@ -60,6 +64,10 @@ export const createMockAlbum: Factory<Album> = (
     ...album,
     ...injectValue,
   };
+};
+type RoleType = "" | "master" | "editor" | "watcher";
+type User = Omit<ServerUserType, "role"> & {
+  role: RoleType;
 };
 
 export const createMockUser: Factory<User> = (

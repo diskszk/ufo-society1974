@@ -24,7 +24,7 @@ export const CreateUser: React.FC = () => {
 
         await handleSignIn(data.email, data.password);
       } catch {
-        throw new Error("signin error");
+        throw new Error("サインインに失敗しました。");
       }
     },
     [handleCreateUser, handleSignIn, signedInUser.role]

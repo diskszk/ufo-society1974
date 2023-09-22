@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { User } from "@ufo-society1974/types";
+import { User } from "../lib/types";
 import { Dispatch, SetStateAction } from "react";
 
 const SIGNED_IN_USER = "signedInUser" as const;
@@ -33,6 +33,12 @@ export function useSignedInUserState(): {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       newValue = (arg as any)(prevValue);
     } else {
+      if (!arg.role) {
+        throw new Error(
+          `不正なユーザーです。
+        サインインに失敗しました`
+        );
+      }
       newValue = arg;
     }
 

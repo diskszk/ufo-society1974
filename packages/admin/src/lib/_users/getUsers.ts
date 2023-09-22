@@ -1,5 +1,5 @@
 import { userRef } from "../../firebase";
-import { User } from "@ufo-society1974/types";
+import { User } from "../../lib/types";
 
 const fetchUsers = async (): Promise<firebase.firestore.DocumentData[]> => {
   const res = await userRef.where("isDeleted", "!=", true).get();

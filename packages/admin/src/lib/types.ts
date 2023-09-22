@@ -1,4 +1,16 @@
-import { User, Song, Album } from "@ufo-society1974/types";
+import type {
+  Song,
+  Album,
+  User as ServerUserType,
+} from "@ufo-society1974/types";
+import { RoleType } from "../constants";
+
+export type User = Omit<ServerUserType, "role"> & {
+  role: RoleType;
+};
+
+export type SelectOption = { label: string; value: string };
+export type SelectOptions = SelectOption[];
 
 // redux
 export type RootStore = {
@@ -38,6 +50,3 @@ export type Audio = {
   src: string;
   isPaused: boolean;
 };
-
-export type SelectOption = { label: string; value: string };
-export type SelectOptions = SelectOption[];

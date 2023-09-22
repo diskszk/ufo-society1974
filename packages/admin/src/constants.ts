@@ -1,9 +1,20 @@
 // variables
+const MASTER = "master" as const;
+const EDITOR = "editor" as const;
+const WATCHER = "watcher" as const;
+
 export const ROLE = {
-  MASTER: "master",
-  EDITOR: "editor",
-  WATCHER: "watcher",
+  MASTER,
+  EDITOR,
+  WATCHER,
 } as const;
+
+const roleList = [MASTER, EDITOR, WATCHER] as const;
+
+export type RoleType = (typeof roleList)[number] | "";
+
+const publicStateList = ["draft", "published"] as const;
+export type PublicStatus = (typeof publicStateList)[number];
 
 import defaultFile from "./assets/images/no_image.jpg";
 import three_songs from "./assets/images/three_songs.jpeg";

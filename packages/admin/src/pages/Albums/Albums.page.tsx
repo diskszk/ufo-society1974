@@ -5,7 +5,8 @@ import { AddIconButton } from "../../components/AddIconButton";
 import { AlbumList } from "../../partials/AlbumList";
 import { StyledSubHeading } from "./styles";
 import { useAlbums } from "./hooks";
-import { Album, User } from "@ufo-society1974/types";
+import { Album } from "@ufo-society1974/types";
+import { User } from "../../lib/types";
 
 type PresentationProps = {
   draftAlbums: Album[];

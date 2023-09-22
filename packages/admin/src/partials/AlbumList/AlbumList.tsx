@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import { BorderColor } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { Album } from "@ufo-society1974/types";
-import { ROLE } from "../../constants";
+import { PublicStatus, ROLE, RoleType } from "../../constants";
 
 type Props = {
   albums: Album[];
-  role: string;
-  publicStatus: "draft" | "published";
+  role: RoleType;
+  publicStatus: PublicStatus;
 };
 
 export const AlbumList: React.FC<Props> = ({ albums, role, publicStatus }) => {
+  const label = role === ROLE.EDITOR ? "編集" : "閲覧";
+
   return (
     <ul className="album-list">
       {albums.map((album: Album) => (
@@ -20,22 +22,14 @@ export const AlbumList: React.FC<Props> = ({ albums, role, publicStatus }) => {
             <img src={album.image} alt={"アルバムの画像"} />
           </Link>
           <div className="album-image-footer">
-            {role === ROLE.EDITOR ? (
-              <span>アルバムを編集する</span>
-            ) : (
-              <span>アルバムを閲覧する</span>
-            )}
+            <span>アルバムを{label}する</span>
             <IconButton
               href={`/albums/edit/${album.id}?status=${publicStatus}`}
             >
               <BorderColor />
             </IconButton>
             <br />
-            {role === ROLE.EDITOR ? (
-              <span>アルバムの曲を編集する</span>
-            ) : (
-              <span>アルバムの曲を閲覧する</span>
-            )}
+            <span>アルバムの曲を{label}する</span>
             <IconButton href={`/albums/detail/${album.id}`}>
               <BorderColor />
             </IconButton>

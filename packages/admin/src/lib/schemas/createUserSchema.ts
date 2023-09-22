@@ -1,4 +1,11 @@
 import z from "zod";
+import { ROLE } from "../../constants";
+
+const roleUnion = z.union([
+  z.literal(ROLE.EDITOR),
+  z.literal(ROLE.MASTER),
+  z.literal(ROLE.WATCHER),
+]);
 
 /* 
   passwordの要件はNIST SP800-63B Digital Identity Guidelinesから
@@ -24,7 +31,7 @@ export const createUserSchema = z
       .regex(/^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i, {
         message: "パスワードは半角英数字混合で入力してください。",
       }),
-    roleType: z.string(),
+    roleType: roleUnion,
   })
   .required()
   .strict()

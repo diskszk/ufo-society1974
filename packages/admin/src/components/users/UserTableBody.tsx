@@ -8,8 +8,7 @@ import {
   crateSuccessFetchAction,
 } from "../../store/LoadingStatusReducer";
 import { ROLE } from "../../constants";
-import { RootStore } from "../../lib/types";
-import { User } from "@ufo-society1974/types";
+import { RootStore, User } from "../../lib/types";
 import { deleteUser } from "../../lib/_users/deleteUser";
 
 type Props = {

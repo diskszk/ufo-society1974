@@ -3,8 +3,8 @@ import { useMutation } from "@tanstack/react-query";
 import { createUserInFirebase } from "../../lib/auth";
 import { registerUser } from "../../lib/users";
 import { useMessageModalState } from "../useMessageModalState";
-import { ERROR_MESSAGE, ROLE } from "../../constants";
-import { User } from "@ufo-society1974/types";
+import { ERROR_MESSAGE, ROLE, RoleType } from "../../constants";
+import { User } from "../../lib/types";
 
 export function useCreateUser() {
   const { openMessageModalWithMessage } = useMessageModalState();
@@ -20,7 +20,7 @@ export function useCreateUser() {
 
   const handleCreateUser = async (
     inputData: CreateUserInputs,
-    role: string
+    role: RoleType
   ) => {
     if (role !== ROLE.MASTER) {
       openMessageModalWithMessage("権限がありません。");
