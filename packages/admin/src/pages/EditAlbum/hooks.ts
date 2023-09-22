@@ -8,13 +8,13 @@ import { useMessageModalState } from "../../hooks/useMessageModalState";
 
 export function useAlbum(): {
   album: Album | undefined;
-  publicState: string;
+  publicStatus: string;
 } {
   const { id } = useParams<{ id: string }>();
 
   const { search } = useLocation();
   const query = React.useMemo(() => new URLSearchParams(search), [search]);
-  const publicState = query.get("status");
+  const publicStatus = query.get("status");
 
   const { refetch: queryDraftAlbum } = useQuery<Album | undefined>(
     ["draft-album", id],
@@ -36,10 +36,10 @@ export function useAlbum(): {
   useEffect(() => {
     const set = async () => {
       let album: Album | undefined = undefined;
-      if (publicState === "draft") {
+      if (publicStatus === "draft") {
         const { data } = await queryDraftAlbum();
         album = data;
-      } else if (publicState === "published") {
+      } else if (publicStatus === "published") {
         const { data } = await queryPublishedAlbum();
         album = data;
       }
@@ -47,9 +47,9 @@ export function useAlbum(): {
     };
 
     set();
-  }, [publicState, queryDraftAlbum, queryPublishedAlbum]);
+  }, [publicStatus, queryDraftAlbum, queryPublishedAlbum]);
 
-  return { album, publicState: publicState || "" };
+  return { album, publicStatus: publicStatus || "" };
 }
 
 export function useHandleDraftAlbum() {

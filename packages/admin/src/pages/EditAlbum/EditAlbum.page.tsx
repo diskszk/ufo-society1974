@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { AlbumInput } from "../../lib/schemas/albumSchema";
 import { AlbumForm } from "../../partials/AlbumForm";
-import { ROLE } from "../../constants";
+import { PublicStatus, ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
 import { useAlbum, useHandleDraftAlbum } from "./hooks";
@@ -12,13 +12,13 @@ import { Album } from "@ufo-society1974/types";
 type PresentationProps = {
   album: Album;
   isApproved: boolean;
-  publicState: string;
+  publicStatus: PublicStatus;
 };
 
 export const Presentation: React.FC<PresentationProps> = ({
   album,
   isApproved,
-  publicState,
+  publicStatus,
 }) => {
   const { openMessageModalWithMessage } = useMessageModalState();
 
@@ -62,7 +62,7 @@ export const Presentation: React.FC<PresentationProps> = ({
             imageFile: album.image,
           }}
         />
-        {publicState === "published" && (
+        {publicStatus === "published" && (
           <StyledButton onClick={handleUnpublish}>非公開に戻す</StyledButton>
         )}
       </div>
@@ -74,11 +74,11 @@ export const Presentation: React.FC<PresentationProps> = ({
 export const EditAlbum: React.FC = () => {
   const { signedInUser } = useSignedInUserState();
 
-  const { album, publicState } = useAlbum();
+  const { album, publicStatus } = useAlbum();
 
   // 公開済みの場合編集できない
   const isApproved =
-    signedInUser.role === ROLE.EDITOR && publicState === "draft";
+    signedInUser.role === ROLE.EDITOR && publicStatus === "draft";
 
   return (
     <>
@@ -86,7 +86,7 @@ export const EditAlbum: React.FC = () => {
         <Presentation
           album={album}
           isApproved={isApproved}
-          publicState={publicState}
+          publicStatus={publicStatus as PublicStatus}
         />
       ) : (
         <div className="album-edit">

@@ -38,7 +38,7 @@ export async function updatePublishedAlbum(
 }
 
 export async function unpublish(albumId: string): Promise<void> {
-  const res = await axios.post(`/albums/${albumId}/unpublish`, {});
+  const res = await axios.post(baseUrl(`/albums/${albumId}/unpublish`));
 
   if (res.status === 201) {
     return;

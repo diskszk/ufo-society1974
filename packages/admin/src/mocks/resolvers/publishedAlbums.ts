@@ -36,7 +36,7 @@ const unpublishAlbum: ResponseResolver<
   RestRequest<string, PathParams<string>>,
   RestContext
 > = (_req, res, ctx) => {
-  return res(ctx.status(204));
+  return res(ctx.status(201));
 };
 
 const mockPublishedAlbums = {
