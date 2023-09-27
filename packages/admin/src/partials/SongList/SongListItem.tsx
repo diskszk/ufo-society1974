@@ -21,15 +21,7 @@ export const SongListItem: React.FC<Props> = ({ song, albumId, role }) => {
         {song.id}
       </TableCell>
       <TableCell>{song.title}</TableCell>
-      <TableCell>{"曲の説明"}</TableCell>
-      <TableCell
-        sx={{
-          cursor: "pointer",
-        }}
-      >
-        {/* want: 再生/停止 で切り替わるようにしたい */}
-        <p>再生</p>
-      </TableCell>
+
       <TableCell
         sx={{
           cursor: "pointer",
@@ -48,6 +40,7 @@ export const SongListItem: React.FC<Props> = ({ song, albumId, role }) => {
       >
         削除
       </TableCell>
+      <TableCell></TableCell>
     </TableRow>
   );
 };

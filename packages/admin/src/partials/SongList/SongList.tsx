@@ -41,9 +41,10 @@ export const SongList: React.FC<Props> = ({ albumId, role }) => {
             <TableRow>
               <TableCell align="right">No.</TableCell>
               <TableCell>タイトル</TableCell>
-              <TableCell>元ネタ</TableCell>
-              <TableCell>再生</TableCell>
+
               <TableCell></TableCell>
+              <TableCell></TableCell>
+
               <TableCell
                 sx={{
                   padding: 0,
