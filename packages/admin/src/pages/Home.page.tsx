@@ -53,12 +53,10 @@ export const Presentation: React.FC<PresentationProps> = ({ username }) => {
   );
 };
 
-const Home: React.FC = () => {
+export const Home: React.FC = () => {
   const { signedInUser } = useSignedInUserState();
 
   const { username } = signedInUser;
 
   return <Presentation username={username} />;
 };
-
-export default Home;

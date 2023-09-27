@@ -32,11 +32,11 @@ const Routes: React.FC = () => {
         <Route path={"/albums/create"} component={CreateAlbum} />
 
         {/* Songs */}
+        <Route exact path={"/albums/detail/:id"} component={Songs} />
         <Route
           path={"/albums/detail/:albumId/edit/:songId"}
           component={SongEdit}
         />
-        <Route exact path={"/albums/detail/:albumId"} component={Songs} />
       </Auth>
     </Switch>
   );

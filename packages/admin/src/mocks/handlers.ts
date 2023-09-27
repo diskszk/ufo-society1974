@@ -3,6 +3,7 @@ import mockUsers from "./resolvers/users";
 import { WEB_API_BASE_URL } from "../constants";
 import mockDraftAlbums from "./resolvers/draftAlbums";
 import mockPublishedAlbums from "./resolvers/publishedAlbums";
+import mockSongs from "./resolvers/songs";
 
 const baseUrl = (path: string) => {
   return WEB_API_BASE_URL + path;
@@ -23,4 +24,6 @@ export const handlers = [
     baseUrl("/albums/:id/unpublish"),
     mockPublishedAlbums.unpublishAlbum
   ),
+
+  rest.get(baseUrl("/albums/:id/songs"), mockSongs.get),
 ];

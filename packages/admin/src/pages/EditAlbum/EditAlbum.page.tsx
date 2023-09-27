@@ -86,7 +86,7 @@ export const EditAlbum: React.FC = () => {
         <Presentation
           album={album}
           isApproved={isApproved}
-          publicStatus={publicStatus as PublicStatus}
+          publicStatus={publicStatus}
         />
       ) : (
         <div className="album-edit">

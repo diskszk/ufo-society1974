@@ -17,7 +17,7 @@ import {
   crateSuccessFetchAction,
   createFailedFetchAction,
 } from "../../store/LoadingStatusReducer";
-import { getSongs } from "../../lib/songs";
+import { getSongs } from "../../lib/_songs";
 import { AddIconButton } from "../AddIconButton";
 
 type PresentationProps = {

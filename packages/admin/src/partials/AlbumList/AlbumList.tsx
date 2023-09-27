@@ -18,7 +18,10 @@ export const AlbumList: React.FC<Props> = ({ albums, role, publicStatus }) => {
       {albums.map((album: Album) => (
         <li className="album-item" key={album.id}>
           <p>{album.title}</p>
-          <Link className="album-image" to={`/albums/detail/${album.id}`}>
+          <Link
+            className="album-image"
+            to={`/albums/detail/${album.id}?status=${publicStatus}`}
+          >
             <img src={album.image} alt={"アルバムの画像"} />
           </Link>
           <div className="album-image-footer">
@@ -30,7 +33,9 @@ export const AlbumList: React.FC<Props> = ({ albums, role, publicStatus }) => {
             </IconButton>
             <br />
             <span>アルバムの曲を{label}する</span>
-            <IconButton href={`/albums/detail/${album.id}`}>
+            <IconButton
+              href={`/albums/detail/${album.id}?status=${publicStatus}`}
+            >
               <BorderColor />
             </IconButton>
           </div>

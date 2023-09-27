@@ -8,7 +8,7 @@ import {
   clearSongFileAction,
   createUpdateSongFileAction,
 } from "../../store/SongFileReducer";
-import { deleteSongFile, uploadSongFile } from "../../lib/songs";
+import { deleteSongFile, uploadSongFile } from "../../lib/_songs";
 import {
   createDisplayMessage,
   createFailedFetchAction,

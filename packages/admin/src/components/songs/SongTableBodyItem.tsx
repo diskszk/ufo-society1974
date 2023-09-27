@@ -6,7 +6,7 @@ import { User, Song, Album } from "@ufo-society1974/types";
 import { TableCell, TableRow } from "@mui/material";
 import { ROLE } from "../../constants";
 import { createUpdateSongsAction } from "../../store/SongsReducer";
-import { deleteSong, getSongs } from "../../lib/songs";
+import { deleteSong, getSongs } from "../../lib/_songs";
 import {
   createDisplayMessage,
   createFailedFetchAction,
@@ -116,7 +116,3 @@ export const SongTableBodyItem: React.FC<Props> = ({ song }) => {
     </TableRow>
   );
 };
-
-<td>
-  <button>The table body</button>
-</td>;

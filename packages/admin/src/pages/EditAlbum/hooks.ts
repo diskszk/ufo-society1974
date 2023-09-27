@@ -5,12 +5,15 @@ import { fetchDraftAlbumById, updateDraftAlbum } from "../../lib/draftAlbums";
 import { fetchPublishedAlbumById, unpublish } from "../../lib/publishedAlbums";
 import { useParams, useLocation } from "react-router-dom";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
+import { PublicStatus } from "../../constants";
 
 export function useAlbum(): {
   album: Album | undefined;
-  publicStatus: string;
+  publicStatus: PublicStatus;
 } {
   const { id } = useParams<{ id: string }>();
+
+  console.log(id);
 
   const { search } = useLocation();
   const query = React.useMemo(() => new URLSearchParams(search), [search]);
@@ -36,12 +39,21 @@ export function useAlbum(): {
   useEffect(() => {
     const set = async () => {
       let album: Album | undefined = undefined;
-      if (publicStatus === "draft") {
-        const { data } = await queryDraftAlbum();
-        album = data;
-      } else if (publicStatus === "published") {
-        const { data } = await queryPublishedAlbum();
-        album = data;
+
+      switch (publicStatus) {
+        case "draft": {
+          const { data } = await queryDraftAlbum();
+          album = data;
+          break;
+        }
+        case "published": {
+          const { data } = await queryPublishedAlbum();
+          album = data;
+          break;
+        }
+        default: {
+          throw new Error("不正なURLです。");
+        }
       }
       setAlbum(album);
     };
@@ -49,7 +61,9 @@ export function useAlbum(): {
     set();
   }, [publicStatus, queryDraftAlbum, queryPublishedAlbum]);
 
-  return { album, publicStatus: publicStatus || "" };
+  console.log(album?.id, publicStatus);
+
+  return { album, publicStatus: publicStatus as PublicStatus };
 }
 
 export function useHandleDraftAlbum() {
