@@ -6,7 +6,7 @@ import {
   CreateUser,
   Reset,
   Songs,
-  SongEdit,
+  EditSong,
   Users,
   Albums,
   CreateAlbum,
@@ -34,8 +34,9 @@ const Routes: React.FC = () => {
         {/* Songs */}
         <Route exact path={"/albums/detail/:id"} component={Songs} />
         <Route
-          path={"/albums/detail/:albumId/edit/:songId"}
-          component={SongEdit}
+          exact
+          path={"/albums/detail/:id/edit/:songId"}
+          component={EditSong}
         />
       </Auth>
     </Switch>

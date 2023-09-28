@@ -15,7 +15,7 @@ function getLabel(
 }
 
 /*
-  /albums/:albumId?status={draft|published}/detail
+  /albums/detail/:id?status={draft|published}
   albumId内のSong一覧 
 */
 export const Songs: React.FC = () => {
@@ -40,7 +40,11 @@ export const Songs: React.FC = () => {
       <div>
         <div className="spacing-div"></div>
         <AlbumInfo album={album} />
-        <SongList albumId={album.id} role={signedInUser.role} />
+        <SongList
+          albumId={album.id}
+          role={signedInUser.role}
+          publicStatus={publicStatus}
+        />
 
         <div className="button-container-row">
           <StyledButton href="/albums">もどる</StyledButton>

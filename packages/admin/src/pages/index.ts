@@ -15,4 +15,4 @@ export { CreateAlbum } from "./CreateAlbum";
 
 // Songs
 export { Songs } from "./Songs";
-export { default as SongEdit } from "./SongEdit";
+export { EditSong } from "./EditSong";

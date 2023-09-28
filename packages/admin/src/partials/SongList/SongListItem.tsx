@@ -1,6 +1,6 @@
 import { TableRow, TableCell } from "@mui/material";
 import { Song } from "@ufo-society1974/types";
-import { ROLE, RoleType } from "../../constants";
+import { PublicStatus, ROLE, RoleType } from "../../constants";
 import { Link } from "react-router-dom";
 import { useCallback } from "react";
 
@@ -8,6 +8,7 @@ type Props = {
   song: Song;
   albumId: string;
   role: RoleType;
+  publicStatus: PublicStatus;
 };
 
 export const SongListItem: React.FC<Props> = ({ song, albumId, role }) => {

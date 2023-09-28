@@ -11,15 +11,16 @@ import {
   TableBody,
 } from "@mui/material";
 import { AddIconButton } from "../../components/AddIconButton";
-import { RoleType } from "../../constants";
+import { PublicStatus, RoleType } from "../../constants";
 import { SongListItem } from "./SongListItem";
 
 type Props = {
   albumId: string;
   role: RoleType;
+  publicStatus: PublicStatus;
 };
 
-export const SongList: React.FC<Props> = ({ albumId, role }) => {
+export const SongList: React.FC<Props> = ({ albumId, role, publicStatus }) => {
   const { data: songs } = useQuery<Song[]>(["songs"], () =>
     fetchSongs(albumId)
   );
@@ -52,7 +53,7 @@ export const SongList: React.FC<Props> = ({ albumId, role }) => {
               >
                 <AddIconButton
                   label="曲を追加"
-                  href={`albums/detail/${albumId}/edit/new`}
+                  href={`albums/detail/${albumId}?status=${publicStatus}/new`}
                 />
               </TableCell>
             </TableRow>
@@ -64,6 +65,7 @@ export const SongList: React.FC<Props> = ({ albumId, role }) => {
                 song={song}
                 albumId={albumId}
                 role={role}
+                publicStatus={publicStatus}
               />
             ))}
           </TableBody>
