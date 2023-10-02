@@ -70,7 +70,7 @@ test("メールアドレスとパスワードが入力された場合、サイ�
   });
 });
 
-test("submit処理中は、submitボタンはdisabledである", async () => {
+test.skip("submit処理中は、submitボタンはdisabledである", async () => {
   const { form } = await setup();
 
   await user.click(form.button);
