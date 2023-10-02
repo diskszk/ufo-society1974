@@ -30,10 +30,6 @@ export const CreateUser: React.FC = () => {
     [handleCreateUser, handleSignIn, signedInUser.role]
   );
 
-  const handleClickBack = useCallback(() => {
-    history.goBack();
-  }, [history]);
-
   useEffect(() => {
     if (signedInUser) {
       if (signedInUser.role !== ROLE.MASTER) {
@@ -47,11 +43,7 @@ export const CreateUser: React.FC = () => {
     <div className="sign-up page">
       <h1>管理者登録</h1>
 
-      <CreateUserForm
-        handleClickBackButton={handleClickBack}
-        onSubmit={onSubmit}
-        role={signedInUser.role}
-      />
+      <CreateUserForm onSubmit={onSubmit} role={signedInUser.role} />
     </div>
   );
 };

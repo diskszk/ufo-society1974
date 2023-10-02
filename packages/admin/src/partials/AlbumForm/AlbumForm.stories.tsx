@@ -41,3 +41,9 @@ export const ExistData: Story = {
     currentValues: mockData.currentValue,
   },
 };
+
+export const Watcer: Story = {
+  args: {
+    isApproved: false,
+  },
+};

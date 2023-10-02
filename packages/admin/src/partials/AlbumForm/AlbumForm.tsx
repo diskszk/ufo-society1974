@@ -79,7 +79,7 @@ export const AlbumForm: React.FC<Props> = ({
           <StyledButton href="/albums">もどる</StyledButton>
 
           <StyledButton
-            disabled={isSubmitting || (isApproved && !isDirty)}
+            disabled={isSubmitting || !isApproved || !isDirty}
             type="submit"
           >
             保存する

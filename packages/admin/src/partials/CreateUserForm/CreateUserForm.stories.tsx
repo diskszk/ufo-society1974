@@ -21,7 +21,6 @@ export const Default: Story = {
     chromatic: { disableSnapshot: false },
   },
   args: {
-    handleClickBackButton: () => void 0,
     onSubmit: (_data) => {
       return;
     },
@@ -52,6 +51,10 @@ const setup = async (
 };
 
 export const Valid: Story = {
+  args: {
+    role: "master",
+    onSubmit: () => void 0,
+  },
   play: async ({
     canvasElement,
   }: {

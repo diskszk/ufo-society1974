@@ -15,7 +15,7 @@ export async function fetchPublishedAlbums(): Promise<Album[]> {
 export async function fetchPublishedAlbumById(albumId: string): Promise<Album> {
   const res = await axios.get<Album>(baseUrl(`/albums/${albumId}`));
 
-  return res.data || undefined;
+  return res.data;
 }
 
 export async function updatePublishedAlbum(

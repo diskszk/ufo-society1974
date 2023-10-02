@@ -27,16 +27,11 @@ const roles: SelectOptions = [
 ];
 
 type Props = {
-  handleClickBackButton: () => void;
   onSubmit: SubmitHandler<CreateUserInputs>;
   role: RoleType;
 };
 
-export const CreateUserForm: React.FC<Props> = ({
-  handleClickBackButton,
-  onSubmit,
-  role,
-}) => {
+export const CreateUserForm: React.FC<Props> = ({ onSubmit, role }) => {
   const {
     control,
     handleSubmit,
@@ -104,9 +99,9 @@ export const CreateUserForm: React.FC<Props> = ({
         <SelectRoleController control={control} options={roles} />
 
         <div className="button-container-row">
-          <StyledButton onClick={handleClickBackButton}>もどる</StyledButton>
+          <StyledButton href={"/users"}>もどる</StyledButton>
           <StyledButton
-            disabled={isSubmitting || (isApprovedUser && !isDirty)}
+            disabled={isSubmitting || !isApprovedUser || !isDirty}
             type="submit"
           >
             登録する

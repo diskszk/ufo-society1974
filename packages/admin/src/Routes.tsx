@@ -11,6 +11,7 @@ import {
   Albums,
   CreateAlbum,
   EditAlbum,
+  BrowseAlbum,
 } from "./pages";
 
 const Routes: React.FC = () => {
@@ -29,6 +30,7 @@ const Routes: React.FC = () => {
         {/* Albums */}
         <Route exact path={"/albums"} component={Albums} />
         <Route path={"/albums/edit/:id"} component={EditAlbum} />
+        <Route path={"/albums/browse/:id"} component={BrowseAlbum} />
         <Route path={"/albums/create"} component={CreateAlbum} />
 
         {/* Songs */}
