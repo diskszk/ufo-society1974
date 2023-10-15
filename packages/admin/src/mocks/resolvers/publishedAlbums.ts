@@ -21,8 +21,6 @@ const getById: ResponseResolver<
   RestRequest<never, PathParams<string>>,
   RestContext
 > = (_req, res, ctx) => {
-  // const { id } = req.params;
-
   return res(ctx.status(200), ctx.json<Album>(mockData.albums[0]));
 };
 

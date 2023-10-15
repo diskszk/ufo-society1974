@@ -9,11 +9,11 @@ import { useFetchPublishedAlbumById } from "./hooks";
 export const BrowseAlbum: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { album } = useFetchPublishedAlbumById(id);
+  const { data: album } = useFetchPublishedAlbumById(id);
 
   return (
     <div className="album-edit">
-      <h1>アルバムを編集</h1>
+      <h1>アルバムを閲覧</h1>
       {album ? (
         <div>
           <AlbumForm

@@ -53,6 +53,7 @@ export const AlbumForm: React.FC<Props> = ({
           helperText={errors?.title?.message}
           aria-invalid={errors?.title ? true : false}
           variant="standard"
+          inputProps={{ readOnly: !isApproved }}
         />
 
         <ImageUploadForm
@@ -72,6 +73,7 @@ export const AlbumForm: React.FC<Props> = ({
           helperText={errors?.publishedDate?.message}
           aria-invalid={errors?.publishedDate ? true : false}
           variant="standard"
+          inputProps={{ readOnly: !isApproved }}
         />
 
         <div className="button-container-row">
