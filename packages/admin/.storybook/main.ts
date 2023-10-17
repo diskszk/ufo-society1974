@@ -1,10 +1,16 @@
-import { dirname, join } from "path";
 import type { StorybookConfig } from "@storybook/react-vite";
+
+import { join, dirname } from "path";
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, "package.json")));
+}
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/addon-onboarding"),
     getAbsolutePath("@storybook/addon-interactions"),
   ],
   framework: {
@@ -14,14 +20,5 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
-  typescript: {
-    reactDocgenTypescriptOptions: {
-      include: ["../../../**/*.tsx"],
-    },
-  },
 };
 export default config;
-
-function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, "package.json")));
-}
