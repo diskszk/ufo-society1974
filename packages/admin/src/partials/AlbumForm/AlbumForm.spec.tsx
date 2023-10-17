@@ -52,3 +52,40 @@ test("編集の場合、既存のアルバム情報を表示する", () => {
 
   expect(screen.getByRole("button", { name: "保存する" })).toBeDisabled();
 });
+
+test("編集権限がない場合、入力欄はすべて入力不可能である", () => {
+  const testData = createMockAlbum("01", { image: "hello.png" });
+
+  render(
+    <Wrapper>
+      <AlbumForm
+        isApproved={false}
+        onSubmit={mockOnSubmit}
+        currentValues={{ ...testData, imageFile: testData.image }}
+      />
+    </Wrapper>
+  );
+
+  expect(
+    screen.getByRole("textbox", { name: "アルバムタイトル" })
+  ).toHaveAttribute("readonly");
+  expect(
+    screen.getByRole("textbox", { name: "公開日(YYYY-MM-DD)" })
+  ).toHaveAttribute("readonly");
+});
+test("編集権限がない場合、ボタンはすべて非活性である", () => {
+  const testData = createMockAlbum("01", { image: "hello.png" });
+
+  render(
+    <Wrapper>
+      <AlbumForm
+        isApproved={false}
+        onSubmit={mockOnSubmit}
+        currentValues={{ ...testData, imageFile: testData.image }}
+      />
+    </Wrapper>
+  );
+
+  expect(screen.getByRole("button", { name: "画像を選択する" })).toBeDisabled();
+  expect(screen.getByRole("button", { name: "保存する" })).toBeDisabled();
+});
