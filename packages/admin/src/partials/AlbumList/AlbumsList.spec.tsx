@@ -8,7 +8,7 @@ const testData = [createMockAlbum("01")];
 test("権限がeditorの場合、`編集する`という文言を表示する", () => {
   render(
     <Wrapper>
-      <AlbumList role="editor" albums={testData} publicStatus="draft" />
+      <AlbumList role="editor" albums={testData} status="edit" />
     </Wrapper>
   );
 
@@ -19,7 +19,7 @@ test("権限がeditorの場合、`編集する`という文言を表示する", 
 test("権限がmasterの場合、`閲覧する`という文言を表示する", () => {
   render(
     <Wrapper>
-      <AlbumList role="master" albums={testData} publicStatus="draft" />
+      <AlbumList role="master" albums={testData} status="edit" />
     </Wrapper>
   );
 
@@ -30,7 +30,7 @@ test("権限がmasterの場合、`閲覧する`という文言を表示する", 
 test("権限がwatcherの場合、`閲覧する`という文言を表示する", () => {
   render(
     <Wrapper>
-      <AlbumList role="watcher" albums={testData} publicStatus="draft" />
+      <AlbumList role="watcher" albums={testData} status="edit" />
     </Wrapper>
   );
 

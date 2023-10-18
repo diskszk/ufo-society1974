@@ -1,4 +1,4 @@
-import { Audio } from "../lib/types";
+import { Audio } from "../types";
 import { initialState } from "./initialState";
 
 const audioInitialState: Audio = initialState.audio;

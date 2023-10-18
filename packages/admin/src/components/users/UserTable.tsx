@@ -11,7 +11,7 @@ import {
   TableBody,
 } from "@mui/material";
 import UserTableBody from "./UserTableBody";
-import { User } from "../../lib/types";
+import { User } from "../../types";
 import { getUsers } from "../../lib/_users/getUsers";
 import {
   createRequestFetchAction,

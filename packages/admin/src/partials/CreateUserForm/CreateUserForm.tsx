@@ -3,12 +3,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Textbox } from "../../components/Textbox";
 import { StyledButton } from "../../components/UIKit/CustomButton";
-import { ROLE, RoleType } from "../../constants";
+import { ROLE } from "../../constants";
 import {
   CreateUserInputs,
   createUserSchema,
 } from "../../lib/schemas/createUserSchema";
-import { SelectOptions } from "../../lib/types";
+import { SelectOptions, RoleType } from "../../types";
 import { SelectRoleController } from "../../components/SelectRoleController";
 
 const roles: SelectOptions = [

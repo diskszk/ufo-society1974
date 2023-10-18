@@ -1,5 +1,5 @@
 import { PathParams, ResponseResolver, RestContext, RestRequest } from "msw";
-import { User } from "../../lib/types";
+import { User } from "../../types";
 
 const dummyUsers: User[] = [
   {

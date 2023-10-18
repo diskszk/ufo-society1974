@@ -1,4 +1,4 @@
-import { File } from "../lib/types";
+import { File } from "../types";
 import { initialState } from "./initialState";
 
 const songFileInitialState = initialState.songFile;

@@ -1,69 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { UseQueryResult, useMutation } from "@tanstack/react-query";
 import { Album, UpdateAlbumDTO } from "@ufo-society1974/types";
 import { fetchDraftAlbumById, updateDraftAlbum } from "../../lib/draftAlbums";
 import { fetchPublishedAlbumById, unpublish } from "../../lib/publishedAlbums";
 import { useParams, useLocation } from "react-router-dom";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
-import { PublicStatus } from "../../constants";
+import { useFetch } from "../../hooks/api/useFetch";
 
-export function useAlbum(): {
-  album: Album | undefined;
-  publicStatus: PublicStatus;
-} {
+export function useFetchAlbum(): UseQueryResult<Album | undefined> {
   const { id } = useParams<{ id: string }>();
 
-  console.log(id);
+  const s = useLocation().pathname.split("/")[2];
 
-  const { search } = useLocation();
-  const query = React.useMemo(() => new URLSearchParams(search), [search]);
-  const publicStatus = query.get("status");
+  const queryKey = s === "edit" ? "draft-album" : "published-album";
 
-  const { refetch: queryDraftAlbum } = useQuery<Album | undefined>(
-    ["draft-album", id],
-    {
-      queryFn: () => fetchDraftAlbumById(id),
-      enabled: false,
-    }
-  );
-  const { refetch: queryPublishedAlbum } = useQuery<Album>(
-    ["published-album", id],
-    {
-      queryFn: () => fetchPublishedAlbumById(id),
-      enabled: false,
-    }
-  );
+  const queryFn = s === "edit" ? fetchDraftAlbumById : fetchPublishedAlbumById;
 
-  const [album, setAlbum] = useState<Album | undefined>();
-
-  useEffect(() => {
-    const set = async () => {
-      let album: Album | undefined = undefined;
-
-      switch (publicStatus) {
-        case "draft": {
-          const { data } = await queryDraftAlbum();
-          album = data;
-          break;
-        }
-        case "published": {
-          const { data } = await queryPublishedAlbum();
-          album = data;
-          break;
-        }
-        default: {
-          throw new Error("不正なURLです。");
-        }
-      }
-      setAlbum(album);
-    };
-
-    set();
-  }, [publicStatus, queryDraftAlbum, queryPublishedAlbum]);
-
-  console.log(album?.id, publicStatus);
-
-  return { album, publicStatus: publicStatus as PublicStatus };
+  return useFetch([queryKey, id], () => queryFn(id));
 }
 
 export function useHandleDraftAlbum() {

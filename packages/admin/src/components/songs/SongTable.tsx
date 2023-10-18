@@ -9,7 +9,7 @@ import {
   Paper,
 } from "@mui/material";
 import { SongTableBody } from "./";
-import { RootStore } from "../../lib/types";
+import { RootStore } from "../../types";
 import { Song } from "@ufo-society1974/types";
 import { createUpdateSongsAction } from "../../store/SongsReducer";
 import {

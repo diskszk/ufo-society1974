@@ -3,15 +3,13 @@ import { SongInput, songSchema } from "../../lib/schemas/songSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textbox } from "../../components/Textbox";
 import { StyledButton } from "../../components/UIKit/CustomButton";
-import { useAlbum } from "../../pages/EditAlbum/hooks";
+import { BackButton } from "../../components/UIKit/BackButton";
 
 type Props = {
   isApproved: boolean;
   currentValue?: SongInput;
 };
 export const SongForm: React.FC<Props> = ({ isApproved, currentValue }) => {
-  const { album, publicStatus } = useAlbum();
-
   const {
     handleSubmit,
     register,
@@ -20,7 +18,7 @@ export const SongForm: React.FC<Props> = ({ isApproved, currentValue }) => {
     resolver: zodResolver(songSchema),
     mode: "onBlur",
     defaultValues: {
-      // 編集時のdefault値はurlのid(001,002)から取得する?
+      // TODO: 編集時のdefault値はurlのid(001,002)から取得する
       trackId: 0,
       title: "",
       lyric: "",
@@ -89,11 +87,7 @@ export const SongForm: React.FC<Props> = ({ isApproved, currentValue }) => {
           variant="standard"
         />
         <div className="button-container-row">
-          <StyledButton
-            href={`/albums/detail/${album?.id}?status=${publicStatus}`}
-          >
-            もどる
-          </StyledButton>
+          <BackButton>もどる</BackButton>
           <StyledButton
             disabled={isSubmitting || (isApproved && !isDirty)}
             type="submit"

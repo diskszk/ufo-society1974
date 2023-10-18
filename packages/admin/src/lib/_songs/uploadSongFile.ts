@@ -1,5 +1,5 @@
 import { storage } from "../../firebase";
-import { File } from "../types";
+import { File } from "../../types";
 
 export const uploadSongFile = async (
   file: globalThis.File,

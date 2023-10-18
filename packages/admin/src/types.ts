@@ -3,7 +3,7 @@ import type {
   Album,
   User as ServerUserType,
 } from "@ufo-society1974/types";
-import { RoleType } from "../constants";
+import { ROLE } from "./constants";
 
 export type User = Omit<ServerUserType, "role"> & {
   role: RoleType;
@@ -11,6 +11,13 @@ export type User = Omit<ServerUserType, "role"> & {
 
 export type SelectOption = { label: string; value: string };
 export type SelectOptions = SelectOption[];
+
+const roleList = [ROLE.MASTER, ROLE.EDITOR, ROLE.WATCHER] as const;
+
+export type RoleType = (typeof roleList)[number] | "";
+
+const statusList = ["edit", "preview"] as const;
+export type Status = (typeof statusList)[number];
 
 // redux
 export type RootStore = {

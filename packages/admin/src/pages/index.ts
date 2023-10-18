@@ -11,9 +11,10 @@ export { CreateUser } from "./CreateUser";
 // Albums
 export { Albums } from "./Albums";
 export { EditAlbum } from "./EditAlbum";
-export { BrowseAlbum } from "./BrowseAlbum";
 export { CreateAlbum } from "./CreateAlbum";
 
+// AlbumDetail
+export { EditAlbumDetail } from "./EditAlbumDetail";
+
 // Songs
-export { Songs } from "./Songs";
 export { EditSong } from "./EditSong";

@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { Wrapper } from "../../test-utils";
 import { Albums } from "./Albums.page";
 import { setupCurrentUser } from "../../test-utils/currentUser";
-import { RoleType } from "../../constants";
+import { RoleType } from "../../types";
 
 const setup = async (role: RoleType) => {
   await setupCurrentUser(role);

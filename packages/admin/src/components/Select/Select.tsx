@@ -6,7 +6,7 @@ import {
   NativeSelect,
 } from "@mui/material";
 import { ComponentPropsWithRef, forwardRef } from "react";
-import { SelectOptions } from "../../lib/types";
+import { SelectOptions } from "../../types";
 
 type SelectProps = ComponentPropsWithRef<"div"> &
   NativeSelectProps & {

@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE, WEB_API_BASE_URL } from "../constants";
 import { CreateUserDTO } from "@ufo-society1974/types";
-import { User } from "../lib/types";
+import { User } from "../types";
 
 import axios from "axios";
 

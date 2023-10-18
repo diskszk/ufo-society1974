@@ -1,5 +1,5 @@
 import { initialState } from "./initialState";
-import { LoadingStatus } from "../lib/types";
+import { LoadingStatus } from "../types";
 
 const loadingStatusInitialState = initialState.loadingStatus;
 

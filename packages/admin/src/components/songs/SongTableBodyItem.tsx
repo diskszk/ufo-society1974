@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootStore } from "../../lib/types";
+import { RootStore } from "../../types";
 import { User, Song, Album } from "@ufo-society1974/types";
 import { TableCell, TableRow } from "@mui/material";
 import { ROLE } from "../../constants";

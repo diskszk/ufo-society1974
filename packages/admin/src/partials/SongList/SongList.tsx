@@ -11,16 +11,15 @@ import {
   TableBody,
 } from "@mui/material";
 import { AddIconButton } from "../../components/AddIconButton";
-import { PublicStatus, RoleType } from "../../constants";
 import { SongListItem } from "./SongListItem";
+import { Link } from "react-router-dom";
 
 type Props = {
   albumId: string;
-  role: RoleType;
-  publicStatus: PublicStatus;
+  isApproved: boolean;
 };
 
-export const SongList: React.FC<Props> = ({ albumId, role, publicStatus }) => {
+export const SongList: React.FC<Props> = ({ albumId, isApproved }) => {
   const { data: songs } = useQuery<Song[]>(["songs"], () =>
     fetchSongs(albumId)
   );
@@ -51,10 +50,11 @@ export const SongList: React.FC<Props> = ({ albumId, role, publicStatus }) => {
                   padding: 0,
                 }}
               >
-                <AddIconButton
-                  label="曲を追加"
-                  href={`albums/detail/${albumId}?status=${publicStatus}/new`}
-                />
+                {isApproved && (
+                  <Link to={`/albums/edit/${albumId}/detail/new`}>
+                    <AddIconButton label="曲を追加" />
+                  </Link>
+                )}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -64,8 +64,7 @@ export const SongList: React.FC<Props> = ({ albumId, role, publicStatus }) => {
                 key={song.id}
                 song={song}
                 albumId={albumId}
-                role={role}
-                publicStatus={publicStatus}
+                isApproved={isApproved}
               />
             ))}
           </TableBody>

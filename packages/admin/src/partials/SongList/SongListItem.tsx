@@ -1,17 +1,20 @@
 import { TableRow, TableCell } from "@mui/material";
 import { Song } from "@ufo-society1974/types";
-import { PublicStatus, ROLE, RoleType } from "../../constants";
 import { Link } from "react-router-dom";
 import { useCallback } from "react";
 
 type Props = {
   song: Song;
   albumId: string;
-  role: RoleType;
-  publicStatus: PublicStatus;
+  isApproved: boolean;
 };
 
-export const SongListItem: React.FC<Props> = ({ song, albumId, role }) => {
+export const SongListItem: React.FC<Props> = ({
+  song,
+  albumId,
+  isApproved,
+}) => {
+  // TODO: 関数の処理を書く
   const handleDeleteSong = useCallback(() => {
     return;
   }, []);
@@ -28,8 +31,8 @@ export const SongListItem: React.FC<Props> = ({ song, albumId, role }) => {
           cursor: "pointer",
         }}
       >
-        <Link to={`/albums/detail/${albumId}/edit/${song.id}`}>
-          {role === ROLE.EDITOR ? "編集" : "閲覧"}
+        <Link to={`/albums/edit/${albumId}/detail/${song.id}`}>
+          {isApproved ? "編集" : "閲覧"}
         </Link>
       </TableCell>
       <TableCell

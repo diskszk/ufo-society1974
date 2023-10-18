@@ -3,8 +3,8 @@ import { useMutation } from "@tanstack/react-query";
 import { createUserInFirebase } from "../../lib/auth";
 import { registerUser } from "../../lib/users";
 import { useMessageModalState } from "../useMessageModalState";
-import { ERROR_MESSAGE, ROLE, RoleType } from "../../constants";
-import { User } from "../../lib/types";
+import { ERROR_MESSAGE, ROLE } from "../../constants";
+import { User, RoleType } from "../../types";
 
 export function useCreateUser() {
   const { openMessageModalWithMessage } = useMessageModalState();

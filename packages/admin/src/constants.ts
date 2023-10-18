@@ -9,13 +9,6 @@ export const ROLE = {
   WATCHER,
 } as const;
 
-const roleList = [MASTER, EDITOR, WATCHER] as const;
-
-export type RoleType = (typeof roleList)[number] | "";
-
-const publicStatusList = ["draft", "published"] as const;
-export type PublicStatus = (typeof publicStatusList)[number];
-
 import defaultFile from "./assets/images/no_image.jpg";
 import three_songs from "./assets/images/three_songs.jpeg";
 

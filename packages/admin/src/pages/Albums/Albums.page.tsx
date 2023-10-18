@@ -6,7 +6,7 @@ import { AlbumList } from "../../partials/AlbumList";
 import { StyledSubHeading } from "./styles";
 import { useAlbums } from "./hooks";
 import { Album } from "@ufo-society1974/types";
-import { User } from "../../lib/types";
+import { User } from "../../types";
 
 type PresentationProps = {
   draftAlbums: Album[];
@@ -39,7 +39,7 @@ export const Presentation: React.FC<PresentationProps> = ({
           <AlbumList
             albums={draftAlbums}
             role={signedInUser.role}
-            publicStatus="draft"
+            status="edit"
           />
         </div>
         <hr />
@@ -48,7 +48,7 @@ export const Presentation: React.FC<PresentationProps> = ({
           <AlbumList
             albums={publishedAlbums}
             role={signedInUser.role}
-            publicStatus="published"
+            status="preview"
           />
         </div>
 

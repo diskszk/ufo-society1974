@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { MessageModalState } from "../lib/types";
+import { MessageModalState } from "../types";
 
 const MESSAGE_MODAL_STATE = "messageModalState" as const;
 
