@@ -11,7 +11,7 @@
     "clean": "rimraf dist",
     "build": "tsc && yarn clean && vite build",
     "preview": "vite preview",
-    "test": "jest --silent",
+    "test": "jest",
     "lint": "run-s -c 'lint:*'",
     "lint:eslint": "eslint src/ --ext .ts,.tsx,.js,.jsx",
     "lint:tsc": "tsc --noEmit",

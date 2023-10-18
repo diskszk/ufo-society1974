@@ -4,7 +4,7 @@ import { AlbumInfo } from "../../components/songs";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { SongList } from "../../partials/SongList/SongList";
-import { useFetch } from "../../hooks/api/useFetch";
+import { useFetch } from "../../hooks/api";
 import { fetchDraftAlbumById } from "../../lib/draftAlbums";
 import { BackButton } from "../../components/UIKit/BackButton";
 

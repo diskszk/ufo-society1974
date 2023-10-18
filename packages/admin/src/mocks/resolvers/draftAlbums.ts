@@ -21,16 +21,8 @@ const get: ResponseResolver<
 const getById: ResponseResolver<
   RestRequest<never, PathParams<string>>,
   RestContext
-> = (req, res, ctx) => {
-  const { id } = req.params;
-
-  const album = mockData.albums.find((album) => album.id === id);
-
-  if (!album) {
-    return res(ctx.status(404));
-  }
-
-  return res(ctx.status(200), ctx.json<Album>(album));
+> = (_req, res, ctx) => {
+  return res(ctx.status(200), ctx.json<Album>(mockData.albums[0]));
 };
 
 const update: ResponseResolver<

@@ -1,7 +1,7 @@
 import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { useMessageModalState } from "../../hooks/useMessageModalState";
-import { ERROR_MESSAGE } from "../../constants";
+import { useMessageModalState } from "../../useMessageModalState";
+import { ERROR_MESSAGE } from "../../../constants";
 
 export function useFetch<
   TQueryKey extends [string, (Record<string, unknown> | string)?],

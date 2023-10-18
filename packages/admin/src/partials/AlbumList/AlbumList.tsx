@@ -23,14 +23,18 @@ export const AlbumListItem: React.FC<ListItemProps> = ({
     </Link>
     <div className="album-image-footer">
       <span>アルバムを{label}する</span>
-      <IconButton href={`/albums/${status}/${album.id}`}>
-        <BorderColor />
-      </IconButton>
+      <Link to={`/albums/${status}/${album.id}`}>
+        <IconButton>
+          <BorderColor />
+        </IconButton>
+      </Link>
       <br />
       <span>アルバムの曲を{label}する</span>
-      <IconButton href={`/albums/${status}/${album.id}/detail`}>
-        <BorderColor />
-      </IconButton>
+      <Link to={`/albums/${status}/${album.id}/detail`}>
+        <IconButton>
+          <BorderColor />
+        </IconButton>
+      </Link>
     </div>
   </li>
 );

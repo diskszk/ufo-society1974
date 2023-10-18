@@ -5,11 +5,12 @@ import { AlbumForm } from "../../partials/AlbumForm";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
-import { useFetchAlbum, useHandleDraftAlbum } from "./hooks";
+import { useHandleDraftAlbum } from "./hooks";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { Album } from "@ufo-society1974/types";
 import { useLocation } from "react-router-dom";
 import { getApproved } from "../../lib/helpers/getApproved";
+import { useFetchAlbum } from "../../hooks/api";
 
 type PresentationProps = {
   album: Album;
@@ -81,7 +82,7 @@ export const EditAlbum: React.FC = () => {
     status,
   });
 
-  const label = status === "edit" ? "編集" : "閲覧";
+  const label = isApproved ? "編集" : "閲覧";
 
   return (
     <div className="album-edit">
