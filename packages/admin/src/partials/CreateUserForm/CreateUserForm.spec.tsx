@@ -10,6 +10,14 @@ const user = userEvent.setup();
 
 const mockOnSubmit = jest.fn();
 
+const mockHistoryBack = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    goBack: mockHistoryBack,
+  }),
+}));
+
 afterEach(() => {
   mockOnSubmit.mockClear();
   cleanup();

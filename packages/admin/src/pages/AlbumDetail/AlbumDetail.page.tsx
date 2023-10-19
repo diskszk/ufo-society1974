@@ -1,29 +1,32 @@
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { AlbumInfo } from "../../components/songs";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { SongList } from "../../partials/SongList/SongList";
-import { useFetch } from "../../hooks/api";
-import { fetchDraftAlbumById } from "../../lib/draftAlbums";
+import { useFetchAlbum } from "../../hooks/api";
 import { BackButton } from "../../components/UIKit/BackButton";
+import { getApproved } from "../../lib/helpers/getApproved";
+import { useStatus } from "../../hooks/useStatus";
 
 /*
-  /albums/edit/:id/detail
+  /albums/(edit|preview)/:id/detail
 */
-export const EditAlbumDetail: React.FC = () => {
+export const AlbumDetail: React.FC = () => {
+  const [getStatus] = useStatus();
+  const { status } = getStatus();
+
   const { signedInUser } = useSignedInUserState();
 
-  const { id } = useParams<{ id: string }>();
+  const { data: album } = useFetchAlbum();
 
-  const { data: album } = useFetch(["draft-album", id], () =>
-    fetchDraftAlbumById(id)
-  );
+  const isApproved = getApproved({
+    currentUserRole: signedInUser.role,
+    approvedRole: ROLE.EDITOR,
+    status,
+  });
 
-  const label =
-    signedInUser.role === ROLE.EDITOR ? "アルバム編集" : "アルバム閲覧";
-
-  const isApproved = signedInUser.role === ROLE.EDITOR;
+  const label = isApproved ? "アルバム編集" : "アルバム閲覧";
 
   return (
     <div className="page">
@@ -39,9 +42,9 @@ export const EditAlbumDetail: React.FC = () => {
           <div className="button-container-row">
             <BackButton>もどる</BackButton>
 
-            <StyledButton href={`/albums/edit/${album.id}`}>
-              {label}
-            </StyledButton>
+            <Link to={`/albums/${status}/${album.id}`}>
+              <StyledButton>{label}</StyledButton>
+            </Link>
           </div>
         </div>
       ) : (

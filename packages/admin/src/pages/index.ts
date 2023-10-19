@@ -14,7 +14,7 @@ export { EditAlbum } from "./EditAlbum";
 export { CreateAlbum } from "./CreateAlbum";
 
 // AlbumDetail
-export { EditAlbumDetail } from "./EditAlbumDetail";
+export { AlbumDetail } from "./AlbumDetail";
 
 // Songs
 export { EditSong } from "./EditSong";

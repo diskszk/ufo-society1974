@@ -8,9 +8,9 @@ import { useMessageModalState } from "../../hooks/useMessageModalState";
 import { useHandleDraftAlbum } from "./hooks";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { Album } from "@ufo-society1974/types";
-import { useLocation } from "react-router-dom";
 import { getApproved } from "../../lib/helpers/getApproved";
 import { useFetchAlbum } from "../../hooks/api";
+import { useStatus } from "../../hooks/useStatus";
 
 type PresentationProps = {
   album: Album;
@@ -74,7 +74,8 @@ export const EditAlbum: React.FC = () => {
 
   const { data: album } = useFetchAlbum();
 
-  const status = useLocation().pathname.split("/")[2];
+  const [getStatus] = useStatus();
+  const { status } = getStatus();
 
   const isApproved = getApproved({
     currentUserRole: signedInUser.role,

@@ -29,7 +29,7 @@ export const AlbumListItem: React.FC<ListItemProps> = ({
         </IconButton>
       </Link>
       <br />
-      <span>アルバムの曲を{label}する</span>
+      <span>アルバムの詳細を{label}する</span>
       <Link to={`/albums/${status}/${album.id}/detail`}>
         <IconButton>
           <BorderColor />

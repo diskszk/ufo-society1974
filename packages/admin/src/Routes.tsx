@@ -5,7 +5,7 @@ import {
   SignIn,
   CreateUser,
   Reset,
-  EditAlbumDetail,
+  AlbumDetail,
   EditSong,
   Users,
   Albums,
@@ -38,10 +38,9 @@ const Routes: React.FC = () => {
         {/* AlbumDetail */}
         <Route
           exact
-          path={"/albums/edit/:id/detail"}
-          component={EditAlbumDetail}
+          path={"/albums/(edit|preview)/:id/detail"}
+          component={AlbumDetail}
         />
-        {/* TODO: BrowseAlbumDetailを作る */}
 
         {/* Songs */}
         <Route

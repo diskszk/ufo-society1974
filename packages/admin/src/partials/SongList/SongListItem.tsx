@@ -16,8 +16,11 @@ export const SongListItem: React.FC<Props> = ({
 }) => {
   // TODO: 関数の処理を書く
   const handleDeleteSong = useCallback(() => {
+    if (!isApproved) {
+      return;
+    }
     return;
-  }, []);
+  }, [isApproved]);
 
   return (
     <TableRow key={song.id}>
@@ -35,15 +38,17 @@ export const SongListItem: React.FC<Props> = ({
           {isApproved ? "編集" : "閲覧"}
         </Link>
       </TableCell>
-      <TableCell
-        sx={{
-          cursor: "pointer",
-        }}
-        role="button"
-        onClick={handleDeleteSong}
-      >
-        削除
-      </TableCell>
+      {isApproved && (
+        <TableCell
+          sx={{
+            cursor: "pointer",
+          }}
+          role="button"
+          onClick={handleDeleteSong}
+        >
+          削除
+        </TableCell>
+      )}
       <TableCell></TableCell>
     </TableRow>
   );
