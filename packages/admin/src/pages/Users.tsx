@@ -1,5 +1,5 @@
 import UserTable from "../components/users/UserTable";
-import { StyledButton } from "../components/UIKit/CustomButton";
+import { BackButton } from "../components/UIKit/BackButton";
 
 export const Users: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ export const Users: React.FC = () => {
       <div className="spacing-div"></div>
       <UserTable />
       <div className="button-container-row">
-        <StyledButton href="/">もどる</StyledButton>
+        <BackButton>もどる</BackButton>
       </div>
     </section>
   );

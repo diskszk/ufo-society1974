@@ -10,6 +10,7 @@ import {
 } from "../../lib/schemas/createUserSchema";
 import { SelectOptions, RoleType } from "../../types";
 import { SelectRoleController } from "../../components/SelectRoleController";
+import { BackButton } from "../../components/UIKit/BackButton";
 
 const roles: SelectOptions = [
   {
@@ -99,7 +100,7 @@ export const CreateUserForm: React.FC<Props> = ({ onSubmit, role }) => {
         <SelectRoleController control={control} options={roles} />
 
         <div className="button-container-row">
-          <StyledButton href={"/users"}>もどる</StyledButton>
+          <BackButton>もどる</BackButton>
           <StyledButton
             disabled={isSubmitting || !isApprovedUser || !isDirty}
             type="submit"

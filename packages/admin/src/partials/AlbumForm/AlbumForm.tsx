@@ -5,6 +5,7 @@ import { AlbumInput, albumSchema } from "../../lib/schemas/albumSchema";
 import { Textbox } from "../../components/Textbox";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { ImageUploadForm } from "../ImageUploadForm";
+import { BackButton } from "../../components/UIKit/BackButton";
 
 type Props = {
   onSubmit: SubmitHandler<AlbumInput>;
@@ -77,8 +78,7 @@ export const AlbumForm: React.FC<Props> = ({
         />
 
         <div className="button-container-row">
-          {/* href要素を含めることでaタグとみなされる!! */}
-          <StyledButton href="/albums">もどる</StyledButton>
+          <BackButton>もどる</BackButton>
 
           <StyledButton
             disabled={isSubmitting || !isApproved || !isDirty}
