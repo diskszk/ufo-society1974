@@ -13,13 +13,15 @@ import {
 import { AddIconButton } from "../../components/AddIconButton";
 import { SongListItem } from "./SongListItem";
 import { Link } from "react-router-dom";
+import { Status } from "../../types";
 
 type Props = {
   albumId: string;
   isApproved: boolean;
+  status: Status;
 };
 
-export const SongList: React.FC<Props> = ({ albumId, isApproved }) => {
+export const SongList: React.FC<Props> = ({ albumId, isApproved, status }) => {
   const { data: songs } = useQuery<Song[]>(["songs"], () =>
     fetchSongs(albumId)
   );
@@ -65,6 +67,7 @@ export const SongList: React.FC<Props> = ({ albumId, isApproved }) => {
                 song={song}
                 albumId={albumId}
                 isApproved={isApproved}
+                status={status}
               />
             ))}
           </TableBody>

@@ -26,4 +26,5 @@ export const handlers = [
   ),
 
   rest.get(baseUrl("/albums/:id/songs"), mockSongs.get),
+  rest.delete(baseUrl("/albums/:id/songs/:songId"), mockSongs.delete),
 ];

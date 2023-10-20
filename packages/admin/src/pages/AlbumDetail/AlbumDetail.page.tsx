@@ -37,7 +37,11 @@ export const AlbumDetail: React.FC = () => {
         <div>
           <div className="spacing-div"></div>
           <AlbumInfo album={album} />
-          <SongList albumId={album.id} isApproved={isApproved} />
+          <SongList
+            albumId={album.id}
+            isApproved={isApproved}
+            status={status}
+          />
 
           <div className="button-container-row">
             <BackButton>もどる</BackButton>

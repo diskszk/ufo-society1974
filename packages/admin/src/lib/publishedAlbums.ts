@@ -40,10 +40,6 @@ export async function updatePublishedAlbum(
 export async function unpublish(albumId: string): Promise<void> {
   const res = await axios.post(baseUrl(`/albums/${albumId}/unpublish`));
 
-  if (res.status === 201) {
-    return;
-  }
-
   if (res.status === 404) {
     throw new Error(ERROR_MESSAGE.notFound("IDと一致する公開中のアルバム"));
   } else {

@@ -16,7 +16,15 @@ const get: ResponseResolver<
   return res(ctx.status(200), ctx.json<Song[]>(testData));
 };
 
+const deleteSong: ResponseResolver<
+  RestRequest<never, PathParams<string>>,
+  RestContext
+> = (_req, res, ctx) => {
+  return res(ctx.status(203));
+};
+
 const mockSongs = {
   get,
+  delete: deleteSong,
 };
 export default mockSongs;
