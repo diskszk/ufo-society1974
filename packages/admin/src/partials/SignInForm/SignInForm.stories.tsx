@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { SignInForm } from "./SignInForm";
 import { CreateUserForm } from "../CreateUserForm";
-import { SignInInputs } from "../../lib/schemas/signInSchema";
+import { SignInInputs } from "../../schemas/signInSchema";
 import { within, userEvent } from "@storybook/testing-library";
 
 const meta: Meta = {

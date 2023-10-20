@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { Wrapper } from "../../test-utils";
 import { SongListItem } from "./SongListItem";
 import { createMockSong } from "@ufo-society1974/factories";
-import { getApproved } from "../../lib/helpers/getApproved";
+import { getApproved } from "../../helpers";
 import { RoleType, Status } from "../../types";
 
 const albumId = "album-id";

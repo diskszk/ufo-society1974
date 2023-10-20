@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { SignInForm } from "./SignInForm";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import { SignInInputs } from "../../lib/schemas/signInSchema";
+import { SignInInputs } from "../../schemas/signInSchema";
 
 const mockFn = jest.fn();
 

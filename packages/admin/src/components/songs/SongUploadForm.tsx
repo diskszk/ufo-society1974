@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IconButton } from "@mui/material";
 import { DeleteOutline, Backup } from "@mui/icons-material";
 import { File, RootStore, User } from "../../types";
-import { generateRandomStrings } from "../../lib/helpers/generateRandomStrings";
+import { generateRandomStrings } from "../../helpers/generateRandomStrings";
 import {
   clearSongFileAction,
   createUpdateSongFileAction,
@@ -16,7 +16,7 @@ import {
   crateSuccessFetchAction,
 } from "../../store/LoadingStatusReducer";
 import { ROLE } from "../../constants";
-import { checkRole } from "../../lib/helpers";
+import { checkRole } from "../../helpers";
 
 type Props = {
   albumId: string;

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { SongInput, songSchema } from "../../lib/schemas/songSchema";
+import { SongInput, songSchema } from "../../schemas/songSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textbox } from "../../components/Textbox";
 import { StyledButton } from "../../components/UIKit/CustomButton";

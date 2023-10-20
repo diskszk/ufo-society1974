@@ -3,7 +3,7 @@ import { BorderColor } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { Album } from "@ufo-society1974/types";
 import { ROLE } from "../../constants";
-import { getApproved } from "../../lib/helpers/getApproved";
+import { getApproved } from "../../helpers";
 import { RoleType, Status } from "../../types";
 
 type ListItemProps = {

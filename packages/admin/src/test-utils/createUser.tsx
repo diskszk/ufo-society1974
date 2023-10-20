@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { CreateUserInputs } from "../lib/schemas/createUserSchema";
+import { CreateUserInputs } from "../schemas/createUserSchema";
 
 const user = userEvent.setup();
 

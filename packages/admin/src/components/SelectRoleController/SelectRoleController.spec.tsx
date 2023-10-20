@@ -1,7 +1,7 @@
 import { render, renderHook, screen } from "@testing-library/react";
 import { SelectRoleController } from "./SelectRoleController";
 import { useForm } from "react-hook-form";
-import { CreateUserInputs } from "../../lib/schemas/createUserSchema";
+import { CreateUserInputs } from "../../schemas/createUserSchema";
 
 test("[role=select]", () => {
   const { result } = renderHook(() => useForm<CreateUserInputs>());

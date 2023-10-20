@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { CreateUserForm } from ".";
 import { within, userEvent } from "@storybook/testing-library";
-import { CreateUserInputs } from "../../lib/schemas/createUserSchema";
+import { CreateUserInputs } from "../../schemas/createUserSchema";
 import { input } from "../../test-utils/createUser";
 
 const meta: Meta<typeof CreateUserForm> = {

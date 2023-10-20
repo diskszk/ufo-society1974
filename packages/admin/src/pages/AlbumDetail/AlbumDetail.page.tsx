@@ -6,7 +6,7 @@ import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { SongList } from "../../partials/SongList/SongList";
 import { useFetchAlbum } from "../../hooks/api";
 import { BackButton } from "../../components/UIKit/BackButton";
-import { getApproved } from "../../lib/helpers/getApproved";
+import { getApproved } from "../../helpers";
 import { useStatus } from "../../hooks/useStatus";
 
 /*

@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
-import { AlbumInput } from "../../lib/schemas/albumSchema";
+import { AlbumInput } from "../../schemas/albumSchema";
 import { NO_IMAGE } from "../../constants";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import styled from "styled-components";

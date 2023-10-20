@@ -1,5 +1,5 @@
 import { SubmitHandler } from "react-hook-form";
-import { AlbumInput } from "../../lib/schemas/albumSchema";
+import { AlbumInput } from "../../schemas/albumSchema";
 import { AlbumForm } from "../../partials/AlbumForm";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";

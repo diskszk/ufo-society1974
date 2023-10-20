@@ -14,7 +14,7 @@ import {
   crateSuccessFetchAction,
 } from "../store/LoadingStatusReducer";
 import { ROLE } from "../constants";
-import { checkRole } from "../lib/helpers";
+import { checkRole } from "../helpers";
 
 const SongEdit: React.FC = () => {
   const dispatch = useDispatch();

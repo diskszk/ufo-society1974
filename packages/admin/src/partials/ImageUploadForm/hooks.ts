@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { UseFormSetValue } from "react-hook-form";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
-import { AlbumInput } from "../../lib/schemas/albumSchema";
+import { AlbumInput } from "../../schemas/albumSchema";
 import { uploadImage } from "../../lib/storages";
 
 export function useImageUpload() {

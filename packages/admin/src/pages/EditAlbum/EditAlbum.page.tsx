@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { SubmitHandler } from "react-hook-form";
-import { AlbumInput } from "../../lib/schemas/albumSchema";
+import { AlbumInput } from "../../schemas/albumSchema";
 import { AlbumForm } from "../../partials/AlbumForm";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
@@ -8,7 +8,7 @@ import { useMessageModalState } from "../../hooks/useMessageModalState";
 import { useHandleDraftAlbum } from "./hooks";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { Album } from "@ufo-society1974/types";
-import { getApproved } from "../../lib/helpers/getApproved";
+import { getApproved } from "../../helpers";
 import { useFetchAlbum } from "../../hooks/api";
 import { useStatus } from "../../hooks/useStatus";
 

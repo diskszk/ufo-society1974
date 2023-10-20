@@ -1,7 +1,7 @@
 import { Control, Controller } from "react-hook-form";
 import { Box, FormControl, InputLabel, NativeSelect } from "@mui/material";
 import { SelectOptions } from "../../types";
-import { CreateUserInputs } from "../../lib/schemas/createUserSchema";
+import { CreateUserInputs } from "../../schemas/createUserSchema";
 
 type Props = {
   control: Control<CreateUserInputs>;

@@ -1,5 +1,5 @@
 import z from "zod";
-import { ROLE } from "../../constants";
+import { ROLE } from "../constants";
 
 const roleUnion = z.union([
   z.literal(ROLE.EDITOR),

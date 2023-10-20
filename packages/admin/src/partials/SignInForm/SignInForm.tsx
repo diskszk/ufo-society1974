@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { Textbox } from "../../components/Textbox";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signInSchema, SignInInputs } from "../../lib/schemas/signInSchema";
+import { signInSchema, SignInInputs } from "../../schemas/signInSchema";
 
 type Props = {
   onSubmit: SubmitHandler<SignInInputs>;

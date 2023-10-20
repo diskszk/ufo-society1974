@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlbumInput, albumSchema } from "../../lib/schemas/albumSchema";
+import { AlbumInput, albumSchema } from "../../schemas/albumSchema";
 import { Textbox } from "../../components/Textbox";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { ImageUploadForm } from "../ImageUploadForm";

@@ -1,4 +1,4 @@
-import { AlbumInput } from "../../lib/schemas/albumSchema";
+import { AlbumInput } from "../../schemas/albumSchema";
 import { useMutation } from "@tanstack/react-query";
 import { createDraftAlbum } from "../../lib/draftAlbums";
 import { useCallback } from "react";

@@ -13,7 +13,7 @@ import {
   createRequestFetchAction,
   crateSuccessFetchAction,
 } from "../../store/LoadingStatusReducer";
-import { checkRole } from "../../lib/helpers";
+import { checkRole } from "../../helpers";
 
 type Props = {
   song: Song;

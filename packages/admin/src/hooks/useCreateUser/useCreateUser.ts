@@ -1,4 +1,4 @@
-import { CreateUserInputs } from "../../lib/schemas/createUserSchema";
+import { CreateUserInputs } from "../../schemas/createUserSchema";
 import { useMutation } from "@tanstack/react-query";
 import { createUserInFirebase } from "../../lib/auth";
 import { registerUser } from "../../lib/users";

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { SubmitHandler } from "react-hook-form";
 import { CreateUserForm } from "../../partials/CreateUserForm";
-import { CreateUserInputs } from "../../lib/schemas/createUserSchema";
+import { CreateUserInputs } from "../../schemas/createUserSchema";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { useCreateUser } from "../../hooks/useCreateUser";
 import { ROLE } from "../../constants";

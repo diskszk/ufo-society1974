@@ -7,7 +7,7 @@ import { ROLE } from "../../constants";
 import {
   CreateUserInputs,
   createUserSchema,
-} from "../../lib/schemas/createUserSchema";
+} from "../../schemas/createUserSchema";
 import { SelectOptions, RoleType } from "../../types";
 import { SelectRoleController } from "../../components/SelectRoleController";
 import { BackButton } from "../../components/UIKit/BackButton";
