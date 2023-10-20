@@ -53,7 +53,7 @@ export const SongList: React.FC<Props> = ({ albumId, isApproved, status }) => {
                 }}
               >
                 {isApproved && (
-                  <Link to={`/albums/edit/${albumId}/detail/new`}>
+                  <Link to={`/albums/edit/${albumId}/detail/songs/new`}>
                     <AddIconButton label="曲を追加" />
                   </Link>
                 )}

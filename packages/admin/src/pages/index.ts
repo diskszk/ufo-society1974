@@ -18,3 +18,4 @@ export { AlbumDetail } from "./AlbumDetail";
 
 // Songs
 export { EditSong } from "./EditSong";
+export { CreateSong } from "./CreateSong";
