@@ -5,7 +5,7 @@ import { AlbumForm } from "../../partials/AlbumForm";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
-import { useHandleDraftAlbum } from "./hooks";
+import { useHandleDraftAlbum } from "../../hooks/useHandleDraftAlbum";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { Album } from "@ufo-society1974/types";
 import { getApproved } from "../../helpers";

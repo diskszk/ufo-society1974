@@ -1,5 +1,5 @@
 import { screen, renderHook, waitFor } from "@testing-library/react";
-import { useHandleDraftAlbum } from "./hooks";
+import { useHandleDraftAlbum } from ".";
 import { Wrapper } from "../../test-utils";
 import { createMockAlbum } from "@ufo-society1974/factories";
 import { UpdateAlbumDTO } from "@ufo-society1974/types";

@@ -4,11 +4,11 @@ import { AlbumForm } from "../../partials/AlbumForm";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
-import { useCreateAlbum } from "../../hooks/useCreateAlbum";
+import { useHandleDraftAlbum } from "../../hooks/useHandleDraftAlbum";
 
 // /albums/create
 export const CreateAlbum: React.FC = () => {
-  const { handleCreateAlbum } = useCreateAlbum();
+  const { handleCreateAlbum } = useHandleDraftAlbum();
   const { signedInUser } = useSignedInUserState();
 
   const { openMessageModalWithMessage } = useMessageModalState();
