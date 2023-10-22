@@ -22,7 +22,7 @@ export const CreateSong: React.FC = () => {
   return (
     <div>
       <h1>曲を新規作成</h1>
-      <SongForm isApproved={isApproved} />
+      <SongForm onSubmit={() => void 0} isApproved={isApproved} />
     </div>
   );
 };

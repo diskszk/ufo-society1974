@@ -35,8 +35,9 @@ export const EditSong: React.FC = () => {
       <h1>曲を{label}</h1>
       {song ? (
         <SongForm
+          onSubmit={() => void 0}
           isApproved={isApproved}
-          currentValue={{ ...song, trackId: Number(song.id) }}
+          currentValues={{ ...song, trackId: Number(song.id) }}
         />
       ) : (
         <p>楽曲が存在しません。</p>

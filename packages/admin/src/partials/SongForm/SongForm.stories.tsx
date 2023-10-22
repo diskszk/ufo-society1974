@@ -16,6 +16,6 @@ const testData = createMockSong("02");
 
 export const Edit: Story = {
   args: {
-    currentValue: { ...testData, trackId: Number(testData.id) },
+    currentValues: { ...testData, trackId: Number(testData.id) },
   },
 };
