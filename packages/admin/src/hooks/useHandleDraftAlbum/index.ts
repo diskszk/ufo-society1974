@@ -6,14 +6,20 @@ import { useMessageModalState } from "../useMessageModalState";
 import { useCallback } from "react";
 import { AlbumInput } from "../../schemas/albumSchema";
 
-export function useHandleDraftAlbum() {
+type ReturnType = {
+  createAlbum: (data: AlbumInput) => Promise<void>;
+  updateAlbum: (data: UpdateAlbumDTO) => Promise<void>;
+  unpublishAlbum: (albumId: string) => Promise<void>;
+};
+
+export function useHandleDraftAlbum(): ReturnType {
   const { openMessageModalWithMessage } = useMessageModalState();
 
   const { mutateAsync: createAlbumMutate } = useMutation(
     (album: CreateAlbumDTO) => createDraftAlbum(album)
   );
 
-  const handleCreateAlbum = useCallback(
+  const createAlbum = useCallback(
     async (data: AlbumInput) => {
       try {
         await createAlbumMutate({ ...data, image: data.imageFile });
@@ -33,9 +39,9 @@ export function useHandleDraftAlbum() {
   );
 
   const updateAlbum = useCallback(
-    async (album: UpdateAlbumDTO) => {
+    async (data: UpdateAlbumDTO) => {
       try {
-        await updateAlbumMutate(album);
+        await updateAlbumMutate(data);
 
         openMessageModalWithMessage("アルバムを更新しました。");
       } catch (error) {
@@ -68,5 +74,5 @@ export function useHandleDraftAlbum() {
     [openMessageModalWithMessage, unpublishAlbumMutate]
   );
 
-  return { handleCreateAlbum, updateAlbum, unpublishAlbum };
+  return { createAlbum, updateAlbum, unpublishAlbum };
 }

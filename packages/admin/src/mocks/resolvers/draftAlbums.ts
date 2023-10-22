@@ -25,6 +25,13 @@ const getById: ResponseResolver<
   return res(ctx.status(200), ctx.json<Album>(mockData.albums[0]));
 };
 
+const create: ResponseResolver<
+  RestRequest<UpdateAlbumDTO, PathParams<string>>,
+  RestContext
+> = (_req, res, ctx) => {
+  return res(ctx.status(201));
+};
+
 const update: ResponseResolver<
   RestRequest<UpdateAlbumDTO, PathParams<string>>,
   RestContext
@@ -35,6 +42,7 @@ const update: ResponseResolver<
 const mockDraftAlbums = {
   get,
   getById,
+  create,
   update,
 };
 
