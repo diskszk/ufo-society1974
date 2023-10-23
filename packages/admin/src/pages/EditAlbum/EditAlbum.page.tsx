@@ -6,7 +6,6 @@ import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
 import { useHandleDraftAlbum } from "../../hooks/useHandleDraftAlbum";
-import { StyledButton } from "../../components/UIKit/CustomButton";
 import { Album } from "@ufo-society1974/types";
 import { getApproved } from "../../helpers";
 import { useFetchAlbum } from "../../hooks/api";
@@ -20,8 +19,7 @@ type PresentationProps = {
 const Presentation: React.FC<PresentationProps> = ({ album, isApproved }) => {
   const { openMessageModalWithMessage } = useMessageModalState();
 
-  const { updateAlbum, unpublishAlbum } = useHandleDraftAlbum();
-
+  const { updateAlbum } = useHandleDraftAlbum();
   const onSubmit: SubmitHandler<AlbumInput> = useCallback(
     async (data) => {
       if (!isApproved) {
@@ -39,15 +37,6 @@ const Presentation: React.FC<PresentationProps> = ({ album, isApproved }) => {
     [album, isApproved, openMessageModalWithMessage, updateAlbum]
   );
 
-  const handleUnpublish = useCallback(async () => {
-    if (!isApproved) {
-      openMessageModalWithMessage("権限がありません。");
-    }
-    await unpublishAlbum(album.id);
-
-    return;
-  }, [album.id, isApproved, openMessageModalWithMessage, unpublishAlbum]);
-
   return (
     <div>
       <AlbumForm
@@ -58,16 +47,12 @@ const Presentation: React.FC<PresentationProps> = ({ album, isApproved }) => {
           imageFile: album.image,
         }}
       />
-      {isApproved && (
-        <StyledButton onClick={handleUnpublish}>非公開に戻す</StyledButton>
-      )}
     </div>
   );
 };
 
 /* 
   /albums/(edit|preview)/:id
-  urlから編集か閲覧かを取得する
  */
 export const EditAlbum: React.FC = () => {
   const { signedInUser } = useSignedInUserState();

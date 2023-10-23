@@ -25,7 +25,7 @@ const getById: ResponseResolver<
 };
 
 const unpublishAlbum: ResponseResolver<
-  RestRequest<string, PathParams<string>>,
+  RestRequest<never, PathParams<string>>,
   RestContext
 > = (_req, res, ctx) => {
   return res(ctx.status(201));

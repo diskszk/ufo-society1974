@@ -19,6 +19,8 @@ export type RoleType = (typeof roleList)[number] | "";
 const statusList = ["edit", "preview"] as const;
 export type Status = (typeof statusList)[number];
 
+export type DraftAlbum = Omit<Album, "published"> & { published: false };
+export type PublishedAlbum = Omit<Album, "published"> & { published: true };
 // redux
 export type RootStore = {
   user: User;

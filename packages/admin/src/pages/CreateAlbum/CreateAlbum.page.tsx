@@ -8,7 +8,7 @@ import { useHandleDraftAlbum } from "../../hooks/useHandleDraftAlbum";
 
 // /albums/create
 export const CreateAlbum: React.FC = () => {
-  const { handleCreateAlbum } = useHandleDraftAlbum();
+  const { createAlbum } = useHandleDraftAlbum();
   const { signedInUser } = useSignedInUserState();
 
   const { openMessageModalWithMessage } = useMessageModalState();
@@ -20,7 +20,7 @@ export const CreateAlbum: React.FC = () => {
       openMessageModalWithMessage("権限がありません。");
     }
 
-    await handleCreateAlbum(data);
+    await createAlbum(data);
 
     return;
   };

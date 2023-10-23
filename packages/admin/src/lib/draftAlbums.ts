@@ -1,18 +1,19 @@
-import { Album, CreateAlbumDTO, UpdateAlbumDTO } from "@ufo-society1974/types";
+import type { CreateAlbumDTO, UpdateAlbumDTO } from "@ufo-society1974/types";
 import axios from "axios";
 import { baseUrl } from "./baseUrl";
 import { ERROR_MESSAGE } from "../constants";
+import { DraftAlbum } from "../types";
 
-export async function fetchDraftAlbums(): Promise<Album[]> {
-  const res = await axios.get<Album[]>(baseUrl("/draft-albums"));
+export async function fetchDraftAlbums(): Promise<DraftAlbum[]> {
+  const res = await axios.get<DraftAlbum[]>(baseUrl("/draft-albums"));
 
   return res.data;
 }
 
 export async function fetchDraftAlbumById(
   id: string
-): Promise<Album | undefined> {
-  const res = await axios.get<Album>(baseUrl(`/draft-albums/${id}`));
+): Promise<DraftAlbum | undefined> {
+  const res = await axios.get<DraftAlbum>(baseUrl(`/draft-albums/${id}`));
 
   return res.data || undefined;
 }

@@ -14,7 +14,7 @@ export function useFetchAlbum(): UseQueryResult<Album | undefined> {
 
   const queryKey = status === "edit" ? "draft-album" : "published-album";
 
-  const queryFn =
+  const queryFn: (id: string) => Promise<Album | undefined> =
     status === "edit" ? fetchDraftAlbumById : fetchPublishedAlbumById;
 
   return useFetch([queryKey, id], () => queryFn(id));
