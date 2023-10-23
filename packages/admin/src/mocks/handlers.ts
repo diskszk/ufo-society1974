@@ -28,5 +28,7 @@ export const handlers = [
 
   rest.get(baseUrl("/albums/:id/songs"), mockSongs.get),
   rest.get(baseUrl("/albums/:id/songs/:songId"), mockSongs.getById),
+  rest.post(baseUrl("/albums/:id/songs"), mockSongs.create),
+  rest.put(baseUrl("/albums/:id/songs/:songId"), mockSongs.update),
   rest.delete(baseUrl("/albums/:id/songs/:songId"), mockSongs.delete),
 ];
