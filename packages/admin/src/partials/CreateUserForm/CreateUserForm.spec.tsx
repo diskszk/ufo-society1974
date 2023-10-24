@@ -1,5 +1,5 @@
 import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import { composeStories } from "@storybook/react";
 import * as stories from "./CreateUserForm.stories";
 import { CreateUserForm } from "./CreateUserForm";
