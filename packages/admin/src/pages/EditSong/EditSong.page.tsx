@@ -6,11 +6,18 @@ import { useStatus } from "../../hooks/useStatus";
 import { getApproved } from "../../helpers";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { ROLE } from "../../constants";
+import { SongInput } from "../../schemas/songSchema";
+import { useCallback } from "react";
+import { SubmitHandler } from "react-hook-form";
+import { useHandleSong, useMessageModalState } from "../../hooks";
+import { UpdateSongDTO } from "@ufo-society1974/types";
 
 /*
   /albums/(edit|preview)/:albumId/detail/:songId
 */
 export const EditSong: React.FC = () => {
+  const { openMessageModalWithMessage } = useMessageModalState();
+
   const { id: albumId, songId } = useParams<{ id: string; songId: string }>();
 
   const { data: song } = useFetch(["song", songId], () =>
@@ -28,6 +35,24 @@ export const EditSong: React.FC = () => {
     status,
   });
 
+  const { handleUpdateSong } = useHandleSong();
+
+  const onSubmit: SubmitHandler<SongInput> = useCallback(
+    async (data) => {
+      if (!isApproved) {
+        openMessageModalWithMessage("権限がありません。");
+      }
+
+      const updateSongDTO: UpdateSongDTO = {
+        ...data,
+        id: data.trackId.toString(),
+      };
+
+      await handleUpdateSong(albumId, songId, updateSongDTO);
+    },
+    [albumId, handleUpdateSong, isApproved, openMessageModalWithMessage, songId]
+  );
+
   const label = isApproved ? "編集" : "閲覧";
 
   return (
@@ -35,7 +60,7 @@ export const EditSong: React.FC = () => {
       <h1>曲を{label}</h1>
       {song ? (
         <SongForm
-          onSubmit={() => void 0}
+          onSubmit={onSubmit}
           isApproved={isApproved}
           currentValues={{ ...song, trackId: Number(song.id) }}
         />

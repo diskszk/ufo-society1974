@@ -3,8 +3,7 @@ import { Song } from "@ufo-society1974/types";
 import { Link } from "react-router-dom";
 import { useCallback } from "react";
 import { Status } from "../../types";
-import { useMessageModalState } from "../../hooks/useMessageModalState";
-import { useHandleSong } from "./hooks";
+import { useMessageModalState, useHandleSong } from "../../hooks";
 
 type Props = {
   song: Song;
@@ -32,9 +31,7 @@ export const SongListItem: React.FC<Props> = ({
       return;
     }
 
-    await handleDeleteSong(albumId, song.id, song.title);
-
-    return;
+    await handleDeleteSong(albumId, song.id);
   }, [
     albumId,
     handleDeleteSong,
