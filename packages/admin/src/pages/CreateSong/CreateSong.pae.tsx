@@ -6,7 +6,8 @@ import { ROLE } from "../../constants";
 import { SubmitHandler } from "react-hook-form";
 import { SongInput } from "../../schemas/songSchema";
 import { useCallback } from "react";
-import { useHandleSong, useMessageModalState } from "../../hooks";
+import { useMessageModalState } from "../../hooks/useMessageModalState";
+import { useHandleSong } from "../../hooks/useHandleSong";
 import { useParams } from "react-router-dom";
 
 /*

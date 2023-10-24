@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { SignInForm } from "./SignInForm";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { SignInInputs } from "../../schemas/signInSchema";
 

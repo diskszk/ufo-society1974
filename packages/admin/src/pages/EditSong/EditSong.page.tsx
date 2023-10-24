@@ -9,7 +9,8 @@ import { ROLE } from "../../constants";
 import { SongInput } from "../../schemas/songSchema";
 import { useCallback } from "react";
 import { SubmitHandler } from "react-hook-form";
-import { useHandleSong, useMessageModalState } from "../../hooks";
+import { useMessageModalState } from "../../hooks/useMessageModalState";
+import { useHandleSong } from "../../hooks/useHandleSong";
 import { UpdateSongDTO } from "@ufo-society1974/types";
 
 /*

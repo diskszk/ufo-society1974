@@ -2,7 +2,7 @@ import { act, render, screen, waitFor } from "@testing-library/react";
 import { composeStories } from "@storybook/react";
 import * as stories from "./ResetForm.stories";
 import { ResetForm } from "./ResetForm";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 
 const user = userEvent.setup();
 const mockFn = jest.fn();
