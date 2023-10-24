@@ -1,6 +1,6 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { CustomButton } from "../components/UIKit";
+import { Link } from "react-router-dom";
+import { StyledButton } from "../components/UIKit";
 import meido from "../assets/images/job_maid_meido_kissa.png";
 import { useSignedInUserState } from "../hooks/useSignedInUserState";
 import { CircularProgress } from "@mui/material";
@@ -10,8 +10,6 @@ type PresentationProps = {
 };
 
 export const Presentation: React.FC<PresentationProps> = ({ username }) => {
-  const history = useHistory();
-
   return (
     <section className="home page">
       <h1>HOME</h1>
@@ -36,18 +34,12 @@ export const Presentation: React.FC<PresentationProps> = ({ username }) => {
       <div className="spacing-div"></div>
 
       <div className="button-container">
-        <CustomButton
-          label="ユーザー管理"
-          onClick={(_ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-            history.push("/users")
-          }
-        />
-        <CustomButton
-          label="アルバムを管理"
-          onClick={(_ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-            history.push("/albums")
-          }
-        />
+        <Link to="/users">
+          <StyledButton>ユーザー管理</StyledButton>
+        </Link>
+        <Link to="/albums">
+          <StyledButton>アルバムを管理</StyledButton>
+        </Link>
       </div>
     </section>
   );

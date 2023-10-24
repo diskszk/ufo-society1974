@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { SongInput, songSchema } from "../../schemas/songSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textbox } from "../../components/Textbox";
-import { StyledButton } from "../../components/UIKit/CustomButton";
+import { StyledButton } from "../../components/UIKit/StyledButton";
 import { BackButton } from "../../components/UIKit/BackButton";
 
 type Props = {

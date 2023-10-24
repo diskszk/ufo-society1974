@@ -1,12 +1,8 @@
-import { ERROR_MESSAGE, WEB_API_BASE_URL } from "../constants";
+import { ERROR_MESSAGE } from "../constants";
 import { CreateUserDTO } from "@ufo-society1974/types";
 import { User } from "../types";
-
 import axios from "axios";
-
-const baseUrl = (path: string) => {
-  return WEB_API_BASE_URL + path;
-};
+import { baseUrl } from "./baseUrl";
 
 export async function fetchUsers(): Promise<User[]> {
   const res = await axios.get<User[]>(baseUrl("/users"));

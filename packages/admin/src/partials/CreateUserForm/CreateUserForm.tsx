@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Textbox } from "../../components/Textbox";
-import { StyledButton } from "../../components/UIKit/CustomButton";
+import { StyledButton } from "../../components/UIKit/StyledButton";
 import { ROLE } from "../../constants";
 import {
   CreateUserInputs,

@@ -9,8 +9,6 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
-import { Provider } from "react-redux";
-import { createStore } from "./store/store";
 
 import LoadingModal from "./components/LoadingModal";
 import { ErrorModal } from "./components/ErrorModal";
@@ -19,7 +17,6 @@ import { Header } from "./components/header";
 import Routes from "./Routes";
 import MessageModal from "./components/MessageModal";
 
-const store = createStore();
 const client = new QueryClient({
   defaultOptions: {
     queries: {
@@ -40,13 +37,11 @@ const App: React.FC = () => {
             >
               <Suspense fallback={<LoadingModal />}>
                 <QueryClientProvider client={client}>
-                  <Provider store={store}>
-                    <MessageModal />
-                    <Header />
-                    <main>
-                      <Routes />
-                    </main>
-                  </Provider>
+                  <MessageModal />
+                  <Header />
+                  <main>
+                    <Routes />
+                  </main>
                 </QueryClientProvider>
               </Suspense>
             </ErrorBoundary>

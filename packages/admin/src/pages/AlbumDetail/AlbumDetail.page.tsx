@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { StyledButton } from "../../components/UIKit/CustomButton";
+import { StyledButton } from "../../components/UIKit/StyledButton";
 import { AlbumInfo } from "../../components/songs";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
