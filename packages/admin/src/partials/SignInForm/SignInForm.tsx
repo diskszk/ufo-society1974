@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { StyledButton } from "../../components/UIKit/CustomButton";
+import { StyledButton } from "../../components/UIKit/StyledButton";
 import { Textbox } from "../../components/Textbox";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema, SignInInputs } from "../../schemas/signInSchema";

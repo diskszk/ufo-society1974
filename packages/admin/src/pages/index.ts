@@ -5,7 +5,7 @@ export { ResetPage as Reset } from "./Reset";
 export { Home } from "./Home.page";
 
 // Users
-export { Users } from "./Users";
+export { UsersPage as Users } from "./Users";
 export { CreateUser } from "./CreateUser";
 
 // Albums

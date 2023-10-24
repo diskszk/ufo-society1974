@@ -1,11 +1,8 @@
 import { UpdateAlbumDTO } from "@ufo-society1974/types";
-import { ERROR_MESSAGE, WEB_API_BASE_URL } from "../constants";
+import { ERROR_MESSAGE } from "../constants";
 import axios from "axios";
 import { PublishedAlbum } from "../types";
-
-const baseUrl = (path: string) => {
-  return WEB_API_BASE_URL + path;
-};
+import { baseUrl } from "./baseUrl";
 
 export async function fetchPublishedAlbums(): Promise<PublishedAlbum[]> {
   const res = await axios.get<PublishedAlbum[]>(baseUrl("/albums"));

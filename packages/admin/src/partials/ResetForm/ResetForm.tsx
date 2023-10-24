@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { Textbox } from "../../components/Textbox";
-import { StyledButton } from "../../components/UIKit/CustomButton";
+import { StyledButton } from "../../components/UIKit/StyledButton";
 
 const schema = z
   .object({

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { StyledButton } from "./CustomButton";
+import { StyledButton } from "./StyledButton";
 import { useHistory } from "react-router-dom";
 
 type Props = {

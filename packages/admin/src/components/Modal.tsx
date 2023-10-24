@@ -1,4 +1,4 @@
-import { CustomButton } from "./UIKit";
+import { StyledButton } from "./UIKit";
 
 type Props = {
   message: string;
@@ -11,7 +11,7 @@ export const Modal: React.FC<Props> = ({ message, handleClickCloseModal }) => (
       <h3>{message}</h3>
       <div className="spacing-div" />
       <div className="spacing-div" />
-      <CustomButton label="閉じる" onClick={handleClickCloseModal} />
+      <StyledButton onClick={handleClickCloseModal}>閉じる</StyledButton>
     </div>
   </div>
 );
