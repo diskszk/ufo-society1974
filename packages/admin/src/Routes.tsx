@@ -5,12 +5,13 @@ import {
   SignIn,
   CreateUser,
   Reset,
-  Songs,
-  SongEdit,
+  AlbumDetail,
+  EditSong,
   Users,
   Albums,
   CreateAlbum,
   EditAlbum,
+  CreateSong,
 } from "./pages";
 
 const Routes: React.FC = () => {
@@ -28,15 +29,31 @@ const Routes: React.FC = () => {
 
         {/* Albums */}
         <Route exact path={"/albums"} component={Albums} />
-        <Route path={"/albums/edit/:id"} component={EditAlbum} />
+        <Route
+          exact
+          path={"/albums/(edit|preview)/:id"}
+          component={EditAlbum}
+        />
         <Route path={"/albums/create"} component={CreateAlbum} />
+
+        {/* AlbumDetail */}
+        <Route
+          exact
+          path={"/albums/(edit|preview)/:id/detail"}
+          component={AlbumDetail}
+        />
 
         {/* Songs */}
         <Route
-          path={"/albums/detail/:albumId/edit/:songId"}
-          component={SongEdit}
+          exact
+          path={"/albums/edit/:id/detail/songs/new"}
+          component={CreateSong}
         />
-        <Route exact path={"/albums/detail/:albumId"} component={Songs} />
+        <Route
+          exact
+          path={"/albums/(edit|preview)/:id/detail/:songId"}
+          component={EditSong}
+        />
       </Auth>
     </Switch>
   );

@@ -3,44 +3,66 @@ import { BorderColor } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { Album } from "@ufo-society1974/types";
 import { ROLE } from "../../constants";
+import { getApproved } from "../../helpers";
+import { RoleType, Status } from "../../types";
+
+type ListItemProps = {
+  album: Album;
+  label: string;
+  status: Status;
+};
+export const AlbumListItem: React.FC<ListItemProps> = ({
+  album,
+  label,
+  status,
+}) => (
+  <li className="album-item" key={album.id}>
+    <p>{album.title}</p>
+    <Link className="album-image" to={`/albums/${status}/${album.id}`}>
+      <img src={album.image} alt={"アルバムの画像"} />
+    </Link>
+    <div className="album-image-footer">
+      <span>アルバムを{label}する</span>
+      <Link to={`/albums/${status}/${album.id}`}>
+        <IconButton>
+          <BorderColor />
+        </IconButton>
+      </Link>
+      <br />
+      <span>アルバムの詳細を{label}する</span>
+      <Link to={`/albums/${status}/${album.id}/detail`}>
+        <IconButton>
+          <BorderColor />
+        </IconButton>
+      </Link>
+    </div>
+  </li>
+);
 
 type Props = {
   albums: Album[];
-  role: string;
-  publicStatus: "draft" | "published";
+  role: RoleType;
+  status: Status;
 };
 
-export const AlbumList: React.FC<Props> = ({ albums, role, publicStatus }) => {
+export const AlbumList: React.FC<Props> = ({ albums, role, status }) => {
+  const label = getApproved({
+    currentUserRole: role,
+    approvedRole: ROLE.EDITOR,
+    status,
+  })
+    ? "編集"
+    : "閲覧";
+
   return (
     <ul className="album-list">
       {albums.map((album: Album) => (
-        <li className="album-item" key={album.id}>
-          <p>{album.title}</p>
-          <Link className="album-image" to={`/albums/detail/${album.id}`}>
-            <img src={album.image} alt={"アルバムの画像"} />
-          </Link>
-          <div className="album-image-footer">
-            {role === ROLE.EDITOR ? (
-              <span>アルバムを編集する</span>
-            ) : (
-              <span>アルバムを閲覧する</span>
-            )}
-            <IconButton
-              href={`/albums/edit/${album.id}?status=${publicStatus}`}
-            >
-              <BorderColor />
-            </IconButton>
-            <br />
-            {role === ROLE.EDITOR ? (
-              <span>アルバムの曲を編集する</span>
-            ) : (
-              <span>アルバムの曲を閲覧する</span>
-            )}
-            <IconButton href={`/albums/detail/${album.id}`}>
-              <BorderColor />
-            </IconButton>
-          </div>
-        </li>
+        <AlbumListItem
+          key={album.id}
+          album={album}
+          label={label}
+          status={status}
+        />
       ))}
     </ul>
   );

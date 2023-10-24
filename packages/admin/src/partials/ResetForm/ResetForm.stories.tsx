@@ -26,6 +26,9 @@ export const Default: Story = {
 };
 
 export const ValidEmail: Story = {
+  args: {
+    onSubmit: () => void 0,
+  },
   play: async ({
     canvasElement,
   }: {

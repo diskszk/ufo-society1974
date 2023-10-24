@@ -1,24 +1,25 @@
-import { StyledButton } from "../../components/UIKit/CustomButton";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { AddIconButton } from "../../components/AddIconButton";
 import { AlbumList } from "../../partials/AlbumList";
 import { StyledSubHeading } from "./styles";
 import { useAlbums } from "./hooks";
-import { Album, User } from "@ufo-society1974/types";
+import { Album } from "@ufo-society1974/types";
+import { RoleType } from "../../types";
+import { BackButton } from "../../components/UIKit/BackButton";
 
 type PresentationProps = {
   draftAlbums: Album[];
   publishedAlbums: Album[];
-  signedInUser: User;
+  role: RoleType;
 };
 
 export const Presentation: React.FC<PresentationProps> = ({
   draftAlbums,
   publishedAlbums,
-  signedInUser,
+  role,
 }) => {
-  const isApprovedUser = signedInUser.role === ROLE.EDITOR;
+  const isApprovedUser = role === ROLE.EDITOR;
 
   return (
     <div className="page">
@@ -35,26 +36,18 @@ export const Presentation: React.FC<PresentationProps> = ({
               <AddIconButton label="アルバムを追加" href="/albums/create" />
             )}
           </div>
-          <AlbumList
-            albums={draftAlbums}
-            role={signedInUser.role}
-            publicStatus="draft"
-          />
+          <AlbumList albums={draftAlbums} role={role} status="edit" />
         </div>
         <hr />
         <div>
           <StyledSubHeading>公開中のアルバム</StyledSubHeading>
-          <AlbumList
-            albums={publishedAlbums}
-            role={signedInUser.role}
-            publicStatus="published"
-          />
+          <AlbumList albums={publishedAlbums} role={role} status="preview" />
         </div>
 
         <div className="spacing-div"></div>
 
         <div className="button-container-row">
-          <StyledButton href="/">もどる</StyledButton>
+          <BackButton>もどる</BackButton>
         </div>
       </div>
     </div>
@@ -70,7 +63,7 @@ export const Albums: React.FC = () => {
     <Presentation
       draftAlbums={draftAlbums}
       publishedAlbums={publishedAlbums}
-      signedInUser={signedInUser}
+      role={signedInUser.role}
     />
   );
 };

@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
 import "../src/assets/styles/style.scss";
+import { initialize, mswLoader } from "msw-storybook-addon";
 
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -11,6 +12,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const store = createStore();
 const client = new QueryClient();
 
+// mswをinitする
+initialize();
+
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
@@ -20,6 +24,7 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    loaders: [mswLoader],
   },
   decorators: [
     (Story) => (

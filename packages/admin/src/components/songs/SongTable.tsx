@@ -9,7 +9,7 @@ import {
   Paper,
 } from "@mui/material";
 import { SongTableBody } from "./";
-import { RootStore } from "../../lib/types";
+import { RootStore } from "../../types";
 import { Song } from "@ufo-society1974/types";
 import { createUpdateSongsAction } from "../../store/SongsReducer";
 import {
@@ -17,7 +17,7 @@ import {
   crateSuccessFetchAction,
   createFailedFetchAction,
 } from "../../store/LoadingStatusReducer";
-import { getSongs } from "../../lib/songs";
+import { getSongs } from "../../lib/_songs";
 import { AddIconButton } from "../AddIconButton";
 
 type PresentationProps = {

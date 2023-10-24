@@ -17,6 +17,7 @@
     "admin:lint": "yarn workspace admin lint",
     "admin:test": "yarn workspace admin test",
     "admin:dev": "yarn workspace admin dev",
+    "admin:storybook": "yarn workspace admin storybook",
     "admin:preview": "npx firebase hosting:channel:deploy --only admin",
     "homepage:lint": "yarn workspace homepage lint",
     "homepage:test": "yarn workspace homepage test",

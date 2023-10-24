@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlbumInput, albumSchema } from "../../lib/schemas/albumSchema";
+import { AlbumInput, albumSchema } from "../../schemas/albumSchema";
 import { Textbox } from "../../components/Textbox";
 import { StyledButton } from "../../components/UIKit/CustomButton";
 import { ImageUploadForm } from "../ImageUploadForm";
+import { BackButton } from "../../components/UIKit/BackButton";
 
 type Props = {
   onSubmit: SubmitHandler<AlbumInput>;
@@ -53,6 +54,7 @@ export const AlbumForm: React.FC<Props> = ({
           helperText={errors?.title?.message}
           aria-invalid={errors?.title ? true : false}
           variant="standard"
+          inputProps={{ readOnly: !isApproved }}
         />
 
         <ImageUploadForm
@@ -72,14 +74,14 @@ export const AlbumForm: React.FC<Props> = ({
           helperText={errors?.publishedDate?.message}
           aria-invalid={errors?.publishedDate ? true : false}
           variant="standard"
+          inputProps={{ readOnly: !isApproved }}
         />
 
         <div className="button-container-row">
-          {/* href要素を含めることでaタグとみなされる!! */}
-          <StyledButton href="/albums">もどる</StyledButton>
+          <BackButton>もどる</BackButton>
 
           <StyledButton
-            disabled={isSubmitting || (isApproved && !isDirty)}
+            disabled={isSubmitting || !isApproved || !isDirty}
             type="submit"
           >
             保存する

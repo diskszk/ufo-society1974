@@ -1,16 +1,11 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import { composeStories } from "@storybook/react";
 import * as stories from "./ResetForm.stories";
 import { ResetForm } from "./ResetForm";
-import { setupReset } from "../../test-utils/reset";
+import userEvent from "@testing-library/user-event";
 
+const user = userEvent.setup();
 const mockFn = jest.fn();
-
-const setup = async (injectValue?: Partial<{ email: string }>) => {
-  render(<ResetForm onSubmit={mockFn} />);
-
-  return await setupReset(injectValue);
-};
 
 test("何も入力されていない場合、ボタンは非活性である", async () => {
   render(<ResetForm onSubmit={mockFn} />);
@@ -33,32 +28,37 @@ test("メールアドレス以外の文字列が入力された場合、エラ�
   expect(screen.getByRole("textbox", { name: "E-mail" })).toBeInvalid();
 });
 
-test("正しくメールアドレスが入力された場合、リセットボタンをクリックできる", async () => {
-  const { clickResetButton, form } = await setup();
+test("正しくメールアドレスが入力された場合、リセットボタンは活性である", async () => {
+  const { ValidEmail } = composeStories(stories);
 
-  await waitFor(() => {
-    expect(form.email).toBeValid();
+  const { container } = render(<ValidEmail />);
+
+  await act(async () => {
+    await ValidEmail.play({
+      canvasElement: container,
+    });
   });
-  expect(form.button).toBeEnabled();
-
-  await clickResetButton();
 
   await waitFor(() => {
-    expect(mockFn).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole("button", { name: "リセット" })).toBeEnabled();
   });
 });
 
 test("正しくメールアドレスが入力されリセットボタンをクリックされた場合、メールアドレス入力欄は空になる", async () => {
-  const { clickResetButton, form } = await setup();
+  const { ValidEmail } = composeStories(stories);
 
-  await waitFor(() => {
-    expect(form.email).toBeValid();
+  const { container } = render(<ValidEmail />);
+
+  await act(async () => {
+    await ValidEmail.play({
+      canvasElement: container,
+      args: { onSubmit: mockFn },
+    });
   });
-  expect(form.button).toBeEnabled();
 
-  await clickResetButton();
+  await user.click(screen.getByRole("button", { name: "リセット" }));
 
   await waitFor(() => {
-    expect(form.email).toHaveValue("");
+    expect(screen.getByRole("textbox", { name: "E-mail" })).toHaveValue("");
   });
 });

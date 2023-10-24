@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { SubmitHandler } from "react-hook-form";
 import { CreateUserForm } from "../../partials/CreateUserForm";
-import { CreateUserInputs } from "../../lib/schemas/createUserSchema";
+import { CreateUserInputs } from "../../schemas/createUserSchema";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { useCreateUser } from "../../hooks/useCreateUser";
 import { ROLE } from "../../constants";
@@ -24,15 +24,11 @@ export const CreateUser: React.FC = () => {
 
         await handleSignIn(data.email, data.password);
       } catch {
-        throw new Error("signin error");
+        throw new Error("サインインに失敗しました。");
       }
     },
     [handleCreateUser, handleSignIn, signedInUser.role]
   );
-
-  const handleClickBack = useCallback(() => {
-    history.goBack();
-  }, [history]);
 
   useEffect(() => {
     if (signedInUser) {
@@ -47,11 +43,7 @@ export const CreateUser: React.FC = () => {
     <div className="sign-up page">
       <h1>管理者登録</h1>
 
-      <CreateUserForm
-        handleClickBackButton={handleClickBack}
-        onSubmit={onSubmit}
-        role={signedInUser.role}
-      />
+      <CreateUserForm onSubmit={onSubmit} role={signedInUser.role} />
     </div>
   );
 };

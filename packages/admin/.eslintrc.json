@@ -1,7 +1,8 @@
 {
   "extends": [
     "@ufo-society1974/eslint-config/.eslintrc.client.json",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:storybook/recommended"
   ],
   "plugins": ["jsx-a11y"],
   "rules": {

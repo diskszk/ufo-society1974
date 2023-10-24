@@ -1,5 +1,5 @@
 import { PathParams, ResponseResolver, RestContext, RestRequest } from "msw";
-import { User } from "@ufo-society1974/types";
+import { User } from "../../types";
 
 const dummyUsers: User[] = [
   {

@@ -1,4 +1,4 @@
-import { RootStore } from "../lib/types";
+import { RootStore } from "../types";
 import { NO_IMAGE } from "../constants";
 
 export const initialState: RootStore = {

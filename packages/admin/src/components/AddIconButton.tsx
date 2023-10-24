@@ -1,13 +1,12 @@
-import React from "react";
 import { IconButton } from "@mui/material";
 import { LibraryAddOutlined } from "@mui/icons-material";
 
 type Props = {
   label: string;
-  href: string;
+  href?: string;
 };
-export const AddIconButton: React.FC<Props> = ({ label, href }) => (
-  <IconButton href={href}>
+export const AddIconButton: React.FC<Props> = ({ label }) => (
+  <IconButton>
     <span>{label}</span>
     <LibraryAddOutlined fontSize={"large"} />
   </IconButton>

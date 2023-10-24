@@ -7,9 +7,10 @@ import { ROLE } from "../../constants";
 import {
   CreateUserInputs,
   createUserSchema,
-} from "../../lib/schemas/createUserSchema";
-import { SelectOptions } from "../../lib/types";
+} from "../../schemas/createUserSchema";
+import { SelectOptions, RoleType } from "../../types";
 import { SelectRoleController } from "../../components/SelectRoleController";
+import { BackButton } from "../../components/UIKit/BackButton";
 
 const roles: SelectOptions = [
   {
@@ -27,16 +28,11 @@ const roles: SelectOptions = [
 ];
 
 type Props = {
-  handleClickBackButton: () => void;
   onSubmit: SubmitHandler<CreateUserInputs>;
-  role: string;
+  role: RoleType;
 };
 
-export const CreateUserForm: React.FC<Props> = ({
-  handleClickBackButton,
-  onSubmit,
-  role,
-}) => {
+export const CreateUserForm: React.FC<Props> = ({ onSubmit, role }) => {
   const {
     control,
     handleSubmit,
@@ -104,9 +100,9 @@ export const CreateUserForm: React.FC<Props> = ({
         <SelectRoleController control={control} options={roles} />
 
         <div className="button-container-row">
-          <StyledButton onClick={handleClickBackButton}>もどる</StyledButton>
+          <BackButton>もどる</BackButton>
           <StyledButton
-            disabled={isSubmitting || (isApprovedUser && !isDirty)}
+            disabled={isSubmitting || !isApprovedUser || !isDirty}
             type="submit"
           >
             登録する

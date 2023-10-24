@@ -1,19 +1,19 @@
 import React, { useCallback, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootStore } from "../../lib/types";
+import { RootStore } from "../../types";
 import { User, Song, Album } from "@ufo-society1974/types";
 import { TableCell, TableRow } from "@mui/material";
 import { ROLE } from "../../constants";
 import { createUpdateSongsAction } from "../../store/SongsReducer";
-import { deleteSong, getSongs } from "../../lib/songs";
+import { deleteSong, getSongs } from "../../lib/_songs";
 import {
   createDisplayMessage,
   createFailedFetchAction,
   createRequestFetchAction,
   crateSuccessFetchAction,
 } from "../../store/LoadingStatusReducer";
-import { checkRole } from "../../lib/helpers";
+import { checkRole } from "../../helpers";
 
 type Props = {
   song: Song;
@@ -116,7 +116,3 @@ export const SongTableBodyItem: React.FC<Props> = ({ song }) => {
     </TableRow>
   );
 };
-
-<td>
-  <button>The table body</button>
-</td>;

@@ -5,35 +5,46 @@ import { Wrapper } from "../../test-utils";
 
 const testData = [createMockAlbum("01")];
 
-test("権限がeditorの場合、`編集する`という文言を表示する", () => {
+test("権限がeditorかつstatusがeditの場合、`編集する`という文言を表示する", () => {
   render(
     <Wrapper>
-      <AlbumList role="editor" albums={testData} publicStatus="draft" />
+      <AlbumList role="editor" albums={testData} status="edit" />
     </Wrapper>
   );
 
   expect(screen.getByText("アルバムを編集する")).toBeInTheDocument();
-  expect(screen.getByText("アルバムの曲を編集する")).toBeInTheDocument();
+  expect(screen.getByText("アルバムの詳細を編集する")).toBeInTheDocument();
 });
 
-test("権限がmasterの場合、`閲覧する`という文言を表示する", () => {
+test("権限がeditorかつstatusがpreviewの場合、`閲覧する`という文言を表示する", () => {
   render(
     <Wrapper>
-      <AlbumList role="master" albums={testData} publicStatus="draft" />
+      <AlbumList role="editor" albums={testData} status="preview" />
     </Wrapper>
   );
 
   expect(screen.getByText("アルバムを閲覧する")).toBeInTheDocument();
-  expect(screen.getByText("アルバムの曲を閲覧する")).toBeInTheDocument();
+  expect(screen.getByText("アルバムの詳細を閲覧する")).toBeInTheDocument();
 });
 
-test("権限がwatcherの場合、`閲覧する`という文言を表示する", () => {
+test("権限がmasterかつstatusがeditの場合、`閲覧する`という文言を表示する", () => {
   render(
     <Wrapper>
-      <AlbumList role="watcher" albums={testData} publicStatus="draft" />
+      <AlbumList role="master" albums={testData} status="edit" />
     </Wrapper>
   );
 
   expect(screen.getByText("アルバムを閲覧する")).toBeInTheDocument();
-  expect(screen.getByText("アルバムの曲を閲覧する")).toBeInTheDocument();
+  expect(screen.getByText("アルバムの詳細を閲覧する")).toBeInTheDocument();
+});
+
+test("権限がmasterかつstatusがpreviewの場合、`閲覧する`という文言を表示する", () => {
+  render(
+    <Wrapper>
+      <AlbumList role="master" albums={testData} status="preview" />
+    </Wrapper>
+  );
+
+  expect(screen.getByText("アルバムを閲覧する")).toBeInTheDocument();
+  expect(screen.getByText("アルバムの詳細を閲覧する")).toBeInTheDocument();
 });

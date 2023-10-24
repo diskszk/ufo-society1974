@@ -1,29 +1,25 @@
 import React, { useCallback } from "react";
 import { SubmitHandler } from "react-hook-form";
-import { AlbumInput } from "../../lib/schemas/albumSchema";
+import { AlbumInput } from "../../schemas/albumSchema";
 import { AlbumForm } from "../../partials/AlbumForm";
 import { ROLE } from "../../constants";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
-import { useAlbum, useHandleDraftAlbum } from "./hooks";
-import { StyledButton } from "../../components/UIKit/CustomButton";
+import { useHandleDraftAlbum } from "../../hooks/useHandleDraftAlbum";
 import { Album } from "@ufo-society1974/types";
+import { getApproved } from "../../helpers";
+import { useFetchAlbum } from "../../hooks/api";
+import { useStatus } from "../../hooks/useStatus";
 
 type PresentationProps = {
   album: Album;
   isApproved: boolean;
-  publicState: string;
 };
 
-export const Presentation: React.FC<PresentationProps> = ({
-  album,
-  isApproved,
-  publicState,
-}) => {
+const Presentation: React.FC<PresentationProps> = ({ album, isApproved }) => {
   const { openMessageModalWithMessage } = useMessageModalState();
 
-  const { updateAlbum, unpublishAlbum } = useHandleDraftAlbum();
-
+  const { updateAlbum } = useHandleDraftAlbum();
   const onSubmit: SubmitHandler<AlbumInput> = useCallback(
     async (data) => {
       if (!isApproved) {
@@ -41,60 +37,47 @@ export const Presentation: React.FC<PresentationProps> = ({
     [album, isApproved, openMessageModalWithMessage, updateAlbum]
   );
 
-  const handleUnpublish = useCallback(async () => {
-    if (!isApproved) {
-      openMessageModalWithMessage("権限がありません。");
-    }
-    await unpublishAlbum(album.id);
-
-    return;
-  }, [album.id, isApproved, openMessageModalWithMessage, unpublishAlbum]);
-
   return (
-    <div className="album-edit">
-      <h1>アルバムを編集</h1>
-      <div>
-        <AlbumForm
-          onSubmit={onSubmit}
-          isApproved={isApproved}
-          currentValues={{
-            ...album,
-            imageFile: album.image,
-          }}
-        />
-        {publicState === "published" && (
-          <StyledButton onClick={handleUnpublish}>非公開に戻す</StyledButton>
-        )}
-      </div>
+    <div>
+      <AlbumForm
+        onSubmit={onSubmit}
+        isApproved={isApproved}
+        currentValues={{
+          ...album,
+          imageFile: album.image,
+        }}
+      />
     </div>
   );
 };
 
-// /albums/edit/:id?status={draft || published}
+/* 
+  /albums/(edit|preview)/:id
+ */
 export const EditAlbum: React.FC = () => {
   const { signedInUser } = useSignedInUserState();
 
-  const { album, publicState } = useAlbum();
+  const { data: album } = useFetchAlbum();
 
-  // 公開済みの場合編集できない
-  const isApproved =
-    signedInUser.role === ROLE.EDITOR && publicState === "draft";
+  const [getStatus] = useStatus();
+  const { status } = getStatus();
+
+  const isApproved = getApproved({
+    currentUserRole: signedInUser.role,
+    approvedRole: ROLE.EDITOR,
+    status,
+  });
+
+  const label = isApproved ? "編集" : "閲覧";
 
   return (
-    <>
+    <div className="album-edit">
+      <h1>アルバムを{label}</h1>
       {album ? (
-        <Presentation
-          album={album}
-          isApproved={isApproved}
-          publicState={publicState}
-        />
+        <Presentation album={album} isApproved={isApproved} />
       ) : (
-        <div className="album-edit">
-          <h1>アルバムを編集</h1>
-
-          <p>アルバムが存在しません。</p>
-        </div>
+        <p>アルバムが存在しません。</p>
       )}
-    </>
+    </div>
   );
 };

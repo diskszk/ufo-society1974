@@ -1,10 +1,10 @@
-import { CreateUserInputs } from "../../lib/schemas/createUserSchema";
+import { CreateUserInputs } from "../../schemas/createUserSchema";
 import { useMutation } from "@tanstack/react-query";
 import { createUserInFirebase } from "../../lib/auth";
 import { registerUser } from "../../lib/users";
 import { useMessageModalState } from "../useMessageModalState";
 import { ERROR_MESSAGE, ROLE } from "../../constants";
-import { User } from "@ufo-society1974/types";
+import { User, RoleType } from "../../types";
 
 export function useCreateUser() {
   const { openMessageModalWithMessage } = useMessageModalState();
@@ -20,7 +20,7 @@ export function useCreateUser() {
 
   const handleCreateUser = async (
     inputData: CreateUserInputs,
-    role: string
+    role: RoleType
   ) => {
     if (role !== ROLE.MASTER) {
       openMessageModalWithMessage("権限がありません。");

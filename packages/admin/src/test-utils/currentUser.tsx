@@ -2,8 +2,9 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { Wrapper } from ".";
 import { useSignedInUserState } from "../hooks/useSignedInUserState";
 import { createMockUser } from "@ufo-society1974/factories";
+import { RoleType } from "../types";
 
-export const setupCurrentUser = async (role: string) => {
+export const setupCurrentUser = async (role: RoleType) => {
   const { result } = renderHook(() => useSignedInUserState(), {
     wrapper: Wrapper,
   });

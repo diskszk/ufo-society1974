@@ -1,7 +1,7 @@
 import { screen, render, cleanup } from "@testing-library/react";
 import { Wrapper } from "../../test-utils";
 import { ImageUploadForm } from "./ImageUploadForm";
-import { AlbumInput } from "../../lib/schemas/albumSchema";
+import { AlbumInput } from "../../schemas/albumSchema";
 import userEvent from "@testing-library/user-event";
 import { createMockAlbum } from "@ufo-society1974/factories";
 

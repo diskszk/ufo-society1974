@@ -1,5 +1,7 @@
 import { ERROR_MESSAGE, WEB_API_BASE_URL } from "../constants";
-import { User } from "@ufo-society1974/types";
+import { CreateUserDTO } from "@ufo-society1974/types";
+import { User } from "../types";
+
 import axios from "axios";
 
 const baseUrl = (path: string) => {
@@ -32,7 +34,7 @@ export async function findUserById(uid: string): Promise<User> {
   }
 }
 
-export async function registerUser(user: User): Promise<void> {
+export async function registerUser(user: CreateUserDTO): Promise<void> {
   const res = await axios.post<User>(baseUrl("/users"), {
     ...user,
   });

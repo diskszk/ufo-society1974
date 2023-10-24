@@ -3,10 +3,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomButton, TextInput } from "../components/UIKit";
-import { saveSong } from "../lib/songs";
+import { saveSong } from "../lib/_songs";
 import { SongUploadForm } from "../components/songs/";
-import { File, RootStore } from "../lib/types";
-import { Song, User } from "@ufo-society1974/types";
+import { File, RootStore, User } from "../types";
+import { Song } from "@ufo-society1974/types";
 import {
   createDisplayMessage,
   createFailedFetchAction,
@@ -14,7 +14,7 @@ import {
   crateSuccessFetchAction,
 } from "../store/LoadingStatusReducer";
 import { ROLE } from "../constants";
-import { checkRole } from "../lib/helpers";
+import { checkRole } from "../helpers";
 
 const SongEdit: React.FC = () => {
   const dispatch = useDispatch();

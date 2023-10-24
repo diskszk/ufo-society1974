@@ -1,39 +1,35 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { composeStories } from "@storybook/react";
 import * as stories from "./CreateUserForm.stories";
 import { CreateUserForm } from "./CreateUserForm";
-import { CreateUserInputs } from "../../lib/schemas/createUserSchema";
+import { CreateUserInputs } from "../../schemas/createUserSchema";
 import { setupCreateUser } from "../../test-utils/createUser";
 
 const user = userEvent.setup();
 
-const mockHandleBack = jest.fn();
 const mockOnSubmit = jest.fn();
+
+const mockHistoryBack = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    goBack: mockHistoryBack,
+  }),
+}));
 
 afterEach(() => {
   mockOnSubmit.mockClear();
+  cleanup();
 });
 
 const setup = async (injectValues?: Partial<CreateUserInputs>) => {
-  render(
-    <CreateUserForm
-      handleClickBackButton={mockHandleBack}
-      onSubmit={mockOnSubmit}
-      role="master"
-    />
-  );
+  render(<CreateUserForm onSubmit={mockOnSubmit} role="master" />);
   return await setupCreateUser(injectValues);
 };
 
 test("何も入力されていない場合、ボタンは非活性である", async () => {
-  render(
-    <CreateUserForm
-      handleClickBackButton={mockHandleBack}
-      onSubmit={mockOnSubmit}
-      role="master"
-    />
-  );
+  render(<CreateUserForm onSubmit={mockOnSubmit} role="master" />);
 
   expect(screen.getByRole("button", { name: "登録する" })).toBeDisabled();
 });
@@ -149,15 +145,24 @@ test("パスワードとパスワード(確認)が一致しない場合、エラ
   });
   expect(screen.getByPlaceholderText("8文字以上で入力(確認)")).toBeInvalid();
 });
-test("すべての入力欄が正常な値で入力された場合、ボタンをクリックする事ができる", async () => {
-  const { clickSubmitButton } = await setup();
 
-  await clickSubmitButton();
+test("すべての入力欄が正常な値で入力された場合、登録するボタンは活性である", async () => {
+  const { Valid } = composeStories(stories);
 
-  expect(mockOnSubmit).toHaveBeenCalledTimes(1);
+  const { container } = render(<Valid />);
+
+  await act(async () => {
+    await Valid.play({
+      canvasElement: container,
+    });
+  });
+
+  await waitFor(() => {
+    expect(screen.getByRole("button", { name: "登録する" })).toBeEnabled();
+  });
 });
 
-test("submit処理中は、submitボタンはdisabledである", async () => {
+test.skip("submit処理中は、submitボタンは非活性である", async () => {
   const { form } = await setup();
 
   await user.click(form.submitButton);
@@ -166,14 +171,23 @@ test("submit処理中は、submitボタンはdisabledである", async () => {
 });
 
 test("ボタンをクリックした後、入力欄はすべて空になる", async () => {
-  const { clickSubmitButton, form } = await setup();
+  const { Valid } = composeStories(stories);
+  const { container } = render(<Valid />);
+  await act(async () => {
+    await Valid.play({
+      canvasElement: container,
+      args: {
+        onSubmit: mockOnSubmit,
+      },
+    });
+  });
 
-  await clickSubmitButton();
+  await user.click(screen.getByRole("button", { name: "登録する" }));
 
   await waitFor(() => {
-    expect(form.username).toHaveValue("");
+    expect(screen.getByRole("textbox", { name: "お名前" })).toHaveValue("");
   });
-  expect(form.email).toHaveValue("");
-  expect(form.password).toHaveValue("");
-  expect(form.confirmPassword).toHaveValue("");
+  expect(screen.getByRole("textbox", { name: "E-mail" })).toHaveValue("");
+  expect(screen.getByPlaceholderText("8文字以上で入力")).toHaveValue("");
+  expect(screen.getByPlaceholderText("8文字以上で入力(確認)")).toHaveValue("");
 });

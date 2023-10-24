@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { GSOdatas } from "./GSOdata";
-import { saveSong } from "../../lib/songs";
+import { saveSong } from "../../lib/_songs";
 import { Song } from "@ufo-society1974/types";
 
 export const pushGSO = async (): Promise<void> => {

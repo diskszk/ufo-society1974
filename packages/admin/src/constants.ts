@@ -1,8 +1,12 @@
 // variables
+const MASTER = "master" as const;
+const EDITOR = "editor" as const;
+const WATCHER = "watcher" as const;
+
 export const ROLE = {
-  MASTER: "master",
-  EDITOR: "editor",
-  WATCHER: "watcher",
+  MASTER,
+  EDITOR,
+  WATCHER,
 } as const;
 
 import defaultFile from "./assets/images/no_image.jpg";
