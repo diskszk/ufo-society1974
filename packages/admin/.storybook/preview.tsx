@@ -4,12 +4,9 @@ import { initialize, mswLoader } from "msw-storybook-addon";
 
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { Provider } from "react-redux";
-import { createStore } from "../src/store/store";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const store = createStore();
 const client = new QueryClient();
 
 // mswをinitする
@@ -29,13 +26,11 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <ErrorBoundary fallback={<p>Something Error</p>}>
-        <Provider store={store}>
-          <MemoryRouter>
-            <QueryClientProvider client={client}>
-              <Story />
-            </QueryClientProvider>
-          </MemoryRouter>
-        </Provider>
+        <MemoryRouter>
+          <QueryClientProvider client={client}>
+            <Story />
+          </QueryClientProvider>
+        </MemoryRouter>
       </ErrorBoundary>
     ),
   ],
