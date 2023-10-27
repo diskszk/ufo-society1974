@@ -5,7 +5,7 @@ import { createSong, updateSong, deleteSong } from "../../lib/songs";
 import { CreateSongDTO, UpdateSongDTO } from "@ufo-society1974/types";
 
 type ReturnType = {
-  handleCrateSong: (albumId: string, data: CreateSongDTO) => Promise<void>;
+  handleCreateSong: (albumId: string, data: CreateSongDTO) => Promise<void>;
   handleUpdateSong: (
     albumId: string,
     songId: string,
@@ -22,7 +22,7 @@ export function useHandleSong(): ReturnType {
       createSong(albumId, data)
   );
 
-  const handleCrateSong: ReturnType["handleCrateSong"] = useCallback(
+  const handleCreateSong: ReturnType["handleCreateSong"] = useCallback(
     async (albumId, data) => {
       try {
         await createSongMutate({ albumId, data });
@@ -85,5 +85,9 @@ export function useHandleSong(): ReturnType {
     [deleteSongMutate, openMessageModalWithMessage]
   );
 
-  return { handleCrateSong, handleUpdateSong, handleDeleteSong };
+  return {
+    handleCreateSong,
+    handleUpdateSong,
+    handleDeleteSong,
+  };
 }

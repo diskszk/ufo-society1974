@@ -26,7 +26,7 @@ export const CreateSong: React.FC = () => {
   });
 
   const { openMessageModalWithMessage } = useMessageModalState();
-  const { handleCrateSong } = useHandleSong();
+  const { handleCreateSong } = useHandleSong();
 
   const { id: albumId } = useParams<{ id: string }>();
   const onSubmit: SubmitHandler<SongInput> = useCallback(
@@ -35,9 +35,9 @@ export const CreateSong: React.FC = () => {
         openMessageModalWithMessage("権限がありません。");
       }
 
-      await handleCrateSong(albumId, data);
+      await handleCreateSong(albumId, data);
     },
-    [albumId, handleCrateSong, isApproved, openMessageModalWithMessage]
+    [albumId, handleCreateSong, isApproved, openMessageModalWithMessage]
   );
 
   return (
