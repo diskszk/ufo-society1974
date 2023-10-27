@@ -46,10 +46,7 @@ export function useHandleUser(): ReturnType {
         isDeleted: false,
       });
 
-      openMessageModalWithMessage(
-        `${inputData.username}を作成しました。
-          サインインし直します。`
-      );
+      return;
     } catch (error) {
       if (error instanceof Error) {
         openMessageModalWithMessage(error.message);
@@ -66,6 +63,7 @@ export function useHandleUser(): ReturnType {
     async (id) => {
       try {
         await deleteUserMutate({ id });
+
         openMessageModalWithMessage("ユーザーを削除しました。");
       } catch (error) {
         if (error instanceof Error) {
