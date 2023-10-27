@@ -14,7 +14,7 @@ export function useHandlePublishedAlbum(): ReturnType {
     unpublish(albumId)
   );
 
-  const unpublishAlbum = useCallback(
+  const unpublishAlbum: ReturnType["unpublishAlbum"] = useCallback(
     async (albumId: string) => {
       try {
         await unpublishAlbumMutate(albumId);
