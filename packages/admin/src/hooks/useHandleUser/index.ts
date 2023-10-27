@@ -1,12 +1,18 @@
+import { useCallback } from "react";
 import { CreateUserInputs } from "../../schemas/createUserSchema";
 import { useMutation } from "@tanstack/react-query";
 import { createUserInFirebase } from "../../lib/auth";
-import { registerUser } from "../../lib/users";
+import { registerUser, deleteUser } from "../../lib/users";
 import { useMessageModalState } from "../useMessageModalState";
-import { ERROR_MESSAGE, ROLE } from "../../constants";
-import { User, RoleType } from "../../types";
+import { ERROR_MESSAGE } from "../../constants";
+import { User } from "../../types";
 
-export function useCreateUser() {
+type ReturnType = {
+  handleDelete: (id: string) => Promise<void>;
+  handleCreate: (inputData: CreateUserInputs) => Promise<void>;
+};
+
+export function useHandleUser(): ReturnType {
   const { openMessageModalWithMessage } = useMessageModalState();
 
   const { mutateAsync: createUserMutate } = useMutation(
@@ -18,15 +24,9 @@ export function useCreateUser() {
     registerUser(user)
   );
 
-  const handleCreateUser = async (
-    inputData: CreateUserInputs,
-    role: RoleType
+  const handleCreate: ReturnType["handleCreate"] = async (
+    inputData: CreateUserInputs
   ) => {
-    if (role !== ROLE.MASTER) {
-      openMessageModalWithMessage("権限がありません。");
-      return;
-    }
-
     try {
       const fbUser = await createUserMutate({
         email: inputData.email,
@@ -58,5 +58,24 @@ export function useCreateUser() {
     }
   };
 
-  return { handleCreateUser };
+  const { mutateAsync: deleteUserMutate } = useMutation(
+    ({ id }: { id: string }) => deleteUser(id)
+  );
+
+  const handleDelete: ReturnType["handleDelete"] = useCallback(
+    async (id) => {
+      try {
+        await deleteUserMutate({ id });
+        openMessageModalWithMessage("ユーザーを削除しました。");
+      } catch (error) {
+        if (error instanceof Error) {
+          openMessageModalWithMessage(error.message);
+          return;
+        }
+      }
+    },
+    [deleteUserMutate, openMessageModalWithMessage]
+  );
+
+  return { handleCreate, handleDelete };
 }

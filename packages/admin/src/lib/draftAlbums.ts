@@ -52,6 +52,7 @@ export async function deleteDraftAlbum(albumId: string): Promise<void> {
   }
 }
 
+// TODO: どこからもまだ呼ばれていない
 export async function publish(albumId: string): Promise<void> {
   const res = await axios.post(`/draft-albums/${albumId}/publish`);
 
