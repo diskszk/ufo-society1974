@@ -10,12 +10,14 @@ import {
 } from "@mui/material";
 import { AddIconButton } from "../../components/AddIconButton";
 import { User } from "../../types";
+import { UserListItem } from "./UserListItem";
 
 type Props = {
   users: User[];
+  isApproved: boolean;
 };
 
-export const UserList: React.FC<Props> = ({ users }) => {
+export const UserList: React.FC<Props> = ({ users, isApproved }) => {
   return (
     <div className="user-table">
       <TableContainer component={Paper}>
@@ -31,39 +33,23 @@ export const UserList: React.FC<Props> = ({ users }) => {
               <TableCell>お名前</TableCell>
               <TableCell>役職</TableCell>
               <TableCell>
-                {/* TODO: 権限によって表示/非表示を分ける */}
-                <Link to="/users/create">
-                  <AddIconButton label="アカウント作成" />
-                </Link>
+                {isApproved && (
+                  <Link to="/users/create">
+                    <AddIconButton label="アカウント作成" />
+                  </Link>
+                )}
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {users.map((user, key) => {
-              return <UserTableBody user={user} key={key} />;
+              return (
+                <UserListItem key={key} user={user} isApproved={isApproved} />
+              );
             })}
           </TableBody>
         </Table>
       </TableContainer>
     </div>
-  );
-};
-const UserTableBody = ({ user }: { user: User }) => {
-  return (
-    <TableRow key={user.uid}>
-      <TableCell component="th" scope="row">
-        {user.uid}
-      </TableCell>
-      <TableCell>{user.username}</TableCell>
-      <TableCell>{user.role}</TableCell>
-      <TableCell
-        sx={{
-          cursor: "pointer",
-        }}
-        onClick={() => void 0}
-      >
-        削除
-      </TableCell>
-    </TableRow>
   );
 };

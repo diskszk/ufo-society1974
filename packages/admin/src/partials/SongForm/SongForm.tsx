@@ -24,7 +24,6 @@ export const SongForm: React.FC<Props> = ({
     resolver: zodResolver(songSchema),
     mode: "onBlur",
     defaultValues: {
-      // TODO: 編集時のdefault値はurlのid(001,002)から取得する
       trackId: 1,
       title: "",
       lyric: "",

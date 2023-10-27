@@ -40,3 +40,17 @@ export async function registerUser(user: CreateUserDTO): Promise<void> {
   }
   return;
 }
+
+export async function deleteUser(id: string): Promise<void> {
+  const res = await axios.delete<User>(baseUrl(`/users/${id}`));
+
+  if (res.status === 204) {
+    return;
+  }
+
+  if (res.status === 404) {
+    throw new Error(ERROR_MESSAGE.notFound("ユーザー"));
+  }
+
+  throw new Error("ユーザーの削除に失敗しました。");
+}

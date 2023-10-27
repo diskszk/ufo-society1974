@@ -4,30 +4,41 @@ import { SubmitHandler } from "react-hook-form";
 import { CreateUserForm } from "../../partials/CreateUserForm";
 import { CreateUserInputs } from "../../schemas/createUserSchema";
 import { useSignedInUserState } from "../../hooks/useSignedInUserState";
-import { useCreateUser } from "../../hooks/useCreateUser";
+import { useHandleUser } from "../../hooks/useHandleUser";
 import { ROLE } from "../../constants";
 import { useMessageModalState } from "../../hooks/useMessageModalState";
-import { useSignIn } from "../../hooks/useSignIn";
 
 export const CreateUser: React.FC = () => {
   const history = useHistory();
   const { signedInUser } = useSignedInUserState();
-  const { handleCreateUser } = useCreateUser();
-  const { handleSignIn } = useSignIn();
+  const { handleCreate } = useHandleUser();
 
   const { openMessageModalWithMessage } = useMessageModalState();
 
   const onSubmit: SubmitHandler<CreateUserInputs> = useCallback(
     async (data) => {
-      try {
-        await handleCreateUser(data, signedInUser.role);
+      if (signedInUser.role !== ROLE.MASTER) {
+        openMessageModalWithMessage("権限がありません。");
+      }
 
-        await handleSignIn(data.email, data.password);
-      } catch {
-        throw new Error("サインインに失敗しました。");
+      if (!data) {
+        openMessageModalWithMessage("入力内容が正しくありません。");
+      }
+
+      try {
+        await handleCreate(data);
+
+        openMessageModalWithMessage(`${data.username}を作成しました。`);
+        history.push("/users");
+        return;
+      } catch (error) {
+        if (error instanceof Error) {
+          openMessageModalWithMessage(error.message);
+          return;
+        }
       }
     },
-    [handleCreateUser, handleSignIn, signedInUser.role]
+    [handleCreate, history, openMessageModalWithMessage, signedInUser.role]
   );
 
   useEffect(() => {
