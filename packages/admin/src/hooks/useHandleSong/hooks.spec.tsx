@@ -38,7 +38,7 @@ const failRequest = ({ method, url }: { method: RESTMethods; url: string }) => {
 test("楽曲の新規作成に成功した場合、成功した旨のメッセージをモーダル表示する", async () => {
   const { result } = setup();
 
-  await result.current.handleCrateSong(albumId, newSong);
+  await result.current.handleCreateSong(albumId, newSong);
 
   await waitFor(() => {
     expect(screen.getByRole("dialog")).toHaveTextContent(
@@ -57,7 +57,7 @@ test("楽曲の新規作成に失敗した場合、エラーモーダルを表�
   spy.mockImplementation(() => void 0);
 
   const { result } = setup();
-  await result.current.handleCrateSong(albumId, newSong);
+  await result.current.handleCreateSong(albumId, newSong);
 
   await waitFor(() => {
     expect(screen.getByRole("dialog")).toHaveTextContent(
