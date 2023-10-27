@@ -9379,7 +9379,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-redux@npm:^7.1.25, @types/react-redux@npm:^7.1.9":
+"@types/react-redux@npm:^7.1.25":
   version: 7.1.25
   resolution: "@types/react-redux@npm:7.1.25"
   dependencies:
@@ -9438,13 +9438,6 @@ __metadata:
   dependencies:
     redux: ^4.0.0
   checksum: c41fdc09198fae2d62ff7d6bd029ccae1fed655e6a7abd40614a8db5d6e01adbe565881b2c8d398789804a48259e3399af3939f994a532c11904ba2021799275
-  languageName: node
-  linkType: hard
-
-"@types/redux@npm:^3.6.0":
-  version: 3.6.31
-  resolution: "@types/redux@npm:3.6.31"
-  checksum: 7bfaa5c5390364d8ba4132033f9887f1c1ed96fda434d3f70be801e0997542a89c03dcd656e3bc8a1ea84bb6450e25e833cf17302dbd9055d6ff0e1f1b4f9a31
   languageName: node
   linkType: hard
 
@@ -10557,10 +10550,7 @@ __metadata:
     "@types/jest": ^29.5.2
     "@types/react": ^18.2.9
     "@types/react-dom": ^18.2.4
-    "@types/react-redux": ^7.1.9
     "@types/react-router-dom": ^5.3.3
-    "@types/redux": ^3.6.0
-    "@types/redux-logger": ^3.0.8
     "@types/uuid": ^9.0.2
     "@ufo-society1974/eslint-config": "workspace:^"
     "@ufo-society1974/factories": "workspace:^"
@@ -10584,10 +10574,7 @@ __metadata:
     react-dom: ^18.2.0
     react-error-boundary: ^4.0.10
     react-hook-form: ^7.44.3
-    react-redux: ^8.0.5
     react-router-dom: ^5.3.4
-    redux: ^4.2.1
-    redux-logger: ^3.0.6
     rimraf: ^5.0.0
     sass: ^1.32.0
     storybook: ^7.4.6
@@ -23566,7 +23553,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-redux@npm:^8.0.4, react-redux@npm:^8.0.5":
+"react-redux@npm:^8.0.4":
   version: 8.1.1
   resolution: "react-redux@npm:8.1.1"
   dependencies:
@@ -23912,7 +23899,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"redux@npm:^4.0.0, redux@npm:^4.0.5, redux@npm:^4.2.1":
+"redux@npm:^4.0.0, redux@npm:^4.0.5":
   version: 4.2.1
   resolution: "redux@npm:4.2.1"
   dependencies:
