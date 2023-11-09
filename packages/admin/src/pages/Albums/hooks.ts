@@ -3,6 +3,7 @@ import { fetchDraftAlbums } from "../../lib/draftAlbums";
 import { fetchPublishedAlbums } from "../../lib/publishedAlbums";
 import { Album } from "@ufo-society1974/types";
 
+// TODO: useQueriesつかう
 export function useAlbums(): {
   draftAlbums: Album[];
   publishedAlbums: Album[];
