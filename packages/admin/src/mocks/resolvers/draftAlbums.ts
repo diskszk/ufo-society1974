@@ -1,5 +1,5 @@
 import { PathParams, ResponseResolver, RestContext, RestRequest } from "msw";
-import { Album, UpdateAlbumDTO } from "@ufo-society1974/types";
+import { Album, CreateAlbumDTO, UpdateAlbumDTO } from "@ufo-society1974/types";
 import { createMockAlbum } from "@ufo-society1974/factories";
 import { NO_IMAGE, THREE_SONGS } from "../../constants";
 
@@ -26,7 +26,7 @@ const getById: ResponseResolver<
 };
 
 const create: ResponseResolver<
-  RestRequest<UpdateAlbumDTO, PathParams<string>>,
+  RestRequest<CreateAlbumDTO, PathParams<string>>,
   RestContext
 > = (_req, res, ctx) => {
   return res(ctx.status(201));
@@ -38,12 +38,27 @@ const update: ResponseResolver<
 > = (_req, res, ctx) => {
   return res(ctx.status(204));
 };
+const deleteAlbum: ResponseResolver<
+  RestRequest<never, PathParams<string>>,
+  RestContext
+> = (_req, res, ctx) => {
+  return res(ctx.status(204));
+};
+
+const publish: ResponseResolver<
+  RestRequest<never, PathParams<string>>,
+  RestContext
+> = (_req, res, ctx) => {
+  return res(ctx.status(204));
+};
 
 const mockDraftAlbums = {
   get,
   getById,
   create,
   update,
+  delete: deleteAlbum,
+  publish,
 };
 
 export default mockDraftAlbums;

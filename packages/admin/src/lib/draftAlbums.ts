@@ -1,7 +1,6 @@
 import type { CreateAlbumDTO, UpdateAlbumDTO } from "@ufo-society1974/types";
 import axios from "axios";
 import { baseUrl } from "./baseUrl";
-import { ERROR_MESSAGE } from "../constants";
 import { DraftAlbum } from "../types";
 
 export async function fetchDraftAlbums(): Promise<DraftAlbum[]> {
@@ -52,17 +51,10 @@ export async function deleteDraftAlbum(albumId: string): Promise<void> {
   }
 }
 
-// TODO: どこからもまだ呼ばれていない
 export async function publish(albumId: string): Promise<void> {
-  const res = await axios.post(`/draft-albums/${albumId}/publish`);
-
-  if (res.status === 201) {
-    return;
-  }
-
-  if (res.status === 404) {
-    throw new Error(ERROR_MESSAGE.notFound("IDと一致する公開中のアルバム"));
-  } else {
-    throw Error(ERROR_MESSAGE.serverError);
+  try {
+    await axios.post(baseUrl(`/draft-albums/${albumId}/publish`));
+  } catch {
+    throw new Error("アルバムの公開に失敗しました。");
   }
 }
