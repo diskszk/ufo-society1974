@@ -64,7 +64,7 @@ export class DraftAlbumsService {
   async findById(id: string): Promise<Album | null> {
     const snapshot = await this.draftAlbumsRef
       .doc(id)
-      .withConverter(albumConverter)
+      .withConverter<Album>(albumConverter)
       .get();
 
     if (!snapshot.exists) {

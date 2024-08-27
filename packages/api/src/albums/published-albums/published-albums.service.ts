@@ -64,7 +64,7 @@ export class PublishedAlbumsService {
   async findById(id: string): Promise<Album | null> {
     const snapshot = await this.publishedAlbumsRef
       .doc(id)
-      .withConverter(albumConverter)
+      .withConverter<Album>(albumConverter)
       .get();
 
     if (!snapshot.exists) {
