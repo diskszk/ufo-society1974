@@ -1,0 +1,8 @@
+{
+  "eslint.workingDirectories": [
+    "./packages/admin",
+    "./packages/api",
+    "./packages/factories",
+    "./packages/homepage"
+  ]
+}

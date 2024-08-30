@@ -25447,7 +25447,7 @@ __metadata:
   linkType: hard
 
 "trim@npm:0.0.1":
-  version: 0.0.1
+  version: 0.0.3
   resolution: "trim@npm:0.0.1"
   checksum: 2b4646dff99a222e8e1526edd4e3a43bbd925af0b8e837c340455d250157e7deefaa4da49bb891ab841e5c27b1afc5e9e32d4b57afb875d2dfcabf4e319b8f7f
   languageName: node
