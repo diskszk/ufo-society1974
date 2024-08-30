@@ -6,14 +6,13 @@ import {
   NotFoundException,
   Param,
   Post,
-  Put,
   UseGuards,
 } from "@nestjs/common";
 import { AuthGuard } from "../auth/auth.guard";
 import { role } from "../constants";
 import { Role } from "../decorators/role.decorator";
 import { RoleGuard } from "../role/role.guard";
-import { CreateSongDTO, UpdateSongDTO } from "./songs.dto";
+import { CreateSongDTO } from "./songs.dto";
 import { SongsService } from "./songs.service";
 import {
   ApiCreatedResponse,
@@ -97,21 +96,5 @@ export class SongsController {
     }
 
     return await this.deleteSong(albumId, songId);
-  }
-
-  @Put(":songId")
-  @UseGuards(AuthGuard)
-  @Role(role.EDITOR)
-  @UseGuards(RoleGuard)
-  @ApiNoContentResponse()
-  @ApiNotFoundResponse({
-    description: "IDと一致する楽曲は存在しません。",
-  })
-  async updateSong(
-    @Param("albumId") albumId: string,
-    @Param("songId") songId: string,
-    @Body() song: UpdateSongDTO
-  ) {
-    return;
   }
 }

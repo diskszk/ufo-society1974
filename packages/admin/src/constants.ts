@@ -31,3 +31,7 @@ export const ERROR_MESSAGE = {
   serverError: "サーバーでエラーが発生しました。",
   notFound: (value: string) => `${value}が存在しません。`,
 };
+
+export const roleList = [ROLE.MASTER, ROLE.EDITOR, ROLE.WATCHER] as const;
+
+export const statusList = ["edit", "preview"] as const;

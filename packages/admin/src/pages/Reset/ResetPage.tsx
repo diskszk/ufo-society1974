@@ -21,7 +21,7 @@ export const ResetPage: React.FC = () => {
     async ({ email }) => {
       try {
         await findUserByEmail(email);
-      } catch (error) {
+      } catch {
         openMessageModalWithMessage(
           "入力されたメールアドレスと一致するユーザーが存在しません。"
         );
